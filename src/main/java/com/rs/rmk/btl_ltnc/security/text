@@ -1,0 +1,3 @@
+Nếu ứng dụng của bạn yêu cầu bảo mật, bạn có thể có các lớp hoặc file
+để xác thực và ủy quyền người dùng, có thể sử dụng Spring Security
+hoặc các công nghệ xác thực khác.

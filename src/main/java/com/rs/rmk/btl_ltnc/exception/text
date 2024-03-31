@@ -1,0 +1,3 @@
+Chứa các file xử lý các ngoại lệ trong ứng dụng.
+Bạn có thể tạo các lớp xử lý ngoại lệ để xử lý các loại ngoại lệ
+cụ thể hoặc xử lý ngoại lệ chung của ứng dụng.

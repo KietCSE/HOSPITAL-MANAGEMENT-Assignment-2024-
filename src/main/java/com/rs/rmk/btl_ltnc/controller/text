@@ -1,0 +1,4 @@
+Chứa các file controller để xử lý các yêu cầu HTTP từ client
+và tương tác với dịch vụ Firebase. Trong các controller này,
+bạn sẽ xác định các endpoint và xử lý logic cho từng yêu cầu
+HTTP tương ứng, hoặc xử lý các view.

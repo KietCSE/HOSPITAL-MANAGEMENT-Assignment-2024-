@@ -1,0 +1,3 @@
+Trong trường hợp bạn sử dụng các thư viện cho việc tương tác với Firebase,
+bạn có thể có các lớp repository để thực hiện các thao tác đọc và ghi dữ
+liệu vào Firebase.Đây là nơi chứa code thực thi, xử lý database

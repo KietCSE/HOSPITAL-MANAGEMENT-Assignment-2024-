@@ -1,0 +1,5 @@
+Chứa các định nghĩa về cấu trúc dữ liệu, bao gồm các lớp đại diện cho
+các đối tượng dữ liệu của ứng dụng. Đối với một ứng dụng sử dụng Firebase,
+các lớp này thường ánh xạ tới cấu trúc dữ liệu trong cơ sở dữ liệu Firebase.
+Các cấu trúc dữ liệu này thường. Cần có ResponseObject đại diện cho data trả về,
+data đính kèm với status, message, object,… có thể chứa các để giao tiếp với client và server

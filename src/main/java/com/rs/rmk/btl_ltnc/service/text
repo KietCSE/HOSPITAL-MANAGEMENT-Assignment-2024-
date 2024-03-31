@@ -1,0 +1,3 @@
+Chứa các file service để thực hiện logic nghiệp vụ của ứng dụng.
+Service là nơi bạn thực hiện các hoạt động thao tác với dữ liệu
+từ Firebase và gọi các hàm cập nhập từ repository. Đi kèm với @Service
