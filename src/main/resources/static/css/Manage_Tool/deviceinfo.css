@@ -1,0 +1,166 @@
+.wrapper {
+    display: block;
+    margin-top: 5%;
+}
+
+.wrapper h1 {
+    color: #0073B1;
+    font-weight: 600;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.section {
+    padding: 2rem 5%;
+}
+
+.layout {
+    padding-top: 0vh;
+    padding-bottom: 0vh;
+    background-color: #FFF;
+    display: flex;
+    justify-content: space-around;
+}
+
+.layout-1,
+.layout-2 {
+    flex: 1;
+    padding: 20px;
+}
+
+.layout-1 {
+    border: var(--border);
+    padding: 20px;
+    text-align: center;
+}
+
+.layout-1 img {
+    max-width: 80%;
+    height: auto;
+}
+
+.layout-1 {
+    border: var(--border);
+    border-radius: 3%;
+    background-color: #fff;
+    color: white;
+}
+
+.layout-1 :hover {
+    box-shadow: var(--box-shadow);
+}
+
+.layout-2 {
+    font-size: 20px;
+}
+
+.layout-2 h5 {
+    margin-top: 2%;
+    color: #0073B1;
+}
+
+.layout-2 h5 p,
+span {
+    color: #878686;
+    font-size: 15px;
+}
+
+.layout-2 button {
+    margin-top: 5%;
+    margin-right: 5%;
+    padding: 10px;
+    border: var(--border);
+    font-size: 15px;
+}
+
+.layout-2 button:hover {
+    margin-top: 5%;
+    padding: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: #0073B1;
+}
+
+
+.table {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--strong-box-shadow);
+    margin-top: 10px;
+}
+
+.table_header {
+    font-size: 2rem;
+}
+
+.table_body {
+    font-size: 1.5rem;
+    max-width: 75vw;
+    max-height: 60vh;
+    background-color: #fff;
+    /* box-shadow: var(--strong-box-shadow); */
+    margin-top: 10px;
+    overflow: hidden;
+    /* border-radius: 1rem; */
+    /* position: relative; */
+    /* width: 100%;
+    max-height: 100%; */
+    margin: 0;
+    overflow: auto;
+    height: 100%;
+}
+
+table,
+th,
+td {
+    padding: 1rem 1.5rem;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+}
+
+
+.table_body::-webkit-scrollbar {
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+.table_body::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background-color: #0004;
+    visibility: visible;
+
+}
+
+.table_body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+thead th {
+    font-size: 1.7rem;
+    background-color: var(--primary-blue);
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03)
+}
+
+tbody tr:hover {
+    background-color: var(--gray);
+    cursor: pointer;
+}
+
+tbody .delete:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.table_body .Information:hover {
+    text-decoration: underline;
+    color: blue;
+}

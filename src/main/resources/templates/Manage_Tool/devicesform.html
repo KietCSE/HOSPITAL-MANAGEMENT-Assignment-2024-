@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine-Form</title>
+
+    <link rel="stylesheet" href="../static/Style/medicineform.css">
+    <link rel="stylesheet" href="../static/Style/headerAndfooter.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <div class="BKUlogo">
+                <img src="../static/img/logo.png" alt="">
+            </div>
+            HCMUT
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">Trang chủ</a>
+            <a href="#features">Chức năng</a>
+            <a href="#info">Thông tin</a>
+            <a href="#achieve">Thành tựu</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+
+        <div class="login-btn">
+            <button class="user btn">
+                <i class="fa-solid fa-user"></i>
+                <a href="#">Tài khoản</a>
+            </button>
+        </div>
+    </header>
+
+
+    <section class="wrapper">
+        <h1>THÔNG TIN THUỐC</h1>
+    </section>
+
+    <section class="form">
+        <div class="search">
+            <div class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" value="" placeholder="ID number">
+            <button class="search-btn">Tìm kiếm</button>
+        </div>
+
+        <section class="table">
+            <div class="table_body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>ID</th>
+                            <th>Tên thiết bị</th>
+                            <th>Tổng số lượng</th>
+                            <th>Đang sử dụng</th>
+                            <th>Hỏng hóc</th>
+                            <th>Dự trữ</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>001</td>
+                            <td>Nhiệt kế</td>
+                            <td>200</td>
+                            <td>150</td>
+                            <td>15</td>
+                            <td>35</td>
+                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>001</td>
+                            <td>Nhiệt kế</td>
+                            <td>200</td>
+                            <td>150</td>
+                            <td>15</td>
+                            <td>35</td>
+                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>001</td>
+                            <td>Nhiệt kế</td>
+                            <td>200</td>
+                            <td>150</td>
+                            <td>15</td>
+                            <td>35</td>
+                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>001</td>
+                            <td>Nhiệt kế</td>
+                            <td>200</td>
+                            <td>150</td>
+                            <td>15</td>
+                            <td>35</td>
+                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+        <section class="button ">
+            <a href="#import"><button>Nhập thiết bị</button></a>
+            <a href="#update"><button>Cập nhật trạng thái thiết bị</button></a>
+        </section>
+
+        <section class="info wrapper" id="import">
+            <h1>NHẬP THIẾT BỊ</h1>
+
+            <form action="#" method="post" class="FORM" id="FORM">
+
+                <div class="Product">
+                    <label for="Name">Tên TTB:</label><br>
+                    <input type="text" id="Name" name="Name" value=""><br>
+
+                    <label for="Type">Phân loại:</label>
+                    <select id="Type" name="Type">
+                        <option value="loaiA">TTB Y tế loại A</option>
+                        <option value="loaiB">TTB Y tế loại B</option>
+                        <option value="loaiC">TTB Y tế loại C</option>
+                        <option value="loaiD">TTB Y tế loại D</option>
+                    </select> <br>
+
+                    <label for="Dvcc">Đơn vị cung cấp:</label><br>
+                    <input type="text" id="Dvcc" name="Dvcc" value=""><br>
+
+                    <label for="Total-Amount">Tổng số lượng:</label><br>
+                    <input type="text" id="Total-Amount" name="Total-Amount" value=""><br>
+
+                    <label for="Use-Amount">Số lượng dự định bố trí:</label><br>
+                    <input type="text" id="Use-Amount" name="Use-Amount" value=""><br>
+
+                    <label for="Date">Ngày nhập:</label><br>
+                    <input type="date" id="Date" name="Date" value=""><br>
+
+                    <label for="Image">Chọn hình ảnh:</label>
+                    <input type="file" id="Image" name="Image" accept="image/*"><br>
+                </div>
+
+                <section class="button ">
+                    <button type="submit">Xác nhận</button>
+                </section>
+            </form>
+        </section>
+
+        <section class="info wrapper" id="update">
+            <h1>CẬP NHẬT TRẠNG THÁI THIẾT BỊ</h1>
+
+            <form action="#" method="post" class="FORM" id="FORM">
+
+                <div class="Product">
+                    <label for="Name">Tên TTB:</label><br>
+                    <input type="text" id="Name" name="Name" value=""><br>
+
+                    <label for="Total-Amount">Tổng số lượng:</label><br>
+                    <input type="text" id="Total-Amount" name="Total-Amount" value=""><br>
+
+                    <label for="Use-Amount">Đang sử dụng:</label><br>
+                    <input type="text" id="Use-Amount" name="Use-Amount" value=""><br>
+
+                    <label for="Damaged-Amount">Hỏng hóc:</label><br>
+                    <input type="text" id="Damaged-Amount" name="Damaged-Amount" value=""><br>
+
+                    <label for="Store-Amount">Dự trữ:</label><br>
+                    <input type="text" id="Store-Amount" name="Store-Amount" value=""><br>
+
+                    <label for="Date">Ngày cập nhật:</label><br>
+                    <input type="date" id="Date" name="Date" value=""><br>
+
+                </div>
+
+                <section class="button ">
+                    <button type="submit">Xác nhận</button>
+                </section>
+            </form>
+        </section>
+    </section>
+
+
+
+
+
+
+
+    <section class="footer">
+        <div class="footer-container">
+
+            <div class="footer-box">
+
+                <div class="footer-BKUlogo">
+                    <img src="./css/img/logo-footer.jpg" alt="">
+                    <div class="footer-logo-content">
+                        <span>HOSPITAL HCMUT UNIVERSITY</span>
+                        <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+                    </div>
+                </div>
+
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+
+                <span>LƯỢT TRUY CẬP: 99,999,999</span>
+            </div>
+
+            <div class="footer-box">
+                <h3>Thông tin liên hệ hỗ trợ</h3>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
+                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
+                    14, Quận 10, TP. HCM (Bản đồ) </a>
+                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
+                    Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
+
+            </div>
+
+            <div class="footer-box">
+                <h3>Truy cập</h3>
+                <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+                <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+                <a href="#info" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+                <a href="#achieve" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+                <a href="#contact" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+            </div>
+        </div>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+
+<script>
+    let newProductDiv = document.querySelector('.New_Product');
+
+    function DOOM(checkbox) {
+        if (checkbox.checked === true) {
+            newProductDiv.style.opacity = "1";
+            newProductDiv.style.pointerEvents = "auto";
+        } else {
+            newProductDiv.style.opacity = "0.5";
+            newProductDiv.style.pointerEvents = "none";
+        }
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,220 @@
+/* link font  */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+:root {
+    --header-color: #fff;
+    --box-hover: #132D65;
+    /*primary color*/
+    --primary-blue: #0073B1;
+    --gray: #E5E5E5;
+    --text-hover: #fff;
+    --background-color: #FBFBF7;
+    --black: #130f40;
+    --light-color: #666;
+    --button-color: #C1D0F9;
+    --border: .2rem solid rgba(0, 0, 0, .1);
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.1);
+    --outline: .2rem solid rgba(0, 0, 0, .1);
+    --outline-hover: .2rem solid var(--black);
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    margin: 0;
+    color: var(--black);
+    transition: all .1s linear;
+    /*moi thuoc tinh deu chuyen dong */
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.btn {
+    padding: 0.8rem 3rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    border: var(--border);
+    color: var(--black);
+    background-color: none;
+}
+
+.heading {
+    text-align: center;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.3rem;
+    color: var(--black);
+}
+
+.header {
+    height: 10vh;
+    background-color: var(--header-color);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header .navbar a {
+    font-size: 1.8rem;
+    padding: 13px;
+    font-weight: 470;
+}
+
+.header .navbar a:hover {
+    background-color: var(--box-hover);
+    color: var(--text-hover);
+}
+
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.header .logo .BKUlogo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header .logo img {
+    height: 60px;
+}
+
+.header .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+}
+
+.header .login-btn a {
+    margin-left: 0.5rem;
+}
+
+.header .login-btn .user {
+    background-color: var(--header-color);
+    border: none;
+}
+
+.header .login-btn .user:hover {
+    background-color: var(--gray);
+}
+
+/* END CSS HEADER */
+
+
+
+/* CSS FOOTER */
+.footer {
+    margin-top: 3rem;
+    background-color: var(--box-hover);
+    padding: 2rem 3%;
+}
+
+.footer .footer-container {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
+    grid-template-columns: 4fr 5fr 2fr;
+    gap: 1.5rem;
+}
+
+.footer .footer-container .footer-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .footer-container .footer-box a {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 1rem 0;
+}
+
+.footer .footer-container .footer-box h3 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.footer .footer-container .footer-box i {
+    font-size: 1rem;
+    color: #fff;
+    margin-right: 1rem;
+}
+
+.footer .footer-container .footer-box .footer-BKUlogo {
+    display: flex;
+    align-items: center;
+}
+
+.footer .footer-container .footer-box .footer-BKUlogo span {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.footer .footer-container .footer-box .footer-BKUlogo p {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.footer .footer-container .footer-box .share a {
+    padding: 3rem 0;
+    font-size: 3rem;
+    margin-right: 2rem;
+    color: #fff;
+}
+
+.footer .footer-container .footer-box .links:hover i {
+    padding-right: 2rem;
+}
+
+.footer .footer-container .footer-box img {
+    height: 60px;
+}
+
+.footer .footer-container .footer-box span {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+}

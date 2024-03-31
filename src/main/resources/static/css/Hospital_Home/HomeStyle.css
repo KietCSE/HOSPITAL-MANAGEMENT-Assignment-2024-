@@ -1,0 +1,547 @@
+/* link font  */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+:root { 
+    --header-color: #fff;
+    --box-hover: #132D65;  /*primary color*/
+    --primary-blue: #0073B1;
+    --gray: #E5E5E5;
+    --text-hover: #fff;
+    --background-color: #FBFBF7;
+    --black: #130f40; 
+    --light-color: #666; 
+    --button-color: #C1D0F9;
+    --border:.2rem solid rgba(0,0,0,.1);
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,0.1); 
+    --outline: .2rem solid rgba(0,0,0,.1);
+    --outline-hover: .2rem solid var(--black);
+}
+
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    margin: 0;
+    color: var(--black);
+    transition: all .1s linear; /*moi thuoc tinh deu chuyen dong */
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+section {
+    padding: 2rem 9%;   
+}
+
+
+.btn {
+    padding: 0.8rem 3rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    border: var(--border);
+    color: var(--black);
+    background-color: none;
+}
+
+
+.heading{
+    text-align: center;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.3rem; 
+    color: var(--black);
+}
+
+/* ENTER HEADER */
+
+.header {
+    height: 10vh;
+    background-color: var(--header-color);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    position: fixed;
+    top: 0; left: 0; right: 0; 
+    width: 100%;
+    z-index: 1000;
+}
+
+.header .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header .navbar a {
+    font-size: 1.8rem;
+    padding: 13px;
+    font-weight: 470;
+}
+
+.header .navbar a:hover {
+    background-color: var(--box-hover);
+    color: var(--text-hover);
+}
+
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.header .logo .BKUlogo{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header .logo img {
+    height: 60px;
+}
+
+.header .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+}
+
+.header .login-btn a {
+    margin-left: 0.5rem;
+}
+
+.header .login-btn .user {
+    background-color: var(--header-color);
+    border: none;
+}
+
+.header .login-btn .user:hover {
+    background-color: var(--gray);
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../css/img/hospital.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    height: 100vh;
+    background-position-y: 0rem;
+}
+
+.home-page {
+    position: relative;
+}
+
+.home-page .content{
+    position: absolute;
+    top: 20rem;
+    padding: 0;
+    height: 25%;
+    background-color: rgba(0,0,0,.25);
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.home-page .content h1 {
+    font-size: 4rem;
+    color: var(--gray);
+}
+
+.home-page .content span {
+    font-size: 2.3rem;
+    color: var(--gray);
+}
+
+
+.feature .feature-area {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.feature .feature-box {
+    background-color: var(--gray);
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+
+.feature .feature-box:hover {
+    background-color: var(--box-hover);
+    cursor: pointer;
+}   
+.feature .feature-box:hover span{
+    color: var(--text-hover);
+}   
+
+.info .swiper-wrapper .doctor-container{
+    display: grid;
+    /* grid-template-columns: repeat(5, minmax(30rem, 1fr)); */
+    gap: 1.5rem;
+}
+
+
+.info .swiper-wrapper .doctor-box {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    outline-offset: -1rem;
+    outline: var(--outline);
+    box-shadow: var(--box-shadow);
+    transition: 0.2s linear;
+    width: 25%;
+    margin: 0 1rem;
+    cursor: pointer;  
+}
+
+.info .swiper-wrapper .doctor-box:hover {
+    outline-offset: -0.3rem;
+    outline: var(--outline-hover);
+}
+
+.info .swiper-wrapper .doctor-box h3 {
+    font-size: 2rem;
+}
+
+.info .swiper-wrapper .doctor-box .doctor-icon {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    padding: 0 8rem;
+    justify-content: space-between;
+}
+
+.info i {
+    font-size: 1.7rem;
+    color: var(--box-hover);
+}
+
+.info img {
+    margin: 1rem 0;
+    height: 280px; 
+}
+
+.achieve img {
+    height: 250px;
+}
+
+.achieve .container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(30rem, 1fr));
+    gap: 1.5rem;
+} 
+
+.achieve .container .box {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    outline-offset: -1rem;
+    outline: var(--outline);
+    box-shadow: var(--box-shadow);
+    transition: 0.2s linear;
+    margin: 0 1rem;
+    cursor: pointer;  
+}
+
+.achieve .container .box:hover {
+    outline-offset: -0.3rem;
+    outline: var(--outline-hover);
+}
+
+.achieve .container .box h3{
+    font-size: 2.3rem;
+    margin: 1rem 1rem;
+    border-bottom: var(--border);
+    line-height: 5rem;
+    
+}
+
+.achieve .container .box span{
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.achieve .container .img {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    display: flex;
+    border: var(--border);
+}
+
+.contact .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(30rem, 1fr));
+    gap: 30px;
+}
+
+.contact .container .form{
+    background-color: #fff;
+    /* background: linear-gradient(to right, #C7DCF4, #fff); */
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35); /*tao bong mo cho khoi*/
+
+}
+
+.contact .container .form .personal-info {
+    margin: 1.5rem 3.5rem;
+    border: none;
+    border-radius: 1rem;
+    line-height: 2rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--gray);
+}
+
+.contact .container .form .submit-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.contact .container .form .submit-btn .btn{
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: var(--box-hover);
+    border-radius: 2rem;
+    width: 100px;
+    color: #fff;
+}
+
+.contact .container .form .submit-btn .btn:hover {
+    background-color: var(--gray);
+    color: var(--black);
+    border-color: var(--black);
+}
+
+.contact .container .picture{
+    overflow: hidden;
+    border: var(--border);
+    display: flex;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.contact .container .picture img{
+    height: 70vh;
+}
+
+.contact .container .picture span {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0,0,0,.2);
+    color: var(--gray);
+    line-height: 100px;
+    top: 50px;
+    font-size: 1.65rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+.footer {
+    margin-top: 3rem;
+    background-color: var(--box-hover);
+    padding: 2rem 3%;
+}
+
+.footer .footer-container {
+    display: grid; 
+    /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
+    grid-template-columns:4fr 5fr 2fr; 
+    gap:1.5rem;
+}
+
+.footer .footer-container .footer-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .footer-container .footer-box a {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 1rem 0;
+}
+
+.footer .footer-container .footer-box h3{
+    font-size: 2rem;
+    color: #fff;
+}
+
+.footer .footer-container .footer-box i {
+    font-size: 1rem;
+    color: #fff;
+    margin-right: 1rem;
+}
+
+.footer .footer-container .footer-box .footer-BKUlogo {
+    display: flex;
+    align-items: center;
+}
+
+.footer .footer-container .footer-box .footer-BKUlogo span {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.footer .footer-container .footer-box .footer-BKUlogo p {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.footer .footer-container .footer-box .share a{
+    padding: 3rem 0;
+    font-size: 3rem;
+    margin-right: 2rem;
+    color: #fff;
+}
+
+.footer .footer-container .footer-box .links:hover i {
+    padding-right: 2rem;
+}
+
+.footer .footer-container .footer-box img {
+    height: 60px;
+}
+
+.footer .footer-container .footer-box span {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* meida queries */
+@media (max-width: 991px) {
+    
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 2rem; 
+    }
+
+    section {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-btn{
+        display: inline-block;
+    }
+
+    .header .search-form {
+        width: 90%;
+    }
+
+    .header .navbar{
+        position: absolute;
+        top: 110%; right: -110%; 
+        width: 30rem;
+        box-shadow: var(--box-shadow);
+        border-radius: 0.5rem;
+        background-color: #fff;
+    }
+
+    .header .navbar a {
+        font-size: 2rem;
+        margin: 2rem 2.5rem;
+        display: block;
+    }
+
+    .header .navbar.active {
+        right: 2rem; 
+        transition: 0.4s linear;
+    }
+}
+
+@media (max-width: 450px) {
+    
+    html {
+        font-size: 50%;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+
+    }
+}
