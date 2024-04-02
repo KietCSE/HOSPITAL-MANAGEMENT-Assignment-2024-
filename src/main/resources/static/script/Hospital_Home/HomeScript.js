@@ -29,3 +29,19 @@ document.querySelector(".patient_info").addEventListener("click", () => {
   window.location.href = "../Manage_Patient/List_Patient/index.html";
 });
 
+document.querySelector(".schedule_info").addEventListener("click", () => {
+    window.location.href = "../Schedule/index.html";
+});
+
+document.querySelector(".doctor_info").addEventListener("click", () => {
+    window.location.href = "../Manage_Doctor/Doctor_list/doctor.html";
+})
+
+document.querySelector(".tool_info").addEventListener("click", () => {
+    window.location.href = "../Manage_Tool/devicesform.html";
+})
+
+document.querySelector(".medicine_info").addEventListener("click", () => {
+    window.location.href = "../Manage_Medicine/medicineform.html";
+})
+
