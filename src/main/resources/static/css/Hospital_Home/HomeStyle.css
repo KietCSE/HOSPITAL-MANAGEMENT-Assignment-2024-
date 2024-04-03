@@ -140,18 +140,7 @@ section {
     background-color: var(--gray);
 }
 
-.home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url(../css/img/hospital.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
-    padding-top: 17rem;
-    padding-bottom: 10rem;
-    height: 100vh;
-    background-position-y: 0rem;
-}
+
 
 .home-page {
     position: relative;

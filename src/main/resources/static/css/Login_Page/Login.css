@@ -7,16 +7,6 @@
   font-family: "Montserrat", sans-serif;
 }
 
-body {
-  background: url(./Trường_Đại_học_Bách_khoa_vào_Xuân.jpg);
-  background-size: 100% 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-}
-
 .container {
   background-color: #fff;
   border-radius: 30px;

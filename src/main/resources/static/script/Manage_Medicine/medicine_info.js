@@ -18,3 +18,7 @@ try {
     SPAN.textContent = error;
     SPAN.style.color = "red";
 }
+
+document.querySelector('.Click').addEventListener("click", () => {
+       window.location.href = '/medicine/form';
+});

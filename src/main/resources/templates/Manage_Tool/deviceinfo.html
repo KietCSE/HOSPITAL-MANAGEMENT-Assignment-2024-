@@ -8,16 +8,12 @@
 
     <title>Thông tin TTB</title>
 
-    <link rel="stylesheet" href="../static/Style/headerAndfooter.css">
-
-    <link rel="stylesheet" href="../static/Style/deviceinfo.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" th:href="@{/css/Manage_Medicine/headerAndfooter.css}">
+    <link rel="stylesheet" th:href="@{/css/Manage_Tool/deviceinfo.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
 </head>
 
 
@@ -25,34 +21,41 @@
 
 
 <body>
-    <header class="header">
-        <a href="#" class="logo">
-            <div class="BKUlogo">
-                <img src="../static/img/logo.png" alt="">
-            </div>
-            HCMUT
-        </a>
-
-        <nav class="navbar">
-            <a href="#home">Trang chủ</a>
-            <a href="#features">Chức năng</a>
-            <a href="#info">Thông tin</a>
-            <a href="#achieve">Thành tựu</a>
-            <a href="#contact">Liên hệ</a>
-        </nav>
-
-        <div class="login-btn">
-            <button class="user btn">
-                <i class="fa-solid fa-user"></i>
-                <a href="#">Tài khoản</a>
-            </button>
+<header class="header">
+    <a href="#" class="logo">
+        <div class="BKUlogo">
+            <img th:src="@{/img/Logo/logo.png}" alt="">
         </div>
-    </header>
+        HCMUT
+    </a>
+
+    <nav class="navbar">
+        <a th:href="@{/#home}">Trang chủ</a>
+        <a th:href="@{/#features}">Chức năng</a>
+        <a th:href="@{/#info}">Thông tin</a>
+        <a th:href="@{/#achieve}">Thành tựu</a>
+        <a th:href="@{/#contact}">Liên hệ</a>
+    </nav>
+
+    <div class="login-btn">
+        <button class="user btn">
+            <i class="fa-solid fa-user"></i>
+            <a href="#">Tài khoản</a>
+        </button>
+    </div>
+
+    <script>
+        document.querySelector(".login-btn").addEventListener("click", () => {
+            window.location.href = "/login";
+        });
+    </script>
+</header>
 
 
 
 
-    <section class="wrapper">
+
+<section class="wrapper">
 
         <h1>THÔNG TIN TRANG THIẾT BỊ</h1>
 
@@ -64,7 +67,7 @@
     <section class="layout">
 
         <div class="layout-1">
-            <img src="../static/img/nhiet-ke-y-te.jpg" alt="">
+            <img th:src="@{/img/Manage_Tool/nhiet-ke-y-te.jpg}" alt="">
         </div>
 
         <div class="layout-2">
@@ -93,7 +96,7 @@
                     <p>Dự trữ: 30</p>
                 </h5>
                 <button onclick="showUpdateLog()"><b>Nhật ký cập nhật</b></button>
-                <button onclick="window.location.href = 'devicesform.html'"><b>Quản lí thiết bị</b></button>
+                <button onclick="window.location.href = '/tool/form'"><b>Quản lí thiết bị</b></button>
             </div>
         </div>
         
@@ -167,57 +170,52 @@
 
     <!-- start footer  -->
     <section class="footer">
-        <div class="footer-container">
+    <div class="footer-container">
 
-            <div class="footer-box">
+        <div class="footer-box">
 
-                <div class="footer-BKUlogo">
-                    <img src="./css/img/logo-footer.jpg" alt="">
-                    <div class="footer-logo-content">
-                        <span>HOSPITAL HCMUT UNIVERSITY</span>
-                        <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU</p>
-                    </div>
+            <div class="footer-BKUlogo">
+                <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
+                <div class="footer-logo-content">
+                    <span>HOSPITAL HCMUT UNIVERSITY</span>
+                    <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
                 </div>
-
-                <div class="share">
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
-                </div>
-
-                <span>LƯỢT TRUY CẬP: 99,999,999</span>
             </div>
 
-            <div class="footer-box">
-                <h3>Thông tin liên hệ hỗ trợ</h3>
-                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
-                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
-                    14, Quận 10, TP. HCM (Bản đồ) </a>
-                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
-                    Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
-
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
             </div>
 
-            <div class="footer-box">
-                <h3>Truy cập</h3>
-                <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-                <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
-                <a href="#info" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
-                <a href="#achieve" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
-                <a href="#contact" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
-            </div>
+            <span>LƯỢT TRUY CẬP: 99,999,999</span>
         </div>
 
-    </section>
-    <!-- end footer  -->
-    <!-- end footer  -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- custom file js -->
-    <script src="./HomeScript.js"></script>
-    <script src="../static/effect.js"></script>
+        <div class="footer-box">
+            <h3>Thông tin liên hệ hỗ trợ</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
+            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
+                14, Quận 10, TP. HCM (Bản đồ) </a>
+            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
+                Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Truy cập</h3>
+            <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+            <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+            <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+            <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+            <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+        </div>
+    </div>
+
+</section>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
 </body>
 
 

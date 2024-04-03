@@ -6,41 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicine-Form</title>
 
-    <link rel="stylesheet" href="../static/Style/medicineform.css">
-    <link rel="stylesheet" href="../static/Style/headerAndfooter.css">
+    <link rel="stylesheet" th:href="@{/css/Manage_Medicine/headerAndfooter.css}">
+    <link rel="stylesheet" th:href="@{/css/Manage_Tool/deviceform.css}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
 </head>
 
 <body>
     <header class="header">
-        <a href="#" class="logo">
-            <div class="BKUlogo">
-                <img src="../static/img/logo.png" alt="">
-            </div>
-            HCMUT
-        </a>
-
-        <nav class="navbar">
-            <a href="#home">Trang chủ</a>
-            <a href="#features">Chức năng</a>
-            <a href="#info">Thông tin</a>
-            <a href="#achieve">Thành tựu</a>
-            <a href="#contact">Liên hệ</a>
-        </nav>
-
-        <div class="login-btn">
-            <button class="user btn">
-                <i class="fa-solid fa-user"></i>
-                <a href="#">Tài khoản</a>
-            </button>
+    <a href="#" class="logo">
+        <div class="BKUlogo">
+            <img th:src="@{/img/Logo/logo.png}" alt="">
         </div>
-    </header>
+        HCMUT
+    </a>
+
+    <nav class="navbar">
+        <a th:href="@{/#home}">Trang chủ</a>
+        <a th:href="@{/#features}">Chức năng</a>
+        <a th:href="@{/#info}">Thông tin</a>
+        <a th:href="@{/#achieve}">Thành tựu</a>
+        <a th:href="@{/#contact}">Liên hệ</a>
+    </nav>
+
+    <div class="login-btn">
+        <button class="user btn">
+            <i class="fa-solid fa-user"></i>
+            <a href="#">Tài khoản</a>
+        </button>
+    </div>
+
+    <script>
+        document.querySelector(".login-btn").addEventListener("click", () => {
+            window.location.href = "/login";
+        });
+    </script>
+</header>
 
 
     <section class="wrapper">
@@ -81,7 +87,7 @@
                             <td>150</td>
                             <td>15</td>
                             <td>35</td>
-                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                            <td><a th:href="@{/tool/info}" class="Information">More</a></td>
                         </tr>
                         <tr>
                             <td>1</td>
@@ -91,7 +97,7 @@
                             <td>150</td>
                             <td>15</td>
                             <td>35</td>
-                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                            <td><a th:href="@{/tool/info}" class="Information">More</a></td>
                         </tr>
                         <tr>
                             <td>1</td>
@@ -101,17 +107,7 @@
                             <td>150</td>
                             <td>15</td>
                             <td>35</td>
-                            <td><a href="deviceinfo.html" class="Information">More</a></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>001</td>
-                            <td>Nhiệt kế</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>15</td>
-                            <td>35</td>
-                            <td><a href="deviceinfo.html" class="Information">More</a></td>
+                            <td><a th:href="@{/tool/info}" class="Information">More</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -195,19 +191,13 @@
         </section>
     </section>
 
-
-
-
-
-
-
     <section class="footer">
         <div class="footer-container">
 
             <div class="footer-box">
 
                 <div class="footer-BKUlogo">
-                    <img src="./css/img/logo-footer.jpg" alt="">
+                    <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
                     <div class="footer-logo-content">
                         <span>HOSPITAL HCMUT UNIVERSITY</span>
                         <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
@@ -238,16 +228,16 @@
 
             <div class="footer-box">
                 <h3>Truy cập</h3>
-                <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-                <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
-                <a href="#info" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
-                <a href="#achieve" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
-                <a href="#contact" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+                <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+                <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+                <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+                <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+                <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
             </div>
         </div>
 
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
 </body>
 
 <script>
