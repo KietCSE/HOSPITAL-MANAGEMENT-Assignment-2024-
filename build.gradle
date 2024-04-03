@@ -29,9 +29,9 @@ ext {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.google.cloud:spring-cloud-gcp-starter'
-    implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub'
-    implementation 'com.google.cloud:spring-cloud-gcp-starter-storage'
+//    implementation 'com.google.cloud:spring-cloud-gcp-starter'
+//    implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub'
+//    implementation 'com.google.cloud:spring-cloud-gcp-starter-storage'
     implementation group: 'com.google.firebase', name: 'firebase-admin', version: '9.2.0'
 
     compileOnly 'org.projectlombok:lombok'
