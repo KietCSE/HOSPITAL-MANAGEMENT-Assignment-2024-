@@ -11,57 +11,50 @@
     <title>Đăng nhập (Đăng ký)</title>
   </head>
 
-
+  <style>
+    body {
+      background: url([[@{/img/Login_Page/Trường_Đại_học_Bách_khoa_vào_Xuân.jpg}]]);
+      background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+  </style>
 
   <body>
     <div class="container" id="container">
-      <div class="form-container sign-up">
-        <form>
-          <h1>Đăng Ký</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-google-plus-g"></i
-            ></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-          </div>
-          <span>Sử dụng email để đăng ký</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Đăng Ký</button>
-        </form>
-      </div>
-      <div class="form-container sign-in">
-        <form>
-          <h1>Đăng nhập</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-google-plus-g"></i
-            ></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-          </div>
-          <span>Sử dụng tài khoản và mật khẩu để đăng nhập</span>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <a href="#">Quên mật khẩu hay tài khoản?</a>
-          <button>Đăng nhập</button>
-        </form>
-      </div>
-      <div class="toggle-container">
-        <div class="toggle">
-          <div class="toggle-panel toggle-left">
-            <h1>Chào mừng trở lại!</h1>
-            <p>Điền thông tin đăng nhập ở đây nhé !!!</p>
-            <button class="hidden" id="login">Sign In</button>
-          </div>
-          <div class="toggle-panel toggle-right">
-            <h1>Xin chào!</h1>
-            <p>Đăng ký ở đây với thông tin cá nhân của bạn nhé !!!</p>
-            <button class="hidden" id="register">Đăng Ký</button>
-          </div>
+    <div class="form-container sign-in">
+      <form>
+        <h1>Đăng nhập</h1>
+        <div class="social-icons">
+          <a href="#" class="icon"
+          ><i class="fa-brands fa-google-plus-g"></i
+          ></a>
+          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <input type="text" placeholder="Tài khoản" />
+        <input type="password" placeholder="Mật khẩu" />
+        <a href="#">Quên mật khẩu hay tài khoản?</a>
+        <button>Đăng nhập</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-right">
+          <h1>Xin chào!</h1>
+          <p>
+            Chào mừng bạn quay trở lại với Bệnh viện Hồi sức Bách Khoa TPHCM
+            !!!
+          </p>
+          <p>
+            Sử dụng tài khoản và mật khẩu để truy cập nhé (love you 3000).
+          </p>
         </div>
       </div>
     </div>
+  </div>
 
     <script th:src="@{script/Login_Page/script.js}"></script>
   </body>
