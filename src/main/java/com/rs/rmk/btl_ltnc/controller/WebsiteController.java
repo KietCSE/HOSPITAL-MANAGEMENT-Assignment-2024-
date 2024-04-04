@@ -4,6 +4,7 @@ package com.rs.rmk.btl_ltnc.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class WebsiteController {
@@ -59,4 +60,6 @@ public class WebsiteController {
     public String DoctorInfo(HttpServletRequest request) {
         return "/Manage_Doctor/Doctor_info/info";
     }
+
+
 }
