@@ -15,8 +15,10 @@ public enum StatusCode {
     NOT_CHANGE_DATA(509),
     NOT_GET_DOCUMENT(510),
     NOT_DELETE_COLLECTION(511),
-    COLLECTION_NOT_FOUND(512)
-    ;
+    COLLECTION_NOT_FOUND(512),
+
+    // ERROR VALIDATION
+    VALIDATION_ERROR(700);
     int code;
 
     StatusCode(int code) {

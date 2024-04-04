@@ -33,6 +33,8 @@ dependencies {
 //    implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub'
 //    implementation 'com.google.cloud:spring-cloud-gcp-starter-storage'
     implementation group: 'com.google.firebase', name: 'firebase-admin', version: '9.2.0'
+    implementation 'org.hibernate.validator:hibernate-validator'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
