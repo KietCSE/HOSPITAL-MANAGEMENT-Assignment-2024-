@@ -50,7 +50,6 @@ public class WebsiteController {
         return "/Schedule/index";
     }
 
-
     @GetMapping("/doctor/list")
     public String DoctorList(HttpServletRequest request) {
         return "/Manage_Doctor/Doctor_list/doctor";

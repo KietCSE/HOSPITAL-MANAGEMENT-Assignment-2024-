@@ -11,12 +11,12 @@ public class ApiResponse <T>{
     private StatusCode code;
     private String message;
     private Boolean status;
-    private T result;
+    private T data;
 
     public ApiResponse(StatusCode code, String message, T result, Boolean status) {
         this.code = code;
         this.message = message;
-        this.result = result;
+        this.data = result;
         this.status = status;
     }
 
