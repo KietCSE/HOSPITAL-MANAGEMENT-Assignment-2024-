@@ -55,11 +55,7 @@ public class WebsiteController {
         return "/Manage_Doctor/Doctor_list/doctor";
     }
 
-    // Trang này sử dụng bootstrap tui ko biết sửa sao hết...
     @GetMapping("/doctor/info")
-    public String DoctorInfo(HttpServletRequest request) {
-        return "/Manage_Doctor/Doctor_info/info";
-    }
-
+    public String DoctorInfo(HttpServletRequest request) { return "/Manage_Doctor/Doctor_info/info"; }
 
 }
