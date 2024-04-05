@@ -16,12 +16,11 @@ public class WebsiteController {
     public String login(HttpServletRequest request) {
         return "/Login_Page/index";
     }
+
     @GetMapping("/patient/list")
     public String PatientList(HttpServletRequest request) {
         return "Manage_Patient/List_Patient/index";
     }
-
-    // Trang này sử dụng bootstrap tui ko biết sửa sao hết...
     @GetMapping("/patient/info")
     public String PatientInfo(HttpServletRequest request) {
         return "/Manage_Patient/Patient_Information/index";
@@ -55,11 +54,7 @@ public class WebsiteController {
         return "/Manage_Doctor/Doctor_list/doctor";
     }
 
-    // Trang này sử dụng bootstrap tui ko biết sửa sao hết...
     @GetMapping("/doctor/info")
-    public String DoctorInfo(HttpServletRequest request) {
-        return "/Manage_Doctor/Doctor_list/info";
-    }
-
+    public String DoctorInfo(HttpServletRequest request) { return "/Manage_Doctor/Doctor_info/info"; }
 
 }
