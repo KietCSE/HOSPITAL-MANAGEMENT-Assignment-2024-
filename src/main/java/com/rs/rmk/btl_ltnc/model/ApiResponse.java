@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ApiResponse <T>{
+public class ApiResponse<T> {
     private StatusCode code;
     private String message;
     private Boolean status;
@@ -22,4 +22,3 @@ public class ApiResponse <T>{
 
     public ApiResponse() {}
 }
-
