@@ -131,6 +131,17 @@ openForm.addEventListener('click', function() {
             time: time,
             patient: patient.value
         });
+
+        let task = {
+            name: name.value,
+            location: location.value,
+            day: reverseString(day.value),
+            from: timeFrom.value,
+            to: timeTo.value
+        }
+
+        console.log(task);
+        console.log()
     
         form.classList.remove('open');
         name.value = '';
@@ -139,7 +150,21 @@ openForm.addEventListener('click', function() {
         timeTo.value = '';
         location.value = '';
         patient.value = '';
-        detailTask();
+
+        //Thêm vào database
+        fetch("http://localhost:8080/schedule/add?doctorName=hailam", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(task),
+        })
+            .then(response => response)
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.log('Error: ' + err));
+
     })
 
 })
@@ -148,19 +173,17 @@ openForm.addEventListener('click', function() {
 function reverseString(str) {
     let splitStr = str.split('-');
     splitStr = splitStr.reverse();
-    return splitStr.join('-');
+    return splitStr.join('/');
 }
 
 //Lấy lịch trình từ database
 //Parameter nameDoctor lấy từ tài khoản đang đăng nhập
-fetch("http://localhost:8080/schedule/list?nameDoctor=tranlam")
-    .then(respone => respone.json())
+fetch("http://localhost:8080/schedule/list?doctorName=hailam")
+    .then(response => response.json())
     .then(data => {
         //data ~ Tuần
-        console.log(data);
         for (let index = 0; index < data.length; index++) {
             //data[index] ~ Thứ trong tuần
-            console.log(index);
             for (let task of data[index]) {
                 let date = index + 1;
                 addTask({

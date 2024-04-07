@@ -4,6 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import com.rs.rmk.btl_ltnc.model.task.taskModel;
 import org.springframework.stereotype.Repository;
@@ -22,9 +23,11 @@ public class scheduleRepository  {
     * Collection: tasks ->
     * Document: ~ task.
     * */
-    private static List<taskModel> getScheduleAtDate(String nameDoctor, String date) throws ExecutionException, InterruptedException {
+
+    //Get shedule
+    private static List<taskModel> getScheduleAtDate(String doctorName, String date) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = database.collection("Doctor").document(nameDoctor)
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = database.collection("Doctor").document(doctorName)
                 .collection("schedule").document(date)
                 .collection("tasks").get();
         //List task trong thu 2
@@ -36,13 +39,23 @@ public class scheduleRepository  {
         return scheduleAtDate;
     }
 
-    public List<List<taskModel>> getSchedule(String nameDoctor) throws ExecutionException, InterruptedException {
+    public List<List<taskModel>> getSchedule(String doctorName) throws ExecutionException, InterruptedException {
         List<List<taskModel>> schedule = new ArrayList<>();
         for (int index = 2; index <= 7; index++) {
             String date = "Thu" + Integer.toString(index);
-            schedule.add(getScheduleAtDate(nameDoctor, date));
+            schedule.add(getScheduleAtDate(doctorName, date));
         }
-        schedule.add(getScheduleAtDate(nameDoctor, "CN"));
+        schedule.add(getScheduleAtDate(doctorName, "CN"));
         return schedule;
+    }
+
+    //Add task
+    public boolean addTask(String nameDoctor, taskModel task, String date) throws ExecutionException, InterruptedException {
+        Firestore database = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> future = database.collection("Doctor").document(nameDoctor)
+                .collection("schedule").document(date)
+                .collection("tasks").document(task.getId()).set(task);
+        WriteResult writeResult = future.get();
+        return writeResult != null;
     }
 }
