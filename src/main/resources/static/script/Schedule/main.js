@@ -15,8 +15,8 @@ function addTask({
 
     const task = document.createElement('div');
     task.classList.add('task');
-    task.innerHTML = `
-        <div class="task__short-description">
+    task.innerHTML =
+        `<div class="task__short-description">
             <h3 class="task__name">${name}</h3>
             <p class="task__location">${location}</p>
             <p class="task__day">${day}</p>
@@ -55,8 +55,39 @@ function addTask({
                     <p class="patient-info">Thông tin bệnh nhân</p>
                 </div>
             </div>
-        </div>
-    `
+        </div>`
+    task.addEventListener('click', {
+
+    })
+    //Add eventListener for task
+    task.addEventListener('click', function(event) {
+        const detailTasks = document.querySelectorAll('.task__detail');
+        for (const item of detailTasks) {
+            if (item.classList.contains('appear')) {
+                item.classList.remove('appear');
+            }
+        }
+        const taskDetail = task.querySelector('.task__detail');
+        taskDetail.classList.add('appear');
+
+        if (event.target.closest('.detail__close')) {
+            taskDetail.classList.remove('appear');
+        }
+        if (event.target.closest('.task__problem')) {
+            if(confirm('Bạn có chắc muốn đổi lịch không?')) {
+                alert('Yêu cầu của bạn đang chờ xử lí?');
+            }
+        }
+        else if (event.target.closest('.delete__task')) {
+            if (confirm('Bạn có chắc chắn là muốn xóa không?')) {
+                task.remove();
+            }
+        }
+        else if(event.target.closest('.patient-info')) {
+            window.location.href = "../Manage_Patient/List_Patient/index.html";
+        }
+        // else if ()
+    })
     taskLists.appendChild(task);
 }
 
@@ -113,47 +144,34 @@ openForm.addEventListener('click', function() {
 
 })
 
-// Xem chi tiết task và các thao tác trên nó
-function detailTask() {
-    const tasks = document.querySelectorAll('.task');
-
-    for (const task of tasks) {
-        task.addEventListener('click', function(event) {
-            const detailTasks = document.querySelectorAll('.task__detail');
-            for (const item of detailTasks) {
-                if (item.classList.contains('appear')) {
-                    item.classList.remove('appear');
-                }
-            }
-            const taskDetail = task.querySelector('.task__detail');
-            taskDetail.classList.add('appear');
-
-            if (event.target.closest('.detail__close')) {
-                taskDetail.classList.remove('appear');
-            }
-            if (event.target.closest('.task__problem')) {
-                if(confirm('Bạn có chắc muốn đổi lịch không?')) {
-                    alert('Yêu cầu của bạn đang chờ xử lí?');
-                }
-            }
-            else if (event.target.closest('.delete__task')) {
-                if (confirm('Bạn có chắc chắn là muốn xóa không?')) {
-                    task.remove();
-                }
-            }
-            else if(event.target.closest('.patient-info')) {
-                window.location.href = "../Manage_Patient/List_Patient/index.html";
-            }
-            // else if ()
-        })
-    }
-}
-
-detailTask();
-
 // Đảo ngược 1 chuỗi
 function reverseString(str) {
     let splitStr = str.split('-');
     splitStr = splitStr.reverse();
     return splitStr.join('-');
 }
+
+//Lấy lịch trình từ database
+//Parameter nameDoctor lấy từ tài khoản đang đăng nhập
+fetch("http://localhost:8080/schedule/list?nameDoctor=tranlam")
+    .then(respone => respone.json())
+    .then(data => {
+        //data ~ Tuần
+        console.log(data);
+        for (let index = 0; index < data.length; index++) {
+            //data[index] ~ Thứ trong tuần
+            console.log(index);
+            for (let task of data[index]) {
+                let date = index + 1;
+                addTask({
+                    name: task.name,
+                    location: task.location,
+                    date: date,
+                    day: task.day,
+                    time: task.from + " - " + task.to,
+                    patient: ""
+                })
+            }
+        }
+    })
+    .catch(err => console.log(err));
