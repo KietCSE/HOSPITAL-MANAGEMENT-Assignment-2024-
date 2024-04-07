@@ -1,4 +1,4 @@
-package com.rs.rmk.btl_ltnc.model;
+package com.rs.rmk.btl_ltnc.model.Item;
 
 public interface Item {
     public String ItemStatus();

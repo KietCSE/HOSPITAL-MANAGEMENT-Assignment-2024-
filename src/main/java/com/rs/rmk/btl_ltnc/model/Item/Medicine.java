@@ -1,6 +1,8 @@
-package com.rs.rmk.btl_ltnc.model;
+package com.rs.rmk.btl_ltnc.model.Item;
 
+import com.rs.rmk.btl_ltnc.model.Item.Item;
 import lombok.*;
+
 
 
 

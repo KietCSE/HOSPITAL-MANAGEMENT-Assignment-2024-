@@ -16,6 +16,7 @@
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
 
 </head>
+
 <body>
     <header class="header">
         <a href="#" class="logo">
@@ -48,7 +49,7 @@
     </header>
 
     <section class="wrapper">
-        <h1>THÔNG TIN THUỐC</h1>
+        <h1>DANH SÁCH THUỐC</h1>
     </section>
 
     <section class="form">
@@ -56,7 +57,7 @@
             <div class="search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="text" value="" placeholder="ID number">
+            <input type="text" value="" placeholder="Tên thuốc">
             <button class="search-btn">Tìm kiếm</button>
         </div>
 
@@ -64,19 +65,21 @@
             <div class="table_body">
                 <table>
                     <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Số lô</th>
-                        <th>Tên thuốc</th>
-                        <th>Số lượng</th>
-                        <th>Ngày nhập hàng</th>
-                        <th>Ngày xuất hàng</th>
-                        <th>Hạn sử dụng</th>
-                        <th>Mô tả sản phẩm</th>
-                    </tr>
+                        <tr>
+                            <th>STT</th>
+                            <th>Số lô</th>
+                            <th>Tên thuốc</th>
+                            <th>Số lượng</th>
+                            <th>Ngày nhập hàng</th>
+                            <th>Ngày xuất hàng</th>
+                            <th>Hạn sử dụng</th>
+                            <th>Mô tả sản phẩm</th>
+                        </tr>
                     </thead>
+
                     <tbody>
                     </tbody>
+
                 </table>
             </div>
         </section>
