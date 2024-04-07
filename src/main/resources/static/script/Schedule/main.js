@@ -140,8 +140,6 @@ openForm.addEventListener('click', function() {
             to: timeTo.value
         }
 
-        console.log(task);
-        console.log()
     
         form.classList.remove('open');
         name.value = '';
