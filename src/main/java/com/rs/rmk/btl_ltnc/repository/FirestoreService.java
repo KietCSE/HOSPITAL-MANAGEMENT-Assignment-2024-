@@ -24,10 +24,8 @@ public class FirestoreService {
             WriteResult writeResult = collectionApiFuture.get();
             return writeResult != null;
         } catch (InterruptedException | ExecutionException e) {
-            throw new FirestoreException(ErrorFirestore.NOT_STORE_DATA);
+            throw new FirestoreException(ErrorFirestore.DOCUMENT_NOT_FOUND);
         }
     }
-
-
 
 }
