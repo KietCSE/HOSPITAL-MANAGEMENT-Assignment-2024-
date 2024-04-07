@@ -6,6 +6,9 @@ public enum StatusCode {
     // GENERAL ERROR
     SUCCESS(400),
     ERROR(500),
+    ERROR_PASSWORD(200),
+    ERROR_ACCOUNT(201),
+    ERROR_LOGIN(202),
 
     //ERROR WITH FIREBASE
     DOCUMENT_NOT_FOUND(505),
@@ -19,6 +22,8 @@ public enum StatusCode {
 
     // ERROR VALIDATION
     VALIDATION_ERROR(700);
+
+
     int code;
 
     StatusCode(int code) {

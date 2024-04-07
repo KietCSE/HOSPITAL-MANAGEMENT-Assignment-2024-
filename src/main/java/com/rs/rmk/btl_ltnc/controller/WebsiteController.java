@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class WebsiteController {
@@ -21,6 +22,7 @@ public class WebsiteController {
     public String PatientList(HttpServletRequest request) {
         return "Manage_Patient/List_Patient/index";
     }
+
     @GetMapping("/patient/info")
     public String PatientInfo(HttpServletRequest request) {
         return "/Manage_Patient/Patient_Information/index";
@@ -48,7 +50,6 @@ public class WebsiteController {
     public String Schedule(HttpServletRequest request) {
         return "/Schedule/index";
     }
-
 
     @GetMapping("/doctor/list")
     public String DoctorList(HttpServletRequest request) {
