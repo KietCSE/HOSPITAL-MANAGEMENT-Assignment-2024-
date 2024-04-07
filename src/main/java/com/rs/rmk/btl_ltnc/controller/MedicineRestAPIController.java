@@ -30,4 +30,11 @@ public class MedicineRestAPIController {
     public boolean deleteMedicine(@PathVariable String MID) throws ExecutionException, InterruptedException {
         return GoogleAPI.DeleteMedicine(MID);
     }
+
+    @GetMapping("/medicine/getElement/{Name}")
+    public MedicineAPIRespone GetMedicineByName(@PathVariable String Name)
+            throws ExecutionException, InterruptedException {
+        return GoogleAPI.GetMedicineByName(Name);
+    }
+
 }
