@@ -66,8 +66,7 @@ function addTask(taskObj, date, patient) {
         }
         if (event.target.closest('.task__problem')) {
             if(confirm('Bạn có chắc muốn đổi lịch không?')) {
-                let form = document.querySelector('.form.form-change-task')
-                form.classList.add('open');
+                alert('Yêu cầu của bạn đang chờ xử lí');
             }
         }
         else if (event.target.closest('.delete__task')) {
@@ -185,7 +184,5 @@ fetch("http://localhost:8080/schedule/list?doctorName=hailam")
             }
         }
     })
-    .catch(err => {
-        console.log(err);
-    });
+    .catch(err => console.log(err));
 
