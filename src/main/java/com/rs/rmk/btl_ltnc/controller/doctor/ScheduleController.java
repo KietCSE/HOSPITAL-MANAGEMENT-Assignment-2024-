@@ -20,7 +20,12 @@ public class ScheduleController {
     }
 
     @PostMapping("schedule/add")
-    public boolean addTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+    public taskModel addTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
         return scheduleService.addTask(doctorName, task);
+    }
+
+    @DeleteMapping("schedule/delete")
+    public boolean deleteTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.deleteTask(doctorName, task);
     }
 }

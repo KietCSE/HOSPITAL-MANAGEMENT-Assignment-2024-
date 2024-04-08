@@ -50,11 +50,20 @@ public class scheduleRepository  {
     }
 
     //Add task
-    public boolean addTask(String nameDoctor, taskModel task, String date) throws ExecutionException, InterruptedException {
+    public taskModel addTask(String nameDoctor, taskModel task, String date) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> future = database.collection("Doctor").document(nameDoctor)
                 .collection("schedule").document(date)
                 .collection("tasks").document(task.getId()).set(task);
+        return task;
+    }
+
+    //Delete task
+    public boolean deleteTask(String nameDoctor, taskModel task, String date) throws ExecutionException, InterruptedException {
+        Firestore database = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> future = database.collection("Doctor").document(nameDoctor)
+                .collection("schedule").document(date)
+                .collection("tasks").document(task.getId()).delete();
         WriteResult writeResult = future.get();
         return writeResult != null;
     }
