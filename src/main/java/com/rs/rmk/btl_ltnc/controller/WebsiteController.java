@@ -37,20 +37,7 @@ public class WebsiteController {
 
     @GetMapping("/medicine/info/{MID}")
     public String MedicineInfo(HttpServletRequest request, @PathVariable String MID) {
-        RestTemplate restTemplate = new RestTemplate();
-        MedicineAPIRespone medicine = restTemplate.getForObject("http://localhost:8080/api/medicine/get/" + MID,
-                MedicineAPIRespone.class);
-        request.setAttribute("Name", medicine.getName());
-        request.setAttribute("Amount", medicine.getAmount());
-        request.setAttribute("Date", medicine.getDate());
-        request.setAttribute("Validated", medicine.getValidated());
-        request.setAttribute("Latest_Export", medicine.getLatest_Export());
-        request.setAttribute("Img", medicine.getImg());
-        request.setAttribute("Type", medicine.getType());
-        request.setAttribute("Description", medicine.getDescription());
-        request.setAttribute("Uses", medicine.getUses());
-        request.setAttribute("N_Uses", medicine.getN_Uses());
-        request.setAttribute("Classify", medicine.getClassify());
+        request.setAttribute("MID", MID);
         return "/Manage_Medicine/medicineinfo";
     }
 

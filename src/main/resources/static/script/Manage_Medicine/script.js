@@ -73,7 +73,8 @@ document.querySelector(".import form .submit").addEventListener("click", async f
                     Classify: data.classify,
                     Description: data.description,
                     Uses: data.uses,
-                    N_Uses: data.n_Uses
+                    N_Uses: data.n_Uses,
+                    Img_Url: data.img_Url,
                 };
             }
         }

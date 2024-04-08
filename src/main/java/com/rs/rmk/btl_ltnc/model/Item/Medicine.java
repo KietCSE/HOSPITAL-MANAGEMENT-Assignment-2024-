@@ -14,7 +14,7 @@ public class Medicine {
     private String Validated;
     private String Latest_Export;
 
-    private String Img;
+    private String Img_Url;
     private String Type;
     private String Description;
     private String Uses;
