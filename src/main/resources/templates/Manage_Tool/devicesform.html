@@ -95,7 +95,7 @@
         <section class="info wrapper" id="import">
             <h1>NHẬP THIẾT BỊ</h1>
 
-            <form action="#" method="post" class="FORM" id="FORM">
+            <form class="FORM" id="FORM">
 
                 <div class="Product">
                     <label for="Name">Tên TTB:</label><br>
@@ -118,8 +118,6 @@
                     <label for="Date">Ngày nhập:</label><br>
                     <input type="date" id="Date" name="Date" value=""><br>
 
-                    <label for="Img">Chọn hình ảnh:</label>
-                    <input type="file" id="Img" name="Img" accept="image/*"><br>
                 </div>
 
                 <section class="button">
@@ -207,22 +205,7 @@
         </div>
 
     </section>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
+    <script th:src="@{/script/Manage_Tool/devices.js}"></script>
 </body>
-
-<script>
-    let newProductDiv = document.querySelector('.New_Product');
-
-    function DOOM(checkbox) {
-        if (checkbox.checked === true) {
-            newProductDiv.style.opacity = "1";
-            newProductDiv.style.pointerEvents = "auto";
-        } else {
-            newProductDiv.style.opacity = "0.5";
-            newProductDiv.style.pointerEvents = "none";
-        }
-    }
-
-</script>
 
 </html>
