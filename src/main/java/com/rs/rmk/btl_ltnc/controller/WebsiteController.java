@@ -1,11 +1,10 @@
 package com.rs.rmk.btl_ltnc.controller;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @Controller
 public class WebsiteController {
@@ -13,6 +12,7 @@ public class WebsiteController {
     public String Home(HttpServletRequest request) {
         return "/Hospital_Home/Home";
     }
+
     @GetMapping("/login")
     public String login(HttpServletRequest request) {
         return "/Login_Page/index";
@@ -32,8 +32,10 @@ public class WebsiteController {
     public String MedicineForm(HttpServletRequest request) {
         return "/Manage_Medicine/medicineform";
     }
-    @GetMapping("/medicine/info")
-    public String MedicineInfo(HttpServletRequest request) {
+
+    @GetMapping("/medicine/info/{MID}")
+    public String MedicineInfo(HttpServletRequest request, @PathVariable String MID) {
+        request.setAttribute("MID", MID);
         return "/Manage_Medicine/medicineinfo";
     }
 
@@ -41,6 +43,7 @@ public class WebsiteController {
     public String ToolForm(HttpServletRequest request) {
         return "/Manage_Tool/devicesform";
     }
+
     @GetMapping("/tool/info")
     public String ToolInfo(HttpServletRequest request) {
         return "/Manage_Tool/deviceinfo";
@@ -57,6 +60,8 @@ public class WebsiteController {
     }
 
     @GetMapping("/doctor/info")
-    public String DoctorInfo(HttpServletRequest request) { return "/Manage_Doctor/Doctor_info/info"; }
+    public String DoctorInfo(HttpServletRequest request) {
+        return "/Manage_Doctor/Doctor_info/info";
+    }
 
 }
