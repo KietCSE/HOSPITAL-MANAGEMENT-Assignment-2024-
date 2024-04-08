@@ -7,49 +7,51 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         if (document.querySelector('.import input[type="checkbox"]').checked) {
 
             Medicine_Obj = {
+
                 ID: makeID(),
                 Name: form.querySelector('input[name="Name"]').value,
                 Amount: form.querySelector('input[name="Amount"]').value,
-                Date: form.querySelector('input[name="Date"]').value,
-                Validated: form.querySelector('input[name="Validated"]').value,
-                Latest_Export: null,
                 Img_Url: null,
                 Type: form.querySelector('input[name="Type"]').value,
                 Classify: form.querySelector('input[name="Classify"]').value,
                 Description: form.querySelector('textarea[name="Description"]').value,
                 Uses: form.querySelector('textarea[name="Uses"]').value,
-                N_Uses: form.querySelector('textarea[name="N_Uses"]').value
+                N_Uses: form.querySelector('textarea[name="N_Uses"]').value,
+                Validated: form.querySelector('input[name="Validated"]').value,
+
+                History: {
+                    Day_Input: form.querySelector('input[name="Date"]').value,
+                    Export_Date: []
+                },
             };
+            {
+                let fileInput = form.querySelector('input[type="file"]');
+                if (!fileInput) {
+                    throw new Error("Hãy chọn ảnh thuốc");
+                }
+                let file = fileInput.files[0];
 
-            let fileInput = form.querySelector('input[type="file"]');
-            if (!fileInput) {
-                throw new Error("Hãy chọn ảnh thuốc");
-            }
-            let file = fileInput.files[0];
-            if (file.size > 1024 * 1024) {
-                throw new Error("Kích thước ảnh quá lớn");
-            }
-            if (!["image/jpeg", "image/png", "image/gif"].includes(file.type)) {
-                throw new Error("Định dạng ảnh không hợp lệ");
-            }
-            let f = new FormData();
-            f.append("file", file);
-            let response = await fetch("/api/medicine/upload", {
-                method: "POST",
-                body: f
-            });
-            if (!response.ok) {
-                throw new Error("Không thể upload ảnh lên server");
-            }
-            else {
-                console.log("Tải ảnh thành công");
-                let data = await response.text();
-                console.log("Received data:", data);
-                Medicine_Obj.Img_Url = data;
-            }
-
-            if (Object.values(Medicine_Obj).some(value => value === "")) {
-                throw "Hãy điền đầy đủ thông tin";
+                if (!["image/jpeg", "image/png", "image/gif"].includes(file.type)) {
+                    throw new Error("Định dạng ảnh không hợp lệ");
+                }
+                let f = new FormData();
+                f.append("file", file);
+                let response = await fetch("/api/medicine/upload", {
+                    method: "POST",
+                    body: f
+                });
+                if (!response.ok) {
+                    throw new Error("Không thể upload ảnh lên server");
+                }
+                else {
+                    console.log("Tải ảnh thành công");
+                    let data = await response.text();
+                    console.log("Received data:", data);
+                    Medicine_Obj.Img_Url = data;
+                }
+                if (Object.values(Medicine_Obj).some(value => value === "")) {
+                    throw "Hãy điền đầy đủ thông tin";
+                }
             }
         } else {
             let NAME = form.querySelector('input[name="Name"]').value;
@@ -58,7 +60,6 @@ document.querySelector(".import form .submit").addEventListener("click", async f
                 throw new Error("Không thể lấy dữ liệu từ server");
             }
             const data = await response.json();
-            console.log("Received data:", data);
             if (!data || Object.keys(data).length === 0) {
                 throw new Error("Thuốc không tồn tại trong database");
             } else {
@@ -66,18 +67,22 @@ document.querySelector(".import form .submit").addEventListener("click", async f
                     ID: makeID(),
                     Name: data.name,
                     Amount: form.querySelector('input[name="Amount"]').value,
-                    Date: form.querySelector('input[name="Date"]').value,
                     Validated: form.querySelector('input[name="Validated"]').value,
-                    Latest_Export: null,
                     Type: data.type,
                     Classify: data.classify,
                     Description: data.description,
                     Uses: data.uses,
                     N_Uses: data.n_Uses,
                     Img_Url: data.img_Url,
+
+                    History: {
+                        Day_Input: form.querySelector('input[name="Date"]').value,
+                        Export_Date: [],
+                    },
                 };
             }
         }
+
         console.log("Medicine object created successfully:", Medicine_Obj);
         if (Object.values(Medicine_Obj).some(value => value === "")) {
             throw "Hãy điền đầy đủ thông tin";
@@ -88,26 +93,27 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         if (parseInt(Medicine_Obj.Amount) < 0) {
             throw "Số lượng không thể nhỏ hơn 0";
         }
-        if (isNaN(Date.parse(Medicine_Obj.Date))) {
+        if (isNaN(Date.parse(Medicine_Obj.History.Day_Input))) {
             throw "Ngày nhập không hợp lệ";
         }
         if (isNaN(Date.parse(Medicine_Obj.Validated))) {
             throw "Ngày hết hạn không hợp lệ";
         }
-        if (Date.parse(Medicine_Obj.Date) < Date.now()) {
+        if (Date.parse(Medicine_Obj.History.Day_Input) < Date.now()) {
             throw "Ngày nhập không thể nhỏ hơn ngày hiện tại";
         }
-        if (Date.parse(Medicine_Obj.Validated) < Date.parse(Medicine_Obj.Date)) {
+        if (Date.parse(Medicine_Obj.Validated) < Date.parse(Medicine_Obj.History.Day_Input)) {
             throw "Ngày hết hạn không thể nhỏ hơn ngày nhập";
         }
+
         let newRow = document.createElement('tr');
         newRow.innerHTML = `
         <td>${Count++}</td>
         <td class="MID">${Medicine_Obj.ID}</td>
         <td class="NAME">${Medicine_Obj.Name}</td>
         <td class="AMOUNT">${Medicine_Obj.Amount}</td>
-        <td class="DATE">${Medicine_Obj.Date}</td>
-        <td class="DATE-EXPORT">${Medicine_Obj.Latest_Export}</td>
+        <td class="DATE">${Medicine_Obj.History.Day_Input}</td>
+        <td class="DATE-EXPORT">null</td>
         <td class="VALIDATED">${Medicine_Obj.Validated}</td>
         <td class="LINK"><a href="/medicine/info/${Medicine_Obj.ID}">Info</a></td>`;
         document.querySelector("table tbody").appendChild(newRow);
@@ -236,7 +242,7 @@ document.querySelector(".export form .submit").addEventListener("click", functio
             }).then(data => {
                 let Medicine_Obj = data;
                 Medicine_Obj.amount = NewAmount;
-                Medicine_Obj.latest_Export = Date_Export;
+                Medicine_Obj.history.export_Date.push(Date_Export);
 
                 fetch(`/api/medicine/update/${MID}`, {
                     method: "PUT",
@@ -252,7 +258,6 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                         throw ("Failed");
                     }
                 });
-
             }).catch(error => {
                 console.log(error);
                 throw ("Failed");
@@ -262,3 +267,37 @@ document.querySelector(".export form .submit").addEventListener("click", functio
         alert(error);
     }
 });
+
+
+
+fetch("/api/medicine/getAllMedicine")
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Không thể lấy dữ liệu từ server");
+        }
+    }).then(data => {
+        console.log(data);
+        let Count = 0;
+        for (let i = 0; i < data.length; i++) {
+            let Medicine_Obj = data[i];
+            let newRow = document.createElement('tr');
+
+            let Latest_Export = Medicine_Obj.history.export_Date.length > 0 ? Medicine_Obj.history.export_Date[Medicine_Obj.history.export_Date.length - 1] : "null";
+
+            newRow.innerHTML = `
+            <td>${Count++}</td>
+            <td class="MID">${Medicine_Obj.id}</td>
+            <td class="NAME">${Medicine_Obj.name}</td>
+            <td class="AMOUNT">${Medicine_Obj.amount}</td>
+            <td class="DATE">${Medicine_Obj.history.day_Input}</td>
+            <td class="DATE-EXPORT">${Latest_Export}</td>
+            <td class="VALIDATED">${Medicine_Obj.Validated}</td>
+            <td class="LINK"><a href="/medicine/info/${Medicine_Obj.id}">Info</a></td>`;
+
+            document.querySelector("table tbody").appendChild(newRow);
+        }
+    }).catch(error => {
+        console.error("Error:", error);
+    }); 

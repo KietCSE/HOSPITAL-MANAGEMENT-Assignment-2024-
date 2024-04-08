@@ -6,6 +6,8 @@ import com.rs.rmk.btl_ltnc.service.ImageAPI;
 import com.rs.rmk.btl_ltnc.service.Medicine.GoogleMedicineAPI;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @org.springframework.web.bind.annotation.RestController
@@ -42,5 +44,10 @@ public class MedicineRestAPIController {
     @PostMapping("/medicine/upload")
     public String uploadMedicine(@RequestParam("file") MultipartFile file) {
         return new ImageAPI().upload(file);
+    }
+
+    @GetMapping("/medicine/getAllMedicine")
+    public List<MedicineAPIRespone> getAllMedicine() throws ExecutionException, InterruptedException {
+        return GoogleMedicineAPI.GetAllMedicines();
     }
 }

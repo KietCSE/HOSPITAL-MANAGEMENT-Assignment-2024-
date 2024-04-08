@@ -11,10 +11,10 @@ try {
             if (!response.ok) {
                 throw new Error("Không thể lấy dữ liệu từ server");
             }
-            return response.json(); // Parse response body as JSON
+            return response.json();
         })
         .then(data => {
-            console.log(data); // Log the fetched data
+            console.log(data);
 
             let Info = document.querySelector('.layout-2')
             Info.querySelector('.Name').innerHTML = data.name;
@@ -46,6 +46,33 @@ try {
             } catch (error) {
                 SPAN.textContent = error;
                 SPAN.style.color = "red";
+            }
+
+
+            // <tr>
+            //                         <td>26 - 03 - 2024</td>
+            //                         <td>10</td>
+            //                         <td>Nhập hàng</td>
+            //                     </tr>
+            //                     <tr>
+            //                         <td>26 - 03 - 2024</td>
+            //                         <td>20</td>
+            //                         <td>Xuất hàng</td>
+            //                     </tr>
+            let newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${data.history.day_Input}</td>
+                <td>Nhập hàng</td>
+            `;
+            document.querySelector('table tbody').appendChild(newRow);
+
+            for (let i = 0; i < data.history.export_Date.length; i++) {
+                let newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                <td>${data.history.export_Date[i]}</td>
+                <td>Xuất hàng</td>
+            `;
+                document.querySelector('table tbody').appendChild(newRow);
             }
         })
 } catch (error) {

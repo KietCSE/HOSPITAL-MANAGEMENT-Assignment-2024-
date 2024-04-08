@@ -1,9 +1,12 @@
 package com.rs.rmk.btl_ltnc.service.Medicine;
+
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.rs.rmk.btl_ltnc.model.Item.Medicine;
 import com.rs.rmk.btl_ltnc.model.Item.MedicineAPIRespone;
+
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class GoogleMedicineAPI {
@@ -69,5 +72,15 @@ public class GoogleMedicineAPI {
         } else {
             return null;
         }
+    }
+
+    public static List<MedicineAPIRespone> GetAllMedicines() throws ExecutionException, InterruptedException {
+        String COLLECTION_NAME = "Medicines";
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference collectionReference = dbFirestore.collection(COLLECTION_NAME);
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = collectionReference.get();
+        QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
+        List<MedicineAPIRespone> medicines = querySnapshot.toObjects(MedicineAPIRespone.class);
+        return medicines;
     }
 }
