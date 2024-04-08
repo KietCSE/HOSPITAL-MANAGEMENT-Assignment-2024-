@@ -43,4 +43,11 @@ public class MedicineRestAPIController {
     public String uploadMedicine(@RequestParam("file") MultipartFile file) {
         return new ImageAPI().upload(file);
     }
+
+    @GetMapping("/medicine/getElement/{Name}")
+    public MedicineAPIRespone GetMedicineByName(@PathVariable String Name)
+            throws ExecutionException, InterruptedException {
+        return GoogleAPI.GetMedicineByName(Name);
+    }
+
 }
