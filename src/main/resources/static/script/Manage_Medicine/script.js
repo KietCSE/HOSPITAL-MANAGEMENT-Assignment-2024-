@@ -7,7 +7,6 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         if (document.querySelector('.import input[type="checkbox"]').checked) {
 
             Medicine_Obj = {
-
                 ID: makeID(),
                 Name: form.querySelector('input[name="Name"]').value,
                 Amount: form.querySelector('input[name="Amount"]').value,
@@ -18,7 +17,6 @@ document.querySelector(".import form .submit").addEventListener("click", async f
                 Uses: form.querySelector('textarea[name="Uses"]').value,
                 N_Uses: form.querySelector('textarea[name="N_Uses"]').value,
                 Validated: form.querySelector('input[name="Validated"]').value,
-
                 History: {
                     Day_Input: form.querySelector('input[name="Date"]').value,
                     Export_Date: []
@@ -293,7 +291,7 @@ fetch("/api/medicine/getAllMedicine")
             <td class="AMOUNT">${Medicine_Obj.amount}</td>
             <td class="DATE">${Medicine_Obj.history.day_Input}</td>
             <td class="DATE-EXPORT">${Latest_Export}</td>
-            <td class="VALIDATED">${Medicine_Obj.Validated}</td>
+            <td class="VALIDATED">${Medicine_Obj.validated}</td>
             <td class="LINK"><a href="/medicine/info/${Medicine_Obj.id}">Info</a></td>`;
 
             document.querySelector("table tbody").appendChild(newRow);
