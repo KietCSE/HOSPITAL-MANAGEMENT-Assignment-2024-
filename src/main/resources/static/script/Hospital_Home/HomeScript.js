@@ -123,3 +123,9 @@ document.querySelector(".medicine_info").addEventListener("click", () => {
 
 })
 
+document.querySelector(".room").addEventListener("click", () => {
+    window.location.href = "/room";
+    //Fetch("/navigateMedicine", "/medicine/form")
+
+})
+

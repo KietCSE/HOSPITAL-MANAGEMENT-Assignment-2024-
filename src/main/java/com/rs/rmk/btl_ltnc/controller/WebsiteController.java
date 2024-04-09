@@ -64,4 +64,6 @@ public class WebsiteController {
         return "/Manage_Doctor/Doctor_info/info";
     }
 
+    @GetMapping("/room")
+    public String Room(HttpServletRequest request) {return "/Patient_Room/Room.html";}
 }
