@@ -19,6 +19,26 @@ var swiper = new Swiper(".doctor-slider", {
     },
   });
 
+document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+
+username = sessionStorage.getItem('Username');
+console.log(username)
+if (username !== "") {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
+
+document.querySelector(".login-btn .logout").addEventListener('click', () => {
+    sessionStorage.setItem("Username", "");
+    sessionStorage.setItem("jwt", "");
+    window.location.href = "/";
+    console.log(sessionStorage.getItem("Username"))
+
+    console.log(sessionStorage.getItem("jwt"))
+})
+
 jwt = sessionStorage.getItem("jwt")
 console.log(jwt)
 
@@ -45,7 +65,7 @@ function Fetch(urlGate, urlWindow) {
         });
 }
 
-document.querySelector(".login-btn").addEventListener("click", () => {
+document.querySelector(".login-btn .user").addEventListener("click", () => {
     window.location.href = "/login";
 })
 
