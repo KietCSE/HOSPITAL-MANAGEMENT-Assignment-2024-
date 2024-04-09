@@ -12,141 +12,95 @@
     <link rel="stylesheet" th:href="@{/css/Manage_Medicine/headerAndfooter.css}">
 
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
 </head>
 
 <body>
     <header class="header">
-    <a href="#" class="logo">
-        <div class="BKUlogo">
-            <img th:src="@{/img/Logo/logo.png}" alt="">
+        <a href="#" class="logo">
+            <div class="BKUlogo">
+                <img th:src="@{/img/Logo/logo.png}" alt="">
+            </div>
+            HCMUT
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">Trang chủ</a>
+            <a href="#features">Chức năng</a>
+            <a href="#info">Thông tin</a>
+            <a href="#achieve">Thành tựu</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+
+        <div class="login-btn">
+            <button class="user btn">
+                <i class="fa-solid fa-user"></i>
+                <a href="#">Tài khoản</a>
+            </button>
         </div>
-        HCMUT
-    </a>
-
-    <nav class="navbar">
-        <a href="#home">Trang chủ</a>
-        <a href="#features">Chức năng</a>
-        <a href="#info">Thông tin</a>
-        <a href="#achieve">Thành tựu</a>
-        <a href="#contact">Liên hệ</a>
-    </nav>
-
-    <div class="login-btn">
-        <button class="user btn">
-            <i class="fa-solid fa-user"></i>
-            <a href="#">Tài khoản</a>
-        </button>
-    </div>
-</header>
-
+    </header>
 
 
     <section class="wrapper">
-
         <h1>THÔNG TIN THUỐC</h1>
-
         <div class="Information">
-
         </div>
     </section>
 
     <section class="layout">
 
         <div class="layout-1">
-            <img th:src="@{/img/Manage_Medicine/20240225121050-0-P00414_1_l.png}" alt="">
+            <img class="image" alt="">
         </div>
 
         <div class="layout-2">
             <div class="container">
-                <h2>Abobotulinum Toxin A</h2>
-                <span style="font-size: 12px; color: #878686;">Dạng bào chế - biệt dược</span>
+                <h2 class="Name"></h2>
+                <span style="font-size: 12px; color: #878686;" class="Type"></span>
                 <h5>Nhóm thuốc - Tác dụng:
-                    <span>Thuốc phong bế thần kinh cơ, giãn cơ.</span>
+                    <span class="Classify"></span>
                 </h5>
 
                 <h5>Chỉ định
-                    <p>Co cứng cơ cổ, nếp nhăn vùng trán (người bệnh dưới 65 tuổi), rung giật nhãn cầu mắc phải, nứt
-                        hậu môn, co cứng cánh tay, chảy nước dãi, liệt cứng ở người bệnh bại não, co cứng cơ mí mắt, co
-                        cứng nửa mặt.</p>
+                    <p class="Use"></p>
                 </h5>
                 <h5>Chống chỉ định:
-                    <span>Quá mẫn với thành phần của thuốc.</span>
+                    <span class="N_Use"></span>
                 </h5>
 
                 <h5>Tình trạng thuốc: <span id="Is_aval"></span></h5>
-                <h5>Số lượng thuốc còn lại: <span id="number">6</span></h5>
+                <h5>Số lượng thuốc còn lại: <span id="number"></span></h5>
                 <!-- Bảng thông tin thuốc -->
                 <h5>Thông tin thuốc:
-                    <p>
-                    <div class="table_scroll">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Ngày nhập thuốc</th>
-                                <th>Tình trạng thuốc</th>
-                            </tr>
-                            </thead>
+                    <p class="Description">
 
-                            <tbody>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>Còn hạn sử dụng</td>
-                            </tr>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>Còn hạn sử dụng</td>
-                            </tr>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>Còn hạn sử dụng</td>
-                            </tr>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>Còn hạn sử dụng</td>
-                            </tr>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>Còn hạn sử dụng</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     </p>
                 </h5>
-                <!-- Bảng lịch sử sử dụng -->
+
                 <h5>Lịch sử sử dụng:
                     <p>
                     <div class="table_scroll">
                         <table>
                             <thead>
-                            <tr>
-                                <th>Ngày</th>
-                                <th>Số lượng</th>
-                                <th>Hoạt động</th>
-                            </tr>
+                                <tr>
+                                    <th>Ngày</th>
+                                    <!-- <th>Số lượng</th> -->
+                                    <th>Hoạt động</th>
+                                </tr>
                             </thead>
 
                             <tbody>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>10</td>
-                                <td>Nhập hàng</td>
-                            </tr>
-                            <tr>
-                                <td>26 - 03 - 2024</td>
-                                <td>20</td>
-                                <td>Xuất hàng</td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
                     </p>
                 </h5>
-                <h5>Hạn sử dụng: <span>2 Tháng</span></h5>
 
+                <h5>Hạn sử dụng: <span class="Validated"></span></h5>
+
+                <h5 style="display: none;" class="MID_1" th:text="${MID}"></h5>
 
 
                 <button class="Click"><b>Quản lý thuốc</b></button>
@@ -154,14 +108,16 @@
         </div>
     </section>
 
-    <!-- start footer  -->
+
+
+
     <section class="footer">
         <div class="footer-container">
 
             <div class="footer-box">
 
                 <div class="footer-BKUlogo">
-                    <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
+                    <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
                     <div class="footer-logo-content">
                         <span>HOSPITAL HCMUT UNIVERSITY</span>
                         <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
@@ -201,8 +157,6 @@
         </div>
 
     </section>
-    <!-- end footer  -->
-    <!-- end footer  -->
     <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
     <script th:src="@{/script/Manage_Medicine/medicine_info.js}"></script>
 </body>
