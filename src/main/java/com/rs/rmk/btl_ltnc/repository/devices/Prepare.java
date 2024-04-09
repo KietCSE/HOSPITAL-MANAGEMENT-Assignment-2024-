@@ -5,7 +5,6 @@ import com.rs.rmk.btl_ltnc.model.devices.Devices;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Prepare {
     public static void prepareDevices(Devices devices) {

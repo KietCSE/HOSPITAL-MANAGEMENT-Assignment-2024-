@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -16,5 +18,18 @@ public class DevicesAPI {
     public boolean addDevices (@RequestBody Devices devices) throws ExecutionException, InterruptedException {
         System.out.println(devices);
         return DevicesGoogleApi.addDevices(devices);
+    }
+
+    @PostMapping("/searchDevices")
+    public ArrayList<Map<String, ?>> searchDevices (@RequestBody String searchContent) throws ExecutionException, InterruptedException {
+        System.out.println(searchContent);
+
+        return DevicesGoogleApi.searchDevices(searchContent);
+    }
+
+    @PostMapping("/getInfoByID")
+    public Map<String, ?> getInfoByID (@RequestBody String idToSearch) throws ExecutionException, InterruptedException {
+        System.out.println(idToSearch);
+        return DevicesGoogleApi.getInfoByID(idToSearch);
     }
 }
