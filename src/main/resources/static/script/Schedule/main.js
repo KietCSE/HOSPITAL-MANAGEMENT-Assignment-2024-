@@ -154,8 +154,9 @@ openForm.addEventListener('click', function() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                addTask(data, dateNum, "");
+                if (date >= new Date()) {
+                    addTask(data, dateNum, "");
+                }
                 alert("Thêm thành công :)")
             })
             .catch(err => console.log(err));
@@ -170,19 +171,44 @@ function reverseString(str) {
     return splitStr.join('/');
 }
 
+function reverse(str) {
+    let arr = str.split('/');
+    return arr.reverse().join('/');
+}
+
 //Lấy lịch trình từ database
 //Parameter nameDoctor lấy từ tài khoản đang đăng nhập
-fetch("http://localhost:8080/schedule/list?doctorName=hailam")
-    .then(response => response.json())
-    .then(data => {
-        //data ~ Tuần
-        for (let index = 0; index < data.length; index++) {
-            //data[index] ~ Thứ trong tuần
-            for (let task of data[index]) {
-                let date = index + 1;
-                addTask(task, date, "");
+function loadSchedule() {
+    fetch("http://localhost:8080/schedule/list?doctorName=hailam")
+        .then(response => response.json())
+        .then(data => {
+            //data ~ Tuần
+            for (let index = 0; index < data.length; index++) {
+                //data[index] ~ Thứ trong tuần
+                data[index].sort((task, otherTask) => {
+                    let result = 0;
+                    const dateTask = new Date(reverse(task.day));
+                    const dateOtherTask = new Date(reverse(otherTask.day));
+                    if (dateTask < dateOtherTask) {
+                        result = -1;
+                    }
+                    else if (dateTask > dateOtherTask) {
+                        result = 1;
+                    }
+                    return result;
+                });
+                for (let task of data[index]) {
+                    let date = index + 1;
+                    let today = new Date();
+                    let taskDay = new Date(reverse(task.day));
+                    if (taskDay < today) {
+                        continue;
+                    }
+                    addTask(task, date, "");
+                }
             }
-        }
-    })
-    .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
+}
 
+loadSchedule();
