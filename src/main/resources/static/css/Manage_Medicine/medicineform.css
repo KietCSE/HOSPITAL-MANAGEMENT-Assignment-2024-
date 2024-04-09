@@ -285,3 +285,7 @@ td {
     pointer-events: none;
     color: #666;
 }
+
+.table tbody .DELETE:hover {
+    color: red;
+}

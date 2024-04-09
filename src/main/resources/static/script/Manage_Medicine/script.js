@@ -57,21 +57,22 @@ document.querySelector(".import form .submit").addEventListener("click", async f
             if (!response.ok) {
                 throw new Error("Không thể lấy dữ liệu từ server");
             }
-            const data = await response.json();
-            if (!data || Object.keys(data).length === 0) {
-                throw new Error("Thuốc không tồn tại trong database");
+
+            let data = await response.json();
+            if(data.status === false) {
+                throw new Error(data.message);
             } else {
                 Medicine_Obj = {
                     ID: makeID(),
-                    Name: data.name,
+                    Name: data.result.name,
                     Amount: form.querySelector('input[name="Amount"]').value,
                     Validated: form.querySelector('input[name="Validated"]').value,
-                    Type: data.type,
-                    Classify: data.classify,
-                    Description: data.description,
-                    Uses: data.uses,
-                    N_Uses: data.n_Uses,
-                    Img_Url: data.img_Url,
+                    Type: data.result.type,
+                    Classify: data.result.classify,
+                    Description: data.result.description,
+                    Uses: data.result.uses,
+                    N_Uses: data.result.n_Uses,
+                    Img_Url: data.result.img_Url,
 
                     History: {
                         Day_Input: form.querySelector('input[name="Date"]').value,
@@ -113,7 +114,8 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         <td class="DATE">${Medicine_Obj.History.Day_Input}</td>
         <td class="DATE-EXPORT">null</td>
         <td class="VALIDATED">${Medicine_Obj.Validated}</td>
-        <td class="LINK"><a href="/medicine/info/${Medicine_Obj.ID}">Info</a></td>`;
+        <td class="LINK"><a href="/medicine/info/${Medicine_Obj.ID}">TT Sản phẩm</a></td>
+        <td class="DELETE">Xóa</td>`;
         document.querySelector("table tbody").appendChild(newRow);
 
         const postResponse = await fetch("/api/medicine/add", {
@@ -277,11 +279,9 @@ fetch("/api/medicine/getAllMedicine")
         }
     }).then(data => {
         console.log(data);
-        let Count = 0;
         for (let i = 0; i < data.length; i++) {
             let Medicine_Obj = data[i];
             let newRow = document.createElement('tr');
-
             let Latest_Export = Medicine_Obj.history.export_Date.length > 0 ? Medicine_Obj.history.export_Date[Medicine_Obj.history.export_Date.length - 1] : "null";
 
             newRow.innerHTML = `
@@ -292,10 +292,32 @@ fetch("/api/medicine/getAllMedicine")
             <td class="DATE">${Medicine_Obj.history.day_Input}</td>
             <td class="DATE-EXPORT">${Latest_Export}</td>
             <td class="VALIDATED">${Medicine_Obj.validated}</td>
-            <td class="LINK"><a href="/medicine/info/${Medicine_Obj.id}">Info</a></td>`;
-
+            <td class="LINK"><a href="/medicine/info/${Medicine_Obj.id}">TT Sản phẩm</a></td>
+            <td class="DELETE">Xóa</td>`;
             document.querySelector("table tbody").appendChild(newRow);
         }
     }).catch(error => {
-        console.error("Error:", error);
-    }); 
+        console.error("Lỗi:", error);
+    });
+
+document.querySelector('.table tbody').addEventListener("click", async function (event) {
+    if (event.target.classList.contains("DELETE")) {
+        let row = event.target.parentNode;
+        let MID = row.querySelector(".MID").textContent;
+
+        fetch(`/api/medicine/delete/${MID}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                console.log("Xoá thành công");
+            } else {
+                console.log("Xóa thất bại");
+                throw ("Xóa thất bại");
+            }
+        });
+        row.remove();
+    }
+});
