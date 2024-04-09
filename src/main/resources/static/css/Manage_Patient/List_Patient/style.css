@@ -133,7 +133,6 @@ body {
     margin-top: 3rem;
     background-color: var(--box-hover);
     padding: 2rem 3%;
-    position: fixed;
     bottom: 0;
 }
 

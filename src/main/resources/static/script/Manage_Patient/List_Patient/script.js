@@ -1,12 +1,5 @@
 
 // Lặp qua từng phần tử <tr> và thêm sự kiện click
-document.querySelectorAll('.table_body tr').forEach(row => {
-    row.addEventListener('click', () => {
-        window.location.href = "/patient/info";
-        // Thêm code xử lý sự kiện click ở đây
-    });
-});
-
 document.querySelector(".button .btn button").addEventListener("click", () => {
     window.location.href = "/patient/info";
 });
@@ -24,6 +17,9 @@ function AddPatient(data) {
         </tr>`
     document.querySelector('.table .table_body tbody').insertAdjacentHTML("beforeend", patient)
 
+    document.querySelector('.table .table_body table tbody:last-child').addEventListener('click', () => {
+        window.location.href = "/patient/info";
+    })
     // var newtodo = document.querySelector('.container .todo-content .todo-box:last-child')
     // newtodo.addEventListener('change', ()=>{
     //     var e = newtodo.querySelector('.todo-check input')
