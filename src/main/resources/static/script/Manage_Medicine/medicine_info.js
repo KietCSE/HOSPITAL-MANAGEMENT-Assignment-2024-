@@ -47,18 +47,6 @@ try {
                 SPAN.textContent = error;
                 SPAN.style.color = "red";
             }
-
-
-            // <tr>
-            //                         <td>26 - 03 - 2024</td>
-            //                         <td>10</td>
-            //                         <td>Nhập hàng</td>
-            //                     </tr>
-            //                     <tr>
-            //                         <td>26 - 03 - 2024</td>
-            //                         <td>20</td>
-            //                         <td>Xuất hàng</td>
-            //                     </tr>
             let newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>${data.history.day_Input}</td>
