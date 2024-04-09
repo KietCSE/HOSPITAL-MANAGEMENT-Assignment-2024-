@@ -47,16 +47,25 @@ public class DevicesGoogleApi {
         return searchResults;
     }
 
-    public static Map<String, ?> getInfoByID(String idToSearch) throws ExecutionException, InterruptedException {
+    public static ArrayList<Map<String, ?>> getInfoByID(String idToSearch) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
         CollectionReference devicesRef = firestore.collection("Devices");
+
+        // Tạo truy vấn (query) để tìm các tài liệu trong đó trường "name" chứa searchContent
         Query query = devicesRef.whereEqualTo("id", idToSearch);
+
+        // Thực hiện truy vấn
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
         QuerySnapshot queryResult = querySnapshot.get();
-        if (!queryResult.isEmpty()) {
-            return queryResult.getDocuments().get(0).getData();
+
+        // List để lưu trữ kết quả
+        ArrayList<Map<String, ?>> searchResults = new ArrayList<Map<String, ?>>();
+
+        // Lặp qua kết quả truy vấn và chuyển đổi chúng thành đối tượng Devices
+        for (QueryDocumentSnapshot document : queryResult) {
+            searchResults.add(document.getData());
         }
-        System.out.println("check");
-        return null;
+        System.out.println(searchResults);
+        return searchResults;
     }
 }

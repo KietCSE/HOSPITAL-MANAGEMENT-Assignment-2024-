@@ -67,36 +67,36 @@
     <section class="layout">
 
         <div class="layout-1">
-            <img th:src="@{/img/Manage_Tool/nhiet-ke-y-te.jpg}" alt="">
+            <img th:src="@{/img/Manage_Tool/bruh.jpg}" alt="">
         </div>
 
         <div class="layout-2">
             <div class="container">
-                <h2 id="infoName">Nhiệt kế y tế</h2>
+                <h2 id="infoName"></h2>
                 <h5>ID: 
-                    <span>802958955</span>
+                    <span id="infoID"></span>
                 </h5>
                 <h5>Phân loại
-                    <p>Thiết bị y tế loại B</p>
+                    <p id="infoType"></p>
                 </h5>
 
                 <h5>Đơn vị cung cấp
-                    <p>Thiết bị y tế Minh Hiệp</p>
+                    <p id="infoSupplier"></p>
                 </h5>
                 <h5>Ngày nhập
-                    <p>11-08-2023</p>
+                    <p id="infoDateIn"></p>
                 </h5>
                 <h5>Cập nhật lần cuối
-                    <p>11-03-2024</p>
+                    <p id="infoLastUpdate"></p>
                 </h5>
-                <h5>Trạng Trái
-                    <p>Tổng số lượng: 200</p>
-                    <p>Đang sử dụng: 150</p>
-                    <p>Hỏng hóc: 20</p>
-                    <p>Dự trữ: 30</p>
+                <h5>Trạng thái
+                    <p>Tổng số lượng: <span id="infoTotalAmount"></span></p>
+                    <p>Đang sử dụng: <span id="infoInUseAmount"></span></p>
+                    <p>Hỏng hóc: <span id="infoDamagedAmount"></span></p>
+                    <p>Dự trữ: <span id="infoStoredAmount"></span></p>
                 </h5>
                 <button onclick="showUpdateLog()"><b>Nhật ký cập nhật</b></button>
-                <button onclick="window.location.href = '/tool/form'"><b>Quản lí thiết bị</b></button>
+                <button onclick="showItemList()"><b>Danh sách chi tiết</b></button>
             </div>
         </div>
         
@@ -108,7 +108,7 @@
         </div>
         <section class="table">
             <div class="table_body">
-                <table>
+                <table id="logTable">
                     <thead>
                         <tr>
                             <th>Ngày</th>
@@ -119,41 +119,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>11-09-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-10-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-11-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-12-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-01-2024</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </section>
+
+    <section class="layout" id="itemList" style="display: none;">
+        <div class="wrapper">
+            <h1>Danh sách chi tiết</h1>
+        </div>
+        <section class="table">
+            <div class="table_body">
+                <table id="itemTable">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>ID</th>
+                        <th>Bố trí</th>
+                        <th>Trạng thái</th>
+                        <th>Cập nhật</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
                     </tbody>
                 </table>
 
@@ -164,6 +155,10 @@
     <script>
         function showUpdateLog() {
             var updateLog=document.getElementById("update-log")
+            updateLog.style.display='block'
+        }
+        function showItemList() {
+            var updateLog=document.getElementById("itemList")
             updateLog.style.display='block'
         }
     </script>

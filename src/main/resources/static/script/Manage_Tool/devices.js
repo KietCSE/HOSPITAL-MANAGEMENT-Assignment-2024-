@@ -89,7 +89,7 @@ document.getElementById("search-submit").addEventListener("click",
                                 <td>${devices.inUseAmount}</td>
                                 <td>${devices.damagedAmount}</td>
                                 <td>${devices.storedAmount}</td>
-                                <td><a href="/tool/info?id=${devices.id}">Info</a></td>`;
+                                <td><a href="/tool/info?id=${devices.id}">Chi tiết</a></td>`;
                             document.querySelector(".table tbody").appendChild(newRow);
                         }
                     } else {

@@ -28,7 +28,7 @@ public class DevicesAPI {
     }
 
     @PostMapping("/getInfoByID")
-    public Map<String, ?> getInfoByID (@RequestBody String idToSearch) throws ExecutionException, InterruptedException {
+    public ArrayList<Map<String, ?>> getInfoByID (@RequestBody String idToSearch) throws ExecutionException, InterruptedException {
         System.out.println(idToSearch);
         return DevicesGoogleApi.getInfoByID(idToSearch);
     }
