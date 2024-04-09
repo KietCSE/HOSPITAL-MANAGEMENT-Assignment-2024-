@@ -1,5 +1,6 @@
 package com.rs.rmk.btl_ltnc.controller;
 
+import com.rs.rmk.btl_ltnc.model.ApiResponse;
 import com.rs.rmk.btl_ltnc.model.Item.Medicine;
 import com.rs.rmk.btl_ltnc.model.Item.MedicineAPIRespone;
 import com.rs.rmk.btl_ltnc.service.ImageAPI;
@@ -10,12 +11,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static com.rs.rmk.btl_ltnc.model.StatusCode.NOT_GET_DOCUMENT;
+import static com.rs.rmk.btl_ltnc.model.StatusCode.SUCCESS;
+
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
 public class MedicineRestAPIController {
     @PostMapping("/medicine/add")
     public boolean postMedicine(@RequestBody Medicine medicine) throws ExecutionException, InterruptedException {
-        System.out.println(medicine);
         return GoogleMedicineAPI.PostMedicine(medicine);
     }
 
@@ -36,9 +39,15 @@ public class MedicineRestAPIController {
     }
 
     @GetMapping("/medicine/getElement/{Name}")
-    public MedicineAPIRespone GetMedicineByName(@PathVariable String Name)
-            throws ExecutionException, InterruptedException {
-        return GoogleMedicineAPI.GetMedicineByName(Name);
+    public ApiResponse GetMedicineByName(@PathVariable String Name) throws ExecutionException, InterruptedException {
+        ApiResponse result;
+        MedicineAPIRespone medicine = GoogleMedicineAPI.GetMedicineByName(Name);
+        if (medicine == null)
+            result = new ApiResponse<>(NOT_GET_DOCUMENT, "Không thể lấy dữ liệu", null, false);
+        else {
+            result = new ApiResponse<>(SUCCESS, "Lấy dữ liệu thành công", medicine, true);
+        }
+        return result;
     }
 
     @PostMapping("/medicine/upload")
