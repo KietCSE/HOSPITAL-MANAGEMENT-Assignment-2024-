@@ -4,9 +4,11 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import com.rs.rmk.btl_ltnc.exception.ErrorFirestore;
 import com.rs.rmk.btl_ltnc.exception.FirestoreException;
+import com.rs.rmk.btl_ltnc.model.patientinfo.info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +33,16 @@ public class FirestorePatient {
         }
     }
 
+    public Boolean postPatient(String collection, info patient) throws  FirestoreException {
+        try {
+            Firestore db = FirestoreClient.getFirestore();
+            ApiFuture<WriteResult> apiFuture = db.collection(collection).document(patient.getName()).set(patient);
+            WriteResult writeResult = apiFuture.get();
+            return writeResult != null;
+        }
+        catch ( ExecutionException | InterruptedException exception) {
+            throw new FirestoreException(ErrorFirestore.NOT_STORE_DATA);
+        }
 
+    }
 }
