@@ -125,6 +125,7 @@ section {
     align-items: center;
     justify-content: center;
     color: var(--black);
+    margin-right: 15px;
 }
 
 .header .login-btn a {

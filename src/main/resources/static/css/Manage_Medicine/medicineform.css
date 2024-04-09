@@ -168,18 +168,58 @@ tbody .delete:hover {
 
 /* Form */
 
-.info .FORM .Product {
-    margin-top: 2%;
-    display: grid;
+.table .table_body {
+    max-height: 50vh;
+    max-height: 50vh;
+    overflow: auto;
 }
 
-.info .FORM label {
-    margin-bottom: 2%;
+.table .table_body::-webkit-scrollbar {
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+.table .table_body::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background-color: #0004;
+    visibility: visible;
+}
+
+.table .table_body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+.table .table_body th,
+td {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 1rem 1.5rem;
+}
+
+.import {
+    margin-top: 5%;
+}
+
+.import h1 {
+    color: #0073B1;
+    font-weight: 600;
+    text-align: center;
+    font-size: 30px;
+}
+
+.import form {
+    margin-top: 2rem;
+}
+
+.import label {
+    display: block;
+    margin-bottom: 1rem;
     font-size: 20px;
     color: #0073B1;
 }
 
-.info .FORM input {
+.import input[type="text"],
+.import input[type="date"] {
     padding: 1%;
     font-size: 15px;
     margin-bottom: 2%;
@@ -187,8 +227,39 @@ tbody .delete:hover {
     border: var(--border);
 }
 
-.info .FORM input[type="checkbox"] {
+.import input {
+    width: 100%;
+}
 
+.import .btn {
+    padding: 1rem;
+    border: var(--border);
+    border-radius: 5px;
+    background-color: #0073B1;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 2rem;
+    font-weight: 500;
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: center;
+}
+
+.import .btn:hover {
+    background-color: var(--gray);
+}
+
+.LINK {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.LINK:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.import input[type="checkbox"] {
     width: 20px;
     height: 20px;
 
@@ -198,29 +269,23 @@ tbody .delete:hover {
     cursor: pointer;
 }
 
+.import .Info {
+    display: none;
+}
 
-
-
-.New_Product input,
-textarea {
+.import .Info input[type="file"] {
     width: 50%;
-    height: auto;
-    box-shadow: var(--box-shadow);
-    border: var(--border);
+    background-color: #fff;
+    height: 5rem;
+    padding: 1%;
 }
 
-.text-box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3%;
-}
-
-.text-box label {
-    text-align: center;
-}
-
-.New_Product {
+.import .Info:disabled {
     opacity: 0.5;
     pointer-events: none;
     color: #666;
+}
+
+.table tbody .DELETE:hover {
+    color: red;
 }
