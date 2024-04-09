@@ -31,7 +31,7 @@ public class doctorInfoService {
     }
 
 
-    private Map<String, Object> converToMap(doctorInfoModel doctorInfoModel) {
+    private Map<String, Object> convertToMap(doctorInfoModel doctorInfoModel) {
         Map<String, Object> map = new HashMap<>();
         map.put("university", doctorInfoModel.getUniversity());
         map.put("departmentName", doctorInfoModel.getDepartmentName());
