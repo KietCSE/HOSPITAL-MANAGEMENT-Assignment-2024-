@@ -58,5 +58,7 @@ public class ImageAPI {
             e.printStackTrace();
             return "Image couldn't upload, Something went wrong";
         }
-    }
+      }
+  }
 }
+
