@@ -1,6 +1,7 @@
 
 // Lặp qua từng phần tử <tr> và thêm sự kiện click
 document.querySelector(".button .btn button").addEventListener("click", () => {
+    sessionStorage.setItem("newPatient", true)
     window.location.href = "/patient/info";
 });
 
@@ -10,14 +11,17 @@ function AddPatient(data) {
     var patient =
         `<tr>
             <td>${count}</td>
-            <td>${data.ID}</td>
+            <td>${data.id}</td>
             <td>${data.name}</td>
-            <td>${data.Rom}</td>
+            <td>${data.room}</td>
             <td><span class="delete">Xóa</span></i></td> 
         </tr>`
     document.querySelector('.table .table_body tbody').insertAdjacentHTML("beforeend", patient)
 
-    document.querySelector('.table .table_body table tbody:last-child').addEventListener('click', () => {
+    document.querySelector('.table .table_body table tbody tr:last-child').addEventListener('click', () => {
+        sessionStorage.setItem("newPatient", false)
+        sessionStorage.setItem("IdPatientInfo", data.id)
+        // console.log(sessionStorage.getItem("IdPatientInfo"))
         window.location.href = "/patient/info";
     })
     // var newtodo = document.querySelector('.container .todo-content .todo-box:last-child')

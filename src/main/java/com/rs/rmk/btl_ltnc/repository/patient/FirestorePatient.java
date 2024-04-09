@@ -38,7 +38,7 @@ public class FirestorePatient {
     public Boolean postPatient(String collection, info patient) throws  FirestoreException {
         try {
             Firestore db = FirestoreClient.getFirestore();
-            ApiFuture<WriteResult> apiFuture = db.collection(collection).document(patient.getName()).set(patient);
+            ApiFuture<WriteResult> apiFuture = db.collection(collection).document(patient.getId()).set(patient);
             WriteResult writeResult = apiFuture.get();
             return writeResult != null;
         }
