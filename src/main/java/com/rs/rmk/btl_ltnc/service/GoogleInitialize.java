@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 @Service
-public class GoogleInitialize  {
+public class GoogleInitialize {
     @PostConstruct
     public void initial() throws IOException {
         try (FileInputStream serviceAccount = new FileInputStream(
