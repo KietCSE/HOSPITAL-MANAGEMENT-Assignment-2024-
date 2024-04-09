@@ -80,7 +80,7 @@ function addTask(taskObj, date, patient) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
+                         console.log(data);
                         task.remove();
                         alert("Xóa thành công :(");
                     })
@@ -132,7 +132,8 @@ openForm.addEventListener('click', function() {
             location: location.value,
             day: reverseString(day.value),
             from: timeFrom.value,
-            to: timeTo.value
+            to: timeTo.value,
+            patirntID: ""
         }
 
 
