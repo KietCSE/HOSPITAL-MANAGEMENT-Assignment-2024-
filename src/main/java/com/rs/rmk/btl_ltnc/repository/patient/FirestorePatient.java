@@ -7,12 +7,14 @@ import com.google.cloud.firestore.QuerySnapshot;
 import com.google.firebase.cloud.FirestoreClient;
 import com.rs.rmk.btl_ltnc.exception.ErrorFirestore;
 import com.rs.rmk.btl_ltnc.exception.FirestoreException;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+@Repository
 public class FirestorePatient {
     public List<Map<String, Object>> getPateintList(String collection) throws FirestoreException {
         Firestore db = FirestoreClient.getFirestore();

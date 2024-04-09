@@ -27,6 +27,8 @@ document.getElementById("login-btn").addEventListener("click", ()=>{
     let acc = document.getElementById("account").value;
     let pwd = document.getElementById("password").value;
 
+    sessionStorage.setItem('Username', acc);
+
     let data = {
         account: acc,
         password: pwd
