@@ -39,7 +39,7 @@ public class doctorInfoService {
         return map;
     }
     public doctorInfoModel updateDoctorInfo(doctorInfoModel doctorInfoModel) throws ExecutionException, InterruptedException {
-        Map<String, Object> update = converToMap(doctorInfoModel);
+        Map<String, Object> update = convertToMap(doctorInfoModel);
         return repository.updateDoctorInfo(doctorInfoModel.getDoctorNameCode(), update);
     }
 }
