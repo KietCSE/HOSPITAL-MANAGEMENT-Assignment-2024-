@@ -8,12 +8,12 @@
 
     <title>Thông tin TTB</title>
 
-    <link rel="stylesheet" th:href="@{/css/Manage_Medicine/headerAndfooter.css}">
-    <link rel="stylesheet" th:href="@{/css/Manage_Tool/deviceinfo.css}">
-    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
+    <link th:rel="stylesheet" th:href="@{/css/Manage_Tool/deviceinfo.css}">
+    <link th:rel="stylesheet" th:href="@{/css/Manage_Medicine/headerAndfooter.css}">
+    <link th:rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link th:rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
 </head>
 
 
@@ -21,85 +21,80 @@
 
 
 <body>
-<header class="header">
-    <a href="#" class="logo">
-        <div class="BKUlogo">
-            <img th:src="@{/img/Logo/logo.png}" alt="">
+    <header class="header">
+        <a href="#" class="logo">
+            <div class="BKUlogo">
+                <img th:src="@{/img/Logo/logo.png}" alt="">
+            </div>
+            HCMUT
+        </a>
+
+        <nav class="navbar">
+            <a th:href="@{/#home}">Trang chủ</a>
+            <a th:href="@{/#features}">Chức năng</a>
+            <a th:href="@{/#info}">Thông tin</a>
+            <a th:href="@{/#achieve}">Thành tựu</a>
+            <a th:href="@{/#contact}">Liên hệ</a>
+        </nav>
+
+        <div class="login-btn">
+            <button class="user btn">
+                <i class="fa-solid fa-user"></i>
+                <a href="#">Tài khoản</a>
+            </button>
         </div>
-        HCMUT
-    </a>
 
-    <nav class="navbar">
-        <a th:href="@{/#home}">Trang chủ</a>
-        <a th:href="@{/#features}">Chức năng</a>
-        <a th:href="@{/#info}">Thông tin</a>
-        <a th:href="@{/#achieve}">Thành tựu</a>
-        <a th:href="@{/#contact}">Liên hệ</a>
-    </nav>
-
-    <div class="login-btn">
-        <button class="user btn">
-            <i class="fa-solid fa-user"></i>
-            <a href="#">Tài khoản</a>
-        </button>
-    </div>
-
-    <script>
-        document.querySelector(".login-btn").addEventListener("click", () => {
-            window.location.href = "/login";
-        });
-    </script>
-</header>
+        <script>
+            document.querySelector(".login-btn").addEventListener("click", () => {
+                window.location.href = "/login";
+            });
+        </script>
+    </header>
 
 
 
 
 
-<section class="wrapper">
-
+    <section class="wrapper">
         <h1>THÔNG TIN TRANG THIẾT BỊ</h1>
-
-        <div class="Information">
-
-        </div>
     </section>
 
     <section class="layout">
 
         <div class="layout-1">
-            <img th:src="@{/img/Manage_Tool/nhiet-ke-y-te.jpg}" alt="">
+            <img th:src="@{/img/Manage_Tool/bruh.jpg}" alt="">
         </div>
 
         <div class="layout-2">
             <div class="container">
-                <h2>Nhiệt kế y tế</h2>
-                <h5>ID: 
-                    <span>802958955</span>
+                <h2 id="infoName"></h2>
+                <h5>ID:
+                    <span id="infoID"></span>
                 </h5>
                 <h5>Phân loại
-                    <p>Thiết bị y tế loại B</p>
+                    <p id="infoType"></p>
                 </h5>
 
                 <h5>Đơn vị cung cấp
-                    <p>Thiết bị y tế Minh Hiệp</p>
+                    <p id="infoSupplier"></p>
                 </h5>
                 <h5>Ngày nhập
-                    <p>11-08-2023</p>
+                    <p id="infoDateIn"></p>
                 </h5>
                 <h5>Cập nhật lần cuối
-                    <p>11-03-2024</p>
+                    <p id="infoLastUpdate"></p>
                 </h5>
-                <h5>Trạng Trái
-                    <p>Tổng số lượng: 200</p>
-                    <p>Đang sử dụng: 150</p>
-                    <p>Hỏng hóc: 20</p>
-                    <p>Dự trữ: 30</p>
+                <h5>Trạng thái
+                    <p>Tổng số lượng: <span id="infoTotalAmount"></span></p>
+                    <p>Đang sử dụng: <span id="infoInUseAmount"></span></p>
+                    <p>Hỏng hóc: <span id="infoDamagedAmount"></span></p>
+                    <p>Dự trữ: <span id="infoStoredAmount"></span></p>
                 </h5>
                 <button onclick="showUpdateLog()"><b>Nhật ký cập nhật</b></button>
-                <button onclick="window.location.href = '/tool/form'"><b>Quản lí thiết bị</b></button>
+                <button onclick="showItemList()"><b>Danh sách chi tiết</b></button>
             </div>
         </div>
-        
+
     </section>
 
     <section class="layout" id="update-log" style="display: none;">
@@ -108,7 +103,7 @@
         </div>
         <section class="table">
             <div class="table_body">
-                <table>
+                <table id="logTable">
                     <thead>
                         <tr>
                             <th>Ngày</th>
@@ -119,41 +114,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>11-09-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-10-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-11-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-12-2023</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>11-01-2024</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
+
                     </tbody>
                 </table>
 
@@ -161,63 +122,139 @@
         </section>
     </section>
 
+    <section class="layout" id="itemList" style="display: none;">
+        <div class="wrapper">
+            <h1>Danh sách chi tiết</h1>
+        </div>
+        <section class="table">
+            <div class="table_body">
+                <table id="itemTable">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>ID</th>
+                            <th>Bố trí</th>
+                            <th>Trạng thái</th>
+                            <th>Cập nhật</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </section>
+
+    <section class="wrapper">
+        <h1>CẬP NHẬT TRẠNG THÁI THIẾT BỊ</h1>
+    </section>
+
+    <section class="layout">
+        <form action="">
+            <label for="ID" class="ID">
+                ID thiết bị:
+                <input type="text" id="ID" name="ID" placeholder="Nhập ID thiết bị">
+            </label>
+            <label for="Use" class="Use">
+                <span>Đưa vào sử dụng: <input type="checkbox" name="Use" id="Use">
+                    <label for="location">
+                        Vị trí:
+                        <input type="text" id="location" name="location" placeholder="Nhập vị trí">
+                    </label>
+
+                </span>
+            </label>
+
+            <label for="Broken" class="Broken Use">
+                <span>Báo hỏng: <input type="checkbox" name="Broken" id="Broken"> </span>
+            </label>
+        </form>
+    </section>
+
+
+    <section class="wrapper">
+        <h1>CẬP NHẬT TRẠNG THÁI NHÓM THIẾT BỊ</h1>
+    </section>
+
+    <section class="layout">
+        <div class="in-line">
+            <div class="Remove">Xóa thiết bị</div>
+            <div class="Save">Lưu trạng thái thiết bị</div>
+        </div>
+    </section>
+
+    <!-- <section class="layout" id="updateDevices">
+        <div class="wrapper">
+            <h1>Cập nhật trạng thái nhóm thiết bị</h1>
+        </div>
+        <div class="layout-2">
+            <button id="deleteDamaged-submit"><b>Xóa thiết bị hư hỏng</b></button>
+            <button id="saveState"><b>Lưu trạng thái hiện tại</b></button>
+            <button id="deleteDevices"><b>Xóa nhóm thiết bị này</b></button>
+        </div>
+    </section> -->
+
     <script>
         function showUpdateLog() {
-            var updateLog=document.getElementById("update-log")
-            updateLog.style.display='block'
+            var updateLog = document.getElementById("update-log")
+            updateLog.style.display = 'block'
+        }
+        function showItemList() {
+            var updateLog = document.getElementById("itemList")
+            updateLog.style.display = 'block'
         }
     </script>
 
     <!-- start footer  -->
     <section class="footer">
-    <div class="footer-container">
+        <div class="footer-container">
 
-        <div class="footer-box">
+            <div class="footer-box">
 
-            <div class="footer-BKUlogo">
-                <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
-                <div class="footer-logo-content">
-                    <span>HOSPITAL HCMUT UNIVERSITY</span>
-                    <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+                <div class="footer-BKUlogo">
+                    <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
+                    <div class="footer-logo-content">
+                        <span>HOSPITAL HCMUT UNIVERSITY</span>
+                        <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+                    </div>
                 </div>
+
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+
+                <span>LƯỢT TRUY CẬP: 99,999,999</span>
             </div>
 
-            <div class="share">
-                <a href="#" class="fab fa-facebook-f"></a>
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-instagram"></a>
-                <a href="#" class="fab fa-linkedin"></a>
+            <div class="footer-box">
+                <h3>Thông tin liên hệ hỗ trợ</h3>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
+                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
+                    14, Quận 10, TP. HCM (Bản đồ) </a>
+                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
+                    Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
+
             </div>
 
-            <span>LƯỢT TRUY CẬP: 99,999,999</span>
+            <div class="footer-box">
+                <h3>Truy cập</h3>
+                <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+                <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+                <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+                <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+                <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+            </div>
         </div>
 
-        <div class="footer-box">
-            <h3>Thông tin liên hệ hỗ trợ</h3>
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-            <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
-            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
-                14, Quận 10, TP. HCM (Bản đồ) </a>
-            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
-                Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
-
-        </div>
-
-        <div class="footer-box">
-            <h3>Truy cập</h3>
-            <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-            <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
-            <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
-            <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
-            <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
-        </div>
-    </div>
-
-</section>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
+    </section>
+    <script th:src="@{/script/Manage_Tool/devicesInfo.js}"></script>
 </body>
-
-
 
 </html>

@@ -164,3 +164,91 @@ tbody .delete:hover {
     text-decoration: underline;
     color: blue;
 }
+
+.layout form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+
+    font-size: 20px;
+    padding: 5%;
+
+    color: #0073B1;
+}
+
+.layout form .ID {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    color: #0073B1;
+    font-weight: 600;
+    margin-right: 2%;
+}
+
+.layout form .ID input[name="ID"] {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    width: 30%;
+    height: auto;
+    font-size: 22px;
+    margin-left: 5%;
+}
+
+.layout form .Use span {
+    width: 100%;
+    height: auto;
+    color: #0073B1;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.layout form .Use input[name="Use"],
+input[name="Broken"] {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 2%;
+}
+
+.layout form .Use span label[for="location"] {
+    margin-left: 19%;
+    color: #0073B1;
+    font-weight: 600;
+}
+
+.layout form .Use span label[for="location"] input {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    font-size: 22px;
+}
+
+.layout .in-line {
+    padding: 5%;
+    display: flex;
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+}
+
+.layout .in-line .Remove,
+.Save {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    background-color: #0073B1;
+    text-align: center;
+    padding: 1%;
+    margin-left: 30%;
+}
+
+.layout .in-line .Remove:hover,
+.Save:hover {
+    background-color: #878686;
+}
+
+.layout .in-line .Save {
+    margin-left: 7%;
+}
