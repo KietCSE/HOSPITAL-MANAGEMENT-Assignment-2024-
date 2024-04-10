@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.stream.Location;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -31,5 +32,14 @@ public class DevicesAPI {
     public ArrayList<Map<String, ?>> getInfoByID (@RequestBody String idToSearch) throws ExecutionException, InterruptedException {
         System.out.println(idToSearch);
         return DevicesGoogleApi.getInfoByID(idToSearch);
+    }
+
+    @PostMapping("/updateItem")
+    public boolean updateItem (@RequestBody Map<String, String> req) throws ExecutionException, InterruptedException {
+        System.out.println(req.toString());
+        String ID = req.get("ID");
+        String Act = req.get("Act");
+        String Location = req.get("Location");
+        return DevicesGoogleApi.updateItem(ID, Act, Location);
     }
 }
