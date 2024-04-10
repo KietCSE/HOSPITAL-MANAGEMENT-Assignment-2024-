@@ -1,5 +1,6 @@
 // Thêm task
 function addTask(taskObj, date, patient) {
+    console.log(taskObj);
     const week = document.querySelector('.week');
 
     const weekDay = week.children[date - 1];
@@ -8,7 +9,6 @@ function addTask(taskObj, date, patient) {
 
     const task = document.createElement('div');
     task.classList.add('task');
-    task.setAttribute('task-id', taskObj.id);
     task.innerHTML =
         `<div class="task__short-description">
             <h3 class="task__name">${taskObj.name}</h3>
@@ -80,7 +80,7 @@ function addTask(taskObj, date, patient) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
+                         console.log(data);
                         task.remove();
                         alert("Xóa thành công :(");
                     })
@@ -88,7 +88,9 @@ function addTask(taskObj, date, patient) {
             }
         }
         else if(event.target.closest('.patient-info')) {
-            window.location.href = "../Manage_Patient/List_Patient/index.html";
+            sessionStorage.setItem("newPatient", false)
+            sessionStorage.setItem("IdPatientInfo", taskObj.patientID);
+            window.location.href = "/patient/info";
         }
         // else if ()
     })
@@ -132,7 +134,8 @@ openForm.addEventListener('click', function() {
             location: location.value,
             day: reverseString(day.value),
             from: timeFrom.value,
-            to: timeTo.value
+            to: timeTo.value,
+            patientID: patient.value
         }
 
 
@@ -212,3 +215,4 @@ function loadSchedule() {
 }
 
 loadSchedule();
+
