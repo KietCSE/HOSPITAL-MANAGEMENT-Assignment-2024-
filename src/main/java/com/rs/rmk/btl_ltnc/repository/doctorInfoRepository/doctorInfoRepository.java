@@ -49,4 +49,11 @@ public class doctorInfoRepository {
         ApiFuture<WriteResult> writeResult = doctorRef.update(update);
         return getDoctorInfo(doctorNameCode);
     }
+
+    public boolean deleteDoctorInfo(String doctorName) throws ExecutionException, InterruptedException {
+        Firestore database = FirestoreClient.getFirestore();
+        DocumentReference doctorRef = database.collection("Doctor").document(doctorName);
+        ApiFuture<WriteResult> writeResult = doctorRef.delete();
+        return true;
+    }
 }

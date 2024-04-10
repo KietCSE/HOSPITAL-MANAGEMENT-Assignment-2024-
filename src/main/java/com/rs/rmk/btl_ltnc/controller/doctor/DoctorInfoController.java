@@ -32,4 +32,9 @@ public class DoctorInfoController {
     public doctorInfoModel updateDoctorInfo(@RequestBody doctorInfoModel doctorInfoModel) throws ExecutionException, InterruptedException {
         return service.updateDoctorInfo(doctorInfoModel);
     }
+
+    @DeleteMapping("api/doctor/delete")
+    public boolean deleteDoctorInfo(@RequestParam String doctorName) throws ExecutionException, InterruptedException {
+        return service.deleteDoctorInfo(doctorName);
+    }
 }
