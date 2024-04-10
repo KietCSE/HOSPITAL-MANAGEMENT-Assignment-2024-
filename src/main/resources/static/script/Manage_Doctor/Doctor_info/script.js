@@ -53,9 +53,9 @@ updateBtn.addEventListener('click', () => {
     })
         .then(response => response.json())
         .then(data => {
-            document.querySelector('#university').innerText = data.university;
-            document.querySelector('#departmentName').innerText = data.departmentName;
-            document.querySelector('#major').innerText = data.major;
+            document.querySelector('#university').innerText = doctorUpdate.university;
+            document.querySelector('#departmentName').innerText = doctorUpdate.departmentName;
+            document.querySelector('#major').innerText = doctorUpdate.major;
             alert("Cập nhật thành công :)")
         })
         .catch(err => console.log(err));
