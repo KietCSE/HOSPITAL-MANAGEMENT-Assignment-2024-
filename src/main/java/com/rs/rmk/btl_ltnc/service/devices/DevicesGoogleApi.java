@@ -7,6 +7,8 @@ import com.rs.rmk.btl_ltnc.model.devices.Devices;
 import com.rs.rmk.btl_ltnc.model.devices.DevicesApiResponse;
 import com.rs.rmk.btl_ltnc.repository.devices.Prepare;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -42,7 +44,6 @@ public class DevicesGoogleApi {
         for (QueryDocumentSnapshot document : queryResult) {
             searchResults.add(document.getData());
         }
-        System.out.println(searchResults);
         return searchResults;
     }
 
@@ -64,7 +65,6 @@ public class DevicesGoogleApi {
         for (QueryDocumentSnapshot document : queryResult) {
             searchResults.add(document.getData());
         }
-        System.out.println(searchResults);
         return searchResults;
     }
 
@@ -101,7 +101,7 @@ public class DevicesGoogleApi {
                     devices.setInUseAmount(devices.getInUseAmount() - 1);
                     devices.setDamagedAmount(devices.getDamagedAmount() + 1);
                 } else {
-                    devices.setStoredAmount(devices.getInUseAmount() - 1);
+                    devices.setStoredAmount(devices.getStoredAmount() - 1);
                     devices.setDamagedAmount(devices.getDamagedAmount() + 1);
                 }
             }
@@ -112,5 +112,44 @@ public class DevicesGoogleApi {
             WriteResult writeResult = result.get();
             return writeResult != null;
         }
+    }
+
+    public static boolean saveUpdateLog(String id) throws ExecutionException, InterruptedException {
+        Firestore firestore = FirestoreClient.getFirestore();
+        CollectionReference devicesRef = firestore.collection("Devices");
+        Query query = devicesRef.whereEqualTo("id", id);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        QuerySnapshot queryResult = querySnapshot.get();
+        if (queryResult.isEmpty()) {
+            return false;
+        } else {
+            LocalDate currentDate = LocalDate.now();
+            String dateUpdate = currentDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+
+            QueryDocumentSnapshot document = queryResult.getDocuments().get(0);
+            DevicesApiResponse devices = document.toObject(DevicesApiResponse.class);
+            //tạo mục mới trong nhật ký
+            DevicesApiResponse.Update update = new DevicesApiResponse.Update();
+            update.setDate(dateUpdate); update.setTotalAmount(devices.getTotalAmount());
+            update.setDamagedAmount(devices.getDamagedAmount());
+            update.setInUseAmount(devices.getInUseAmount());
+            update.setStoredAmount(devices.getStoredAmount());
+            //thêm mục mới vào nhật ký
+            devices.getUpdateLog().add(update);
+            //Đưa devices đã được thay đổi lên lại firestore
+            DocumentReference docRef = firestore.collection("Devices")
+                    .document(devices.getId());
+            ApiFuture<WriteResult> result = docRef.set(devices);
+            WriteResult writeResult = result.get();
+            return writeResult != null;
+        }
+    }
+
+    public static boolean deleteDevice(String id) throws ExecutionException, InterruptedException {
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference docRef = firestore.collection("Devices").document(id);
+        ApiFuture<WriteResult> result = docRef.delete(); // Thực hiện xóa document
+        // Chờ đợi kết quả của việc xóa document
+        return result.get() != null;
     }
 }
