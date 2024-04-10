@@ -71,7 +71,7 @@ function useDevicesData(devices) {
             <td>${devices.itemsList[i].id}</td>
             <td>${devices.itemsList[i].located}</td>
             <td>${devices.itemsList[i].state}</td>
-            <td><a href="/tool/updateItem?id=${devices.itemsList[i].id}">Chi tiết</a></td>`
+            <td><a href="#">Chi tiết</a></td>`
         tbody_list.appendChild(row)
     }
 }

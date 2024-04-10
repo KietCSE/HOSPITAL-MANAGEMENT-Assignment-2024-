@@ -152,6 +152,31 @@
         </section>
     </section>
 
+<section class="layout" id="updateItem">
+    <div class="wrapper">
+        <h1>Cập nhật trạng thái thiết bị</h1>
+    </div>
+
+    <form action="">
+        <label for="useItem">
+            <input type="checkbox" id="useItem" value="false">Đưa vào sử dụng
+            <input type="text" id="located">
+        </label>
+    </form>
+
+</section>
+
+<section class="layout" id="updateDevices">
+    <div class="wrapper">
+        <h1>Cập nhật trạng thái nhóm thiết bị</h1>
+    </div>
+    <div class="layout-2">
+        <button id="deleteDamaged-submit"><b>Xóa thiết bị hư hỏng</b></button>
+        <button id="saveState"><b>Lưu trạng thái hiện tại</b></button>
+        <button id="deleteDevices"><b>Xóa nhóm thiết bị này</b></button>
+    </div>
+</section>
+
     <script>
         function showUpdateLog() {
             var updateLog=document.getElementById("update-log")
