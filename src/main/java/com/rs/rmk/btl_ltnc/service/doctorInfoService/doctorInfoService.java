@@ -4,7 +4,6 @@ import com.rs.rmk.btl_ltnc.model.doctorInfo.doctorInfoModel;
 import com.rs.rmk.btl_ltnc.repository.doctorInfoRepository.doctorInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalTime;
 import java.util.HashMap;
