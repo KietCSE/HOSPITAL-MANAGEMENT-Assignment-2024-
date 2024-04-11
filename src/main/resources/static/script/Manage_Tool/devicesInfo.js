@@ -3,6 +3,8 @@ let currentURL = new URL(window.location.href);
 // Lấy giá trị của tham số "id" từ URL
 let idToSearch = currentURL.searchParams.get("id");
 
+let globalData
+
 fetch('/api/devices/getInfoByID', {
     method: 'POST', // Phương thức là POST
     headers: {
@@ -24,6 +26,7 @@ fetch('/api/devices/getInfoByID', {
         } else {
             console.log(data)
             let devices = data[0]
+            globalData = devices
             useDevicesData(devices)
         }
     })
@@ -71,7 +74,177 @@ function useDevicesData(devices) {
             <td>${devices.itemsList[i].id}</td>
             <td>${devices.itemsList[i].located}</td>
             <td>${devices.itemsList[i].state}</td>
-            <td><a href="#">Chi tiết</a></td>`
+            <td onclick="gotoForm(${devices.itemsList[i].id})">Cập nhật</></td>`
         tbody_list.appendChild(row)
     }
 }
+
+function toggleCheckbox(checkbox) {
+    var otherCheckboxId = checkbox.id === "Use" ? "Broken" : "Use";
+    var otherCheckbox = document.getElementById(otherCheckboxId);
+
+    if (checkbox.checked) {
+        otherCheckbox.disabled = true;
+    } else {
+        otherCheckbox.disabled = false;
+    }
+}
+
+function gotoForm(id) {
+    console.log(id)
+    var idUpdateInput = document.getElementById('ID');
+    idUpdateInput.value = id;
+
+    var form = document.getElementById('updateItem');
+    form.scrollIntoView({ behavior: "smooth" });
+}
+
+document.getElementById("ID").addEventListener("input", function (event) {
+    let ID = this.value;
+    let parts = ID.split("_");
+    if (parts.length !== 0) {
+        let beforeUnderscore = parts[0];
+        let afterUnderscore = parts[1];
+        if (beforeUnderscore === idToSearch) {
+            let item = globalData.itemsList[afterUnderscore]
+            if (item.state==="damaged") {
+                document.getElementById("Use").disabled = true
+                document.getElementById("Broken").disabled = true
+            } else {
+                document.getElementById("Use").disabled = false
+                document.getElementById("Broken").disabled = false
+            }
+        }
+    }
+});
+
+document.getElementById("updateItem").addEventListener("submit", function (event){
+    event.preventDefault()
+    var ID = document.getElementById("ID")
+    var Use = document.getElementById("Use")
+    var location = document.getElementById("location")
+    var Broken = document.getElementById("Broken")
+    let postData
+    if (ID.value==="") {
+        alert("Chưa nhập ID")
+    } else {
+        if (Use.checked) {
+            if (location.value==="") {
+                alert("Chưa nhập vị trí")
+            } else {
+                postData = {
+                    ID: ID.value,
+                    Act: "Use",
+                    Location: location.value
+                }
+            }
+        } else if (Broken.checked) {
+            postData = {
+                ID: ID.value,
+                Act: "Broken",
+                Location: ""
+            }
+        } else {
+            alert("Chưa chọn loại yêu cầu")
+        }
+    }
+    if (postData !== undefined) {
+        console.log(postData)
+        fetch('/api/devices/updateItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                }
+            })
+            .then(data => {
+                console.log(data)
+                if (data===true) {
+                    alert("Cập nhật thành công")
+                    window.location.reload()
+                } else {
+                    alert("Sai ID hoặc lỗi trong lúc gửi dữ liệu")
+                }
+            })
+            .catch(error => {
+                console.error('Đã xảy ra lỗi:', error);
+                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+            });
+    }
+});
+
+document.getElementById("save").addEventListener("click", function (event) {
+    let confirmation = confirm("Xác nhận lưu trạng thái hiện tại?");
+    if (confirmation === true) {
+        fetch('/api/devices/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plan'
+            },
+            body: idToSearch
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                }
+            })
+            .then(data => {
+                if (data === true) {
+                    alert("Lưu thành công")
+                    window.location.reload()
+                } else {
+                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                }
+            })
+            .catch(error => {
+                console.error('Đã xảy ra lỗi:', error);
+                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+            });
+    }
+});
+
+document.getElementById("delete").addEventListener("click", function (event) {
+    console.log(globalData)
+    if (globalData.damagedAmount !== globalData.totalAmount) {
+        alert("Chỉ có thể xóa nhóm thiết bị khi tất cả thiết bị đều hỏng")
+    } else {
+        let confirmation = confirm("Xác nhận xóa nhóm thiết bị này?");
+        if (confirmation === true) {
+            fetch('/api/devices/delete', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'text/plan'
+                },
+                body: idToSearch
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                    }
+                })
+                .then(data => {
+                    if (data === true) {
+                        alert("Đã xóa")
+                        window.location.href="/tool/form";
+                    } else {
+                        alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Đã xảy ra lỗi:', error);
+                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                });
+        }
+    }
+});

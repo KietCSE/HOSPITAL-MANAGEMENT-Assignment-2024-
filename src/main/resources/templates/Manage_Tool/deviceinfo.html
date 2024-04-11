@@ -17,9 +17,6 @@
 </head>
 
 
-
-
-
 <body>
     <header class="header">
         <a href="#" class="logo">
@@ -61,9 +58,9 @@
 
     <section class="layout">
 
-        <div class="layout-1">
-            <img th:src="@{/img/Manage_Tool/bruh.jpg}" alt="">
-        </div>
+        <!--        <div class="layout-1">-->
+        <!--            <img th:src="@{/img/Manage_Tool/bruh.jpg}" alt="Ảnh thiết bị">-->
+        <!--        </div>-->
 
         <div class="layout-2">
             <div class="container">
@@ -90,39 +87,12 @@
                     <p>Hỏng hóc: <span id="infoDamagedAmount"></span></p>
                     <p>Dự trữ: <span id="infoStoredAmount"></span></p>
                 </h5>
-                <button onclick="showUpdateLog()"><b>Nhật ký cập nhật</b></button>
-                <button onclick="showItemList()"><b>Danh sách chi tiết</b></button>
             </div>
         </div>
 
     </section>
 
-    <section class="layout" id="update-log" style="display: none;">
-        <div class="wrapper">
-            <h1>Nhật ký cập nhật</h1>
-        </div>
-        <section class="table">
-            <div class="table_body">
-                <table id="logTable">
-                    <thead>
-                        <tr>
-                            <th>Ngày</th>
-                            <th>Tổng số lượng</th>
-                            <th>Đang sử dụng</th>
-                            <th>Hỏng hóc</th>
-                            <th>Dự trữ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-
-            </div>
-        </section>
-    </section>
-
-    <section class="layout" id="itemList" style="display: none;">
+    <section class="layout" id="itemList" style="display: block;">
         <div class="wrapper">
             <h1>Danh sách chi tiết</h1>
         </div>
@@ -147,29 +117,57 @@
         </section>
     </section>
 
+    <section class="layout" id="update-log" style="display: block;">
+        <div class="wrapper">
+            <h1>Nhật ký cập nhật</h1>
+        </div>
+        <section class="table">
+            <div class="table_body">
+                <table id="logTable">
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Tổng số lượng</th>
+                            <th>Đang sử dụng</th>
+                            <th>Hỏng hóc</th>
+                            <th>Dự trữ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </section>
+
     <section class="wrapper">
-        <h1>CẬP NHẬT TRẠNG THÁI THIẾT BỊ</h1>
+        <h1>CẬP NHẬT TRẠNG THÁI THIẾT BỊ </h1>
     </section>
 
     <section class="layout">
-        <form action="">
+        <form action="" id="updateItem">
             <label for="ID" class="ID">
                 ID thiết bị:
-                <input type="text" id="ID" name="ID" placeholder="Nhập ID thiết bị">
+                <input type="text" id="ID" name="ID">
             </label>
             <label for="Use" class="Use">
-                <span>Đưa vào sử dụng: <input type="checkbox" name="Use" id="Use">
+                <span>Đưa vào sử dụng hoặc đổi vị trí: <input type="checkbox" name="Use" id="Use"
+                        onclick="toggleCheckbox(this)">
                     <label for="location">
                         Vị trí:
-                        <input type="text" id="location" name="location" placeholder="Nhập vị trí">
+                        <input type="text" id="location" name="location" placeholder="Tòa-Phòng. VD: H1-212">
                     </label>
-
                 </span>
             </label>
 
             <label for="Broken" class="Broken Use">
-                <span>Báo hỏng: <input type="checkbox" name="Broken" id="Broken"> </span>
+                <span>Báo hỏng: <input type="checkbox" name="Broken" id="Broken" onclick="toggleCheckbox(this)"> </span>
             </label>
+            <div class="SRR">
+                <div class="Submit">Xác nhận</div>
+            </div>
         </form>
     </section>
 
@@ -180,32 +178,14 @@
 
     <section class="layout">
         <div class="in-line">
-            <div class="Remove">Xóa thiết bị</div>
-            <div class="Save">Lưu trạng thái thiết bị</div>
+            <div class="SRRL">
+                <div class="Save" id="save">Lưu trạng thái hiện tại</div>
+            </div>
+            <div class="SRRR">
+                <div class="Remove" id="delete">Xóa nhóm thiết bị này</div>
+            </div>
         </div>
     </section>
-
-    <!-- <section class="layout" id="updateDevices">
-        <div class="wrapper">
-            <h1>Cập nhật trạng thái nhóm thiết bị</h1>
-        </div>
-        <div class="layout-2">
-            <button id="deleteDamaged-submit"><b>Xóa thiết bị hư hỏng</b></button>
-            <button id="saveState"><b>Lưu trạng thái hiện tại</b></button>
-            <button id="deleteDevices"><b>Xóa nhóm thiết bị này</b></button>
-        </div>
-    </section> -->
-
-    <script>
-        function showUpdateLog() {
-            var updateLog = document.getElementById("update-log")
-            updateLog.style.display = 'block'
-        }
-        function showItemList() {
-            var updateLog = document.getElementById("itemList")
-            updateLog.style.display = 'block'
-        }
-    </script>
 
     <!-- start footer  -->
     <section class="footer">
@@ -214,7 +194,7 @@
             <div class="footer-box">
 
                 <div class="footer-BKUlogo">
-                    <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
+                    <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
                     <div class="footer-logo-content">
                         <span>HOSPITAL HCMUT UNIVERSITY</span>
                         <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>

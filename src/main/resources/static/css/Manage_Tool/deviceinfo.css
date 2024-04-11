@@ -170,10 +170,8 @@ tbody .delete:hover {
     flex-direction: column;
     width: 100%;
     height: auto;
-
     font-size: 20px;
     padding: 5%;
-
     color: #0073B1;
 }
 
@@ -228,9 +226,8 @@ input[name="Broken"] {
 .layout .in-line {
     padding: 5%;
     display: flex;
-    width: 100%;
+    width: 50%;
     height: auto;
-    font-size: 20px;
 }
 
 .layout .in-line .Remove,
@@ -241,7 +238,26 @@ input[name="Broken"] {
     background-color: #0073B1;
     text-align: center;
     padding: 1%;
-    margin-left: 30%;
+}
+
+.layout .in-line .SRRL {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.layout .in-line .SRRR {
+    display: flex;
+    justify-content: center;
+    align-items: right;
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .layout .in-line .Remove:hover,
@@ -249,6 +265,27 @@ input[name="Broken"] {
     background-color: #878686;
 }
 
-.layout .in-line .Save {
-    margin-left: 7%;
+.layout #updateItem .SRR {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.layout #updateItem .SRR .Submit {
+    width: fit-content;
+    height: auto;
+    padding: 1%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    background: #0073B1;
+    border-radius: 5px;
+}
+
+.layout #updateItem .SRR .Submit:hover {
+    background-color: #878686;
 }
