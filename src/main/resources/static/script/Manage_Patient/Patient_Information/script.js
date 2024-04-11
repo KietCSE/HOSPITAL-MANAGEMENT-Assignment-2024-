@@ -55,8 +55,16 @@ let Infomation;
                 document.querySelector('.ID-patient').innerText = data.data
                 document.querySelector('.notification').style.visibility = 'visible'
             }
+            // loi nhap du lieu
+            else {
+                alert(data.message)
+            }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+        })
+
+
 })
 
 

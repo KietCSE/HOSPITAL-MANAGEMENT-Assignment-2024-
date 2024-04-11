@@ -4,6 +4,7 @@ import com.rs.rmk.btl_ltnc.exception.FirestoreException;
 import com.rs.rmk.btl_ltnc.model.ApiResponse;
 import com.rs.rmk.btl_ltnc.model.patientinfo.info;
 import com.rs.rmk.btl_ltnc.repository.patient.FirestorePatient;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class patientController {
         }
     }
     @PostMapping("/postdatainfo")
-    public ApiResponse<String> PostInfo(@RequestBody info patient) throws FirestoreException {
+    public ApiResponse<String> PostInfo(@RequestBody @Valid info patient) throws FirestoreException {
         LocalTime now  = LocalTime.now();
         String ID = now.toString().replaceAll("[:.]", "");
         patient.setId(ID);
