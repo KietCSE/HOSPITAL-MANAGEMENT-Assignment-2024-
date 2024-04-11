@@ -1,11 +1,9 @@
 let Medicine_ID = document.querySelector('.MID_1');
 let ID = Medicine_ID.textContent.trim();
 
-// Construct the URL for fetching data
 let apiUrl = `/api/medicine/get/${ID}`;
 
 try {
-    // Fetch data from the API endpoint
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -13,9 +11,8 @@ try {
             }
             return response.json();
         })
-        .then(data => {
-            console.log(data);
-
+        .then(DT => {
+            let data = DT.data;
             let Info = document.querySelector('.layout-2')
             Info.querySelector('.Name').innerHTML = data.name;
             Info.querySelector('.Type').innerHTML = data.type;

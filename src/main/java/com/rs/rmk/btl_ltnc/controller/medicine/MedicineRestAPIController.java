@@ -1,46 +1,47 @@
 package com.rs.rmk.btl_ltnc.controller.medicine;
 
+import com.rs.rmk.btl_ltnc.exception.FirestoreException;
 import com.rs.rmk.btl_ltnc.model.ApiResponse;
 import com.rs.rmk.btl_ltnc.model.Item.Medicine;
 import com.rs.rmk.btl_ltnc.model.Item.MedicineAPIRespone;
-import com.rs.rmk.btl_ltnc.service.ImageAPI;
 import com.rs.rmk.btl_ltnc.service.Medicine.GoogleMedicineAPI;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-import static com.rs.rmk.btl_ltnc.model.StatusCode.NOT_GET_DOCUMENT;
-import static com.rs.rmk.btl_ltnc.model.StatusCode.SUCCESS;
+import static com.rs.rmk.btl_ltnc.model.StatusCode.*;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
 public class MedicineRestAPIController {
     @PostMapping("/medicine/add")
-    public boolean postMedicine(@RequestBody Medicine medicine) throws ExecutionException, InterruptedException {
-        return GoogleMedicineAPI.PostMedicine(medicine);
+    public ApiResponse<?> postMedicine(@RequestBody Medicine medicine) throws FirestoreException {
+        return GoogleMedicineAPI.PostMedicine(medicine) ? new ApiResponse<>(SUCCESS, "Post dữ liệu thành công", medicine, true)
+                : new ApiResponse<>(ERROR, "Không thể post data", null, false);
     }
-
     @GetMapping("/medicine/get/{MID}")
-    public MedicineAPIRespone getMedicine(@PathVariable String MID) throws ExecutionException, InterruptedException {
-        return GoogleMedicineAPI.GetMedicine(MID);
+    public ApiResponse<?> getMedicine(@PathVariable String MID) throws FirestoreException {
+        MedicineAPIRespone medicineAPIRespone = GoogleMedicineAPI.GetMedicine(MID);
+        return (medicineAPIRespone != null) ?
+                new ApiResponse<>(SUCCESS, "Lấy dữ liệu thành công", medicineAPIRespone, true)
+                : new ApiResponse<>(ERROR, "Không thể lấy dữ liệu", null, false);
     }
 
     @PutMapping("/medicine/update/{MID}")
-    public boolean putMedicine(@PathVariable String MID, @RequestBody Medicine medicine)
-            throws ExecutionException, InterruptedException {
-        return GoogleMedicineAPI.PutMedicine(MID, medicine);
+    public ApiResponse<?> putMedicine(@PathVariable String MID, @RequestBody Medicine medicine)
+            throws FirestoreException {
+        return (GoogleMedicineAPI.PutMedicine(MID, medicine)) ?
+                new ApiResponse<>(SUCCESS, "Lấy dữ liệu thành công", medicine, true)
+                : new ApiResponse<>(ERROR, "Không thể lấy dữ liệu", null, false);
     }
 
     @DeleteMapping("/medicine/delete/{MID}")
-    public boolean deleteMedicine(@PathVariable String MID) throws ExecutionException, InterruptedException {
-        return GoogleMedicineAPI.DeleteMedicine(MID);
+    public ApiResponse<?> deleteMedicine(@PathVariable String MID) throws FirestoreException {
+        return GoogleMedicineAPI.DeleteMedicine(MID) ? new ApiResponse<>(SUCCESS, "Xóa dữ liệu thành công", MID, true)
+                : new ApiResponse<>(ERROR, "Xóa thất bại", MID, false);
     }
 
     @GetMapping("/medicine/getElement/{Name}")
-    public ApiResponse GetMedicineByName(@PathVariable String Name) throws ExecutionException, InterruptedException {
-        ApiResponse result;
+    public ApiResponse<?> GetMedicineByName(@PathVariable String Name) throws FirestoreException {
+        ApiResponse<?> result;
         MedicineAPIRespone medicine = GoogleMedicineAPI.GetMedicineByName(Name);
         if (medicine == null)
             result = new ApiResponse<>(NOT_GET_DOCUMENT, "Không thể lấy dữ liệu", null, false);
@@ -50,13 +51,8 @@ public class MedicineRestAPIController {
         return result;
     }
 
-    @PostMapping("/medicine/upload")
-    public String uploadMedicine(@RequestParam("file") MultipartFile file) {
-        return new ImageAPI().upload(file);
-    }
-
     @GetMapping("/medicine/getAllMedicine")
-    public List<MedicineAPIRespone> getAllMedicine() throws ExecutionException, InterruptedException {
+    public List<MedicineAPIRespone> getAllMedicine() throws FirestoreException {
         return GoogleMedicineAPI.GetAllMedicines();
     }
 }

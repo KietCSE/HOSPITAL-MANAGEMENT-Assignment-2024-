@@ -6,6 +6,8 @@ import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
+import com.rs.rmk.btl_ltnc.exception.ErrorFirestore;
+import com.rs.rmk.btl_ltnc.exception.FirestoreException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,18 +48,16 @@ public class ImageAPI {
         return fileName.substring(fileName.lastIndexOf("."));
     }
 
-    public String upload(MultipartFile multipartFile) {
+    public String upload(MultipartFile multipartFile) throws FirestoreException {
         try {
             String fileName = multipartFile.getOriginalFilename();
-
             fileName = UUID.randomUUID().toString().concat(this.getExtension(fileName));
             File file = this.convertToFile(multipartFile, fileName);
             String URL = this.uploadFile(file, fileName);
             file.delete();
             return URL;
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Image couldn't upload, Something went wrong";
+            throw new FirestoreException(ErrorFirestore.NOT_GET_IMAGE);
         }
     }
 }
