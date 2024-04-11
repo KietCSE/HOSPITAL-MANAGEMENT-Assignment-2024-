@@ -1,4 +1,4 @@
-package com.rs.rmk.btl_ltnc.controller;
+package com.rs.rmk.btl_ltnc.controller.medicine;
 
 import com.rs.rmk.btl_ltnc.model.ApiResponse;
 import com.rs.rmk.btl_ltnc.model.Item.Medicine;
