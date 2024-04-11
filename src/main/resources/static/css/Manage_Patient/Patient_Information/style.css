@@ -274,6 +274,89 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
+.notification {
+  /* width: 100wh; */
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  transition: visibility 0s, opacity 0.3s ease;
+}
+
+.notification .content-notif {
+  background-color: #fff;
+  width: 380px;
+  height: 220px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  box-shadow: var(--box-shadow);
+  padding: 10px 20px;
+}
+
+.notification .content-notif .info-copy {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  border: var(--border);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.notification .content-notif h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.notification .content-notif p {
+  margin: 0;
+}
+
+.notification .content-notif .info-copy span {
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.notification .content-notif .copy-notify {
+  color: red;
+  font-size: 10px;
+  margin: 5px;
+}
+
+.notification .content-notif .info-copy .copy {
+  text-align: center;
+  border-left: var(--border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification .content-notif .info-copy .copy:hover{
+  background-color: var(--primary-blue);
+}
+
+.notification .content-notif button{
+  height: 30px;
+  width: 80px;
+  border-radius: 5px;
+  margin: 5px 0;
+  background-color: var(--primary-blue);
+  color: #fff;
+}
+
+.notification .content-notif button:hover {
+  background-color: gray;
+}
 
 
 

@@ -46,24 +46,33 @@ public class patientController {
         }
     }
     @PostMapping("/postdatainfo")
-    public ApiResponse<?> PostInfo(@RequestBody info patient) throws FirestoreException {
+    public ApiResponse<String> PostInfo(@RequestBody info patient) throws FirestoreException {
         LocalTime now  = LocalTime.now();
-        patient.setId(now.toString());
+        String ID = now.toString().replaceAll("[:.]", "");
+        patient.setId(ID);
         FirestorePatient firestorePatient = new FirestorePatient();
         boolean check = firestorePatient.postPatient("Patient", patient);
-        ApiResponse<?> apiResponse = new ApiResponse<>();
+        ApiResponse<String> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(check);
+        apiResponse.setData(ID);
         return apiResponse;
     }
+
 
     @PostMapping("/updatedatainfo/{id}")
     public ApiResponse<?> UpdateInfo(@RequestBody info patient, @PathVariable String id) throws FirestoreException {
         patient.setId(id);
         FirestorePatient firestorePatient = new FirestorePatient();
         boolean check = firestorePatient.postPatient("Patient", patient);
+    }
+
+    @PostMapping("/deletePatient/{id}")
+    public ApiResponse<?> DeletePatient(@PathVariable String id) throws FirestoreException {
+        FirestorePatient firestorePatient = new FirestorePatient();
+        boolean check = firestorePatient.deletePatient("Patient", id);
+
         ApiResponse<?> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(check);
         return apiResponse;
     }
-
 }

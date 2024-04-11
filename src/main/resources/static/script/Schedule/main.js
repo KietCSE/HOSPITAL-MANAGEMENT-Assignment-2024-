@@ -9,7 +9,6 @@ function addTask(taskObj, date, patient) {
 
     const task = document.createElement('div');
     task.classList.add('task');
-    task.setAttribute('task-id', taskObj.id);
     task.innerHTML =
         `<div class="task__short-description">
             <h3 class="task__name">${taskObj.name}</h3>
@@ -216,4 +215,3 @@ function loadSchedule() {
 }
 
 loadSchedule();
-

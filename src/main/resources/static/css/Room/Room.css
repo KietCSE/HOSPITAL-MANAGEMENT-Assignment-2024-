@@ -99,8 +99,15 @@
     height: 100%;
 }
 
+.wrapper .container .card-room .card-header {
+    text-align: center;
+    width: 50%;
+    height: auto;
+}
+
+
 .wrapper .container .card-room .card-header span {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     padding: 2%;
 }

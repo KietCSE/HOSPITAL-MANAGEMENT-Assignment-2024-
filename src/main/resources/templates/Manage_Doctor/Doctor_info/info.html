@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Thông tin bác sĩ</title>
     <!-- link css file  -->
-    <link rel="stylesheet" th:href="@{/css/Manage_Doctor/Doctor_info/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/Manage_Doctor/Doctor_info/style.css}"/>
     <!-- link font-awesome  -->
     <link
             rel="stylesheet"
@@ -18,242 +18,238 @@
             th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css}"
             rel="stylesheet"
     />
-  </head>
-  <body>
-    <!-- header section  -->
-    <header class="header">
-      <a href="#" class="logo">
+</head>
+<body>
+<!-- header section  -->
+<header class="header">
+    <a href="#" class="logo">
         <div class="BKUlogo">
-          <img th:src="@{/img/Logo/logo.png}" alt="">
+            <img th:src="@{/img/Logo/logo.png}" alt="">
         </div>
         HCMUT
-      </a>
+    </a>
 
-      <nav class="navbar">
+    <nav class="navbar">
         <a th:href="@{/#home}">Trang chủ</a>
         <a th:href="@{/#features}">Chức năng</a>
         <a th:href="@{/#info}">Thông tin</a>
         <a th:href="@{/#achieve}">Thành tựu</a>
         <a th:href="@{/#contact}">Liên hệ</a>
-      </nav>
+    </nav>
 
-      <div class="login-btn">
+    <div class="login-btn">
         <button class="user btn">
-          <i class="fa-solid fa-user"></i>
-          <a href="#">Tài khoản</a>
+            <i class="fa-solid fa-user"></i>
+            <a href="#">Tài khoản</a>
         </button>
-      </div>
+    </div>
 
-      <script>
+    <script>
         document.querySelector(".login-btn").addEventListener("click", () => {
-          window.location.href = "/login";
+            window.location.href = "/login";
         });
-      </script>
-    </header>
-    <!-- end header  -->
+    </script>
+</header>
+<!-- end header  -->
 
 
-    <div class="content" id="mainContent">
-      <div class="content-block">
+<div class="content" id="mainContent">
+    <div class="content-block">
         <h1 style="color: #f47724">Thông tin bác sĩ</h1>
-        <hr />
+        <hr/>
         <table class="table-info">
-          <tr>
-            <th
-              class="info-2"
-              colspan="2"
-              style="
+            <tr>
+                <th
+                        class="info-2"
+                        colspan="2"
+                        style="
                 text-align: center;
                 background-color: #0c6aaa;
                 color: #fff;
                 text-transform: uppercase;
               "
-            >
-              Thông tin chung
-            </th>
-          </tr>
+                >
+                    Thông tin chung
+                </th>
+            </tr>
 
-          <tr>
-            <th width="30%">Họ tên</th>
-            <td>Nguyễn Văn A</td>
-          </tr>
-          <tr>
-            <th width="30%">Năm sinh</th>
-            <td>1900</td>
-          </tr>
-          <tr>
-            <th class="info-2" colspan="2">Thông tin chi tiết</th>
-          </tr>
-          <tr>
-            <th width="30%">Bằng cấp</th>
-            <td id="bangCap">Havard University</td>
-          </tr>
-          <tr>
-            <th width="30%">Chuyên khoa</th>
-            <td id="chuyenKhoa">Tâm lý</td>
-          </tr>
-          <tr>
-            <th width="30%">Lĩnh vực chuyên sâu</th>
-            <td id="linhVuc">Overthinking</td>
-          </tr>
+            <tr>
+                <th width="30%">Họ tên</th>
+                <td class="name"></td>
+            </tr>
+            <tr>
+                <th width="30%">Năm sinh</th>
+                <td class="yearOfBirth"></td>
+            </tr>
+            <tr>
+                <th class="info-2" colspan="2">Thông tin chi tiết</th>
+            </tr>
+            <tr>
+                <th width="30%">Học vấn</th>
+                <td id="university"></td>
+            </tr>
+            <tr>
+                <th width="30%">Khoa</th>
+                <td id="departmentName"></td>
+            </tr>
+            <tr>
+                <th width="30%">Chuyên ngành</th>
+                <td id="major"></td>
+            </tr>
         </table>
         <div class="btn-acc-info">
-          <button
-            type="button"
-            class="btn-pri"
-            data-name="Cập nhật thông tin"
-            onclick="toggleContent()"
-          >
-            Cập nhật thông tin
-          </button>
+            <button
+                    type="button"
+                    class="btn-pri"
+                    data-name="Cập nhật thông tin"
+                    onclick="toggleContent()"
+            >
+                Cập nhật thông tin
+            </button>
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- Update -->
+<!-- Update -->
 
-    <div class="contentUp">
-      <div class="content-blockUp" id="updateContent" style="display: none">
+<div class="contentUp">
+    <div class="content-blockUp" id="updateContent" style="display: none">
         <h1 style="color: #f47724">Cập nhật thông tin liên lạc</h1>
-        <hr />
+        <hr/>
 
         <div class="formUp">
-          <h3>Thông tin chung</h3>
-          <hr />
-          <div class="card-bodyUp">
-            <div class="form-groupUp">
-              <label class="form-labelUp" style="font-size: small"
-                >Họ tên</label
-              >
-              <input
-                type="text"
-                class="form-controlUp mb-1"
-                style="font-size: small"
-                value="Nguyễn Văn A"
-                readonly
-              />
+            <h3>Thông tin chung</h3>
+            <hr/>
+            <div class="card-bodyUp">
+                <div class="form-groupUp">
+                    <label class="form-labelUp" style="font-size: small"
+                    >Họ tên</label
+                    >
+                    <input
+                            type="text"
+                            class="form-controlUp mb-1"
+                            id="name-in-update"
+                            style="font-size: small"
+                            readonly
+                    />
+                </div>
+                <div class="form-groupUp">
+                    <label class="form-labelUp" style="font-size: small"
+                    >Năm sinh</label
+                    >
+                    <input
+                            type="text"
+                            class="form-controlUp mb-1"
+                            id="yearOfBirth-in-update"
+                            style="font-size: small"
+                            readonly
+                    />
+                </div>
             </div>
-            <div class="form-groupUp">
-              <label class="form-labelUp" style="font-size: small"
-                >Năm sinh</label
-              >
-              <input
-                type="text"
-                class="form-controlUp mb-1"
-                style="font-size: small"
-                value="1900"
-                readonly
-              />
-            </div>
-          </div>
-          <h3>Thông tin chi tiết</h3>
-          <hr />
+            <h3>Thông tin chi tiết</h3>
+            <hr/>
 
-          <div class="card-bodyUp">
-            <div class="form-groupUp">
-              <label class="form-labelUp" style="font-size: small"
-                >Bằng cấp</label
-              >
-              <input
-                type="text"
-                class="form-controlUp mb-1"
-                style="font-size: small"
-                value="Havard University"
-                id="input_bangCap"
-              />
+            <div class="card-bodyUp">
+                <div class="form-groupUp">
+                    <label class="form-labelUp" style="font-size: small"
+                    >Học vấn</label
+                    >
+                    <input
+                            type="text"
+                            class="form-controlUp mb-1"
+                            style="font-size: small"
+                            id="university-in-update"
+                    />
+                </div>
+                <div class="form-groupUp">
+                    <label class="form-labelUp" style="font-size: small"
+                    >Khoa</label
+                    >
+                    <input
+                            type="text"
+                            class="form-controlUp mb-1"
+                            style="font-size: small"
+                            id="departmentName-in-update"
+                    />
+                </div>
+                <div class="form-groupUp">
+                    <label class="form-labelUp" style="font-size: small"
+                    >Chuyên ngành</label
+                    >
+                    <input
+                            type="text"
+                            class="form-controlUp mb-1"
+                            style="font-size: small"
+                            id="major-in-update"
+                    />
+                </div>
             </div>
-            <div class="form-groupUp">
-              <label class="form-labelUp" style="font-size: small"
-                >Chuyên khoa</label
-              >
-              <input
-                type="text"
-                class="form-controlUp mb-1"
-                style="font-size: small"
-                value="Tâm lý"
-                id="input_chuyenKhoa"
-              />
-            </div>
-            <div class="form-groupUp">
-              <label class="form-labelUp" style="font-size: small"
-                >Lĩnh vực chuyên sâu</label
-              >
-              <input
-                type="text"
-                class="form-controlUp mb-1"
-                style="font-size: small"
-                value="Overthinking"
-                id="input_linhVuc"
-              />
-            </div>
-          </div>
         </div>
         <div class="btn-acc-infoUp">
-          <button
-            type="button"
-            class="btn-pri"
-            data-name="Cập nhật thông tin"
-            onclick="toggleContent()"
-            id="cl"
-          >
-            Cập nhật
-          </button>
+            <button
+                    type="button"
+                    class="btn-pri"
+                    data-name="Cập nhật thông tin"
+                    onclick="toggleContent()"
+                    id="update"
+            >
+                Cập nhật
+            </button>
         </div>
-      </div>
     </div>
-    <script th:src="@{/script/Manage_Doctor/Doctor_info/script.js}"></script>
-    <script th:src="@{https://code.jquery.com/jquery-1.10.2.min.js}"></script>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js}"></script>
+</div>
+<script th:src="@{/script/Manage_Doctor/Doctor_info/script.js}"></script>
+<script th:src="@{https://code.jquery.com/jquery-1.10.2.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js}"></script>
 
 
-
-    <!-- start footer  -->
-    <section class="footer">
-      <div class="footer-container">
+<!-- start footer  -->
+<section class="footer">
+    <div class="footer-container">
 
         <div class="footer-box">
 
-          <div class="footer-BKUlogo">
-            <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
-            <div class="footer-logo-content">
-              <span>HOSPITAL HCMUT UNIVERSITY</span>
-              <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+            <div class="footer-BKUlogo">
+                <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
+                <div class="footer-logo-content">
+                    <span>HOSPITAL HCMUT UNIVERSITY</span>
+                    <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+                </div>
             </div>
-          </div>
 
-          <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
-          </div>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
 
-          <span>LƯỢT TRUY CẬP: 99,999,999</span>
+            <span>LƯỢT TRUY CẬP: 99,999,999</span>
         </div>
 
         <div class="footer-box">
-          <h3>Thông tin liên hệ hỗ trợ</h3>
-          <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-          <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-          <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
-          <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
-            14, Quận 10, TP. HCM (Bản đồ) </a>
-          <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
-            Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
+            <h3>Thông tin liên hệ hỗ trợ</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
+            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
+                14, Quận 10, TP. HCM (Bản đồ) </a>
+            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
+                Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
 
         </div>
 
         <div class="footer-box">
-          <h3>Truy cập</h3>
-          <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-          <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
-          <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
-          <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
-          <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+            <h3>Truy cập</h3>
+            <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+            <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+            <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+            <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+            <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
         </div>
-      </div>
+    </div>
 
-    </section>
-    <!-- end footer  -->
-  </body>
+</section>
+<!-- end footer  -->
+</body>
 </html>
