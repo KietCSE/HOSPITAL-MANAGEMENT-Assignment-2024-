@@ -27,20 +27,20 @@ public class scheduleService  {
         return date;
     }
 
-    public List<List<taskModel>> getSchedule(String doctorName) throws ExecutionException, InterruptedException {
-        return scheduleRepository.getSchedule(doctorName);
+    public List<List<taskModel>> getSchedule(String doctorID) throws ExecutionException, InterruptedException {
+        return scheduleRepository.getSchedule(doctorID);
     }
 
-    public taskModel addTask(String doctorName, taskModel task) throws ExecutionException, InterruptedException, ParseException {
+    public taskModel addTask(String doctorID, taskModel task) throws ExecutionException, InterruptedException, ParseException {
         String date = getDateOfWeek(task);
         //Set id for task
         LocalTime now = LocalTime.now();
         task.setId(now.toString());
-        return scheduleRepository.addTask(doctorName, task, date);
+        return scheduleRepository.addTask(doctorID, task, date);
     }
 
-    public boolean deleteTask(String doctorName, taskModel task) throws ExecutionException, InterruptedException, ParseException {
+    public boolean deleteTask(String doctorID, taskModel task) throws ExecutionException, InterruptedException, ParseException {
         String date = getDateOfWeek(task);
-        return scheduleRepository.deleteTask(doctorName, task, date);
+        return scheduleRepository.deleteTask(doctorID, task, date);
     }
 }

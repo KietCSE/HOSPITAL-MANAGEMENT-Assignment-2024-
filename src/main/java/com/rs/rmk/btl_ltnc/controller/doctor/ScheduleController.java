@@ -15,17 +15,17 @@ public class ScheduleController {
     private scheduleService scheduleService;
 
     @GetMapping("/schedule/list")
-    public List<List<taskModel>> getSchedule(@RequestParam String doctorName) throws ExecutionException, InterruptedException {
-        return scheduleService.getSchedule(doctorName);
+    public List<List<taskModel>> getSchedule(@RequestParam String doctorID) throws ExecutionException, InterruptedException {
+        return scheduleService.getSchedule(doctorID);
     }
 
     @PostMapping("schedule/add")
-    public taskModel addTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
-        return scheduleService.addTask(doctorName, task);
+    public taskModel addTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.addTask(doctorID, task);
     }
 
     @DeleteMapping("schedule/delete")
-    public boolean deleteTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
-        return scheduleService.deleteTask(doctorName, task);
+    public boolean deleteTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.deleteTask(doctorID, task);
     }
 }

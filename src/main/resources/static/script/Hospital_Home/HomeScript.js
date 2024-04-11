@@ -128,3 +128,8 @@ document.querySelector(".room").addEventListener("click", () => {
     Fetch("/navigateMedicine", "/medicine/form")
 })
 
+document.querySelector('.create-schedule').addEventListener('click', () =>{
+    sessionStorage.setItem('schedule', 'true');
+    window.location.href = '/doctor/list';
+})
+

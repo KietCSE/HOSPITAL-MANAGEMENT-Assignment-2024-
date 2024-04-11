@@ -1,6 +1,10 @@
+let isSchedule = sessionStorage.getItem('schedule') === 'true';
+let doctorID = isSchedule ? sessionStorage.getItem('doctorID')
+                                : '21:32:49.092583600';
+if (isSchedule) sessionStorage.setItem('schedule', 'false');
+
 // Thêm task
 function addTask(taskObj, date, patient) {
-    console.log(taskObj);
     const week = document.querySelector('.week');
 
     const weekDay = week.children[date - 1];
@@ -71,7 +75,7 @@ function addTask(taskObj, date, patient) {
         }
         else if (event.target.closest('.delete__task')) {
             if (confirm('Bạn có chắc chắn là muốn xóa không?')) {
-                fetch("http://localhost:8080/schedule/delete?doctorName=hailam", {
+                fetch("http://localhost:8080/schedule/delete?doctorID="+doctorID, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -80,7 +84,6 @@ function addTask(taskObj, date, patient) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                         console.log(data);
                         task.remove();
                         alert("Xóa thành công :(");
                     })
@@ -105,12 +108,7 @@ openForm.addEventListener('click', function() {
     const closeForm = form.querySelector('.form__close');
     closeForm.addEventListener('click', function() {
         form.classList.remove('open');
-        const name = form.querySelector('.name__value').value = '';
-        const day = form.querySelector('.day__value').value = '';
-        const timeFrom = form.querySelector('.time__from').value = '';
-        const timeTo = form.querySelector('.time__to').value = '';
-        const location = form.querySelector('.location__value').value = '';
-        const patient = form.querySelector('.patient__value').value = '';
+        resetForm(form);
     })
 
     const submitBtn = form.querySelector('.submit');
@@ -140,15 +138,10 @@ openForm.addEventListener('click', function() {
 
 
         form.classList.remove('open');
-        name.value = '';
-        day.value = '';
-        timeFrom.value = '';
-        timeTo.value = '';
-        location.value = '';
-        patient.value = '';
+        resetForm(form);
 
         //Thêm vào database
-        fetch("http://localhost:8080/schedule/add?doctorName=hailam", {
+        fetch("http://localhost:8080/schedule/add?doctorID="+doctorID, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -157,15 +150,24 @@ openForm.addEventListener('click', function() {
         })
             .then(response => response.json())
             .then(data => {
+                alert("Thêm thành công :)");
                 if (date >= new Date()) {
                     addTask(data, dateNum, "");
                 }
-                alert("Thêm thành công :)")
             })
             .catch(err => console.log(err));
     })
 
 })
+
+function resetForm(form) {
+    const name = form.querySelector('.name__value').value = '';
+    const day = form.querySelector('.day__value').value = '';
+    const timeFrom = form.querySelector('.time__from').value = '';
+    const timeTo = form.querySelector('.time__to').value = '';
+    const location = form.querySelector('.location__value').value = '';
+    const patient = form.querySelector('.patient__value').value = '';
+}
 
 // Đảo ngược 1 chuỗi
 function reverseString(str) {
@@ -182,7 +184,7 @@ function reverse(str) {
 //Lấy lịch trình từ database
 //Parameter nameDoctor lấy từ tài khoản đang đăng nhập
 function loadSchedule() {
-    fetch("http://localhost:8080/schedule/list?doctorName=hailam")
+    fetch("http://localhost:8080/schedule/list?doctorID=" + doctorID)
         .then(response => response.json())
         .then(data => {
             //data ~ Tuần
