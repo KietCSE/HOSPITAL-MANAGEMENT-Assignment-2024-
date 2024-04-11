@@ -24,26 +24,36 @@ function AddPatient(data) {
         // console.log(sessionStorage.getItem("IdPatientInfo"))
         window.location.href = "/patient/info";
     })
-    // var newtodo = document.querySelector('.container .todo-content .todo-box:last-child')
-    // newtodo.addEventListener('change', ()=>{
-    //     var e = newtodo.querySelector('.todo-check input')
-    //     if (e.checked) {
-    //         newtodo.remove()
-    //         fetch(`http://localhost:8080/delete/${data.id}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //         })
-    //             .then(response => response.json())
-    //             .then(data => {
-    //                 console.log(data);
-    //             })
-    //             .catch(error => {
-    //                 console.error('There was an error!', error);
-    //             });
-    //     }
-    // })
+
+    // xoa benh nhan
+    document.querySelector('.table .table_body table tbody tr:last-child span.delete').addEventListener('click', (event) => {
+        event.stopPropagation()
+        document.querySelector('.notification').style.visibility = 'visible';
+        // nhan nut No
+        document.querySelector('.notification .content-notif .no-btn').addEventListener('click', ()=>{
+            document.querySelector('.notification').style.visibility = 'hidden';
+        })
+        // nhan nut Yes
+        document.querySelector('.notification .content-notif .yes-btn').addEventListener('click', ()=>{
+
+            fetch(`/deletePatient/${data.id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === true) {
+                        alert("Xoa thanh cong")
+                        window.location.href = "http://localhost:8080/patient/list"
+                    }
+                    else alert("Xoa khong thanh cong")
+                })
+                .catch(err => console.log(err))
+        })
+    });
+
 }
 
 var list = null
@@ -68,6 +78,7 @@ document.querySelector('.search .search-btn').addEventListener('click', () => {
     let content = document.querySelector('.search input').value;
     document.querySelector('.table .table_body tbody').innerHTML = ""
     if (!content) {
+        console.log("ko nhap")
         list.forEach(function(e) {
             // console.log(e);
             AddPatient(e)
@@ -75,17 +86,18 @@ document.querySelector('.search .search-btn').addEventListener('click', () => {
     }
     // tim theo phong
     else if(/[a-zA-Z]/.test(content) && /\d/.test(content)) {
+        console.log("phong")
         list.forEach(function(e) {
-            if (e.Rom === content) {
+            if (e.room === content) {
                 AddPatient(e)
             }
         })
     }
     // tim theo so ID
     else if (!isNaN(content)) {
+        console.log("id")
         list.forEach(function(e) {
-            if (e.ID === content) {
-
+            if (e.id === content) {
                 AddPatient(e)
             }
         })
@@ -93,12 +105,14 @@ document.querySelector('.search .search-btn').addEventListener('click', () => {
     // tim theo ten
     else {
         list.forEach(function (e) {
+            console.log("name")
             if (e.name === content) {
                 AddPatient(e)
             }
         })
     }
 })
+
 
 
   

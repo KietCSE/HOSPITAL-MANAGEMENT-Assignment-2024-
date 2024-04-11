@@ -1,10 +1,7 @@
 package com.rs.rmk.btl_ltnc.repository.patient;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.rs.rmk.btl_ltnc.exception.ErrorFirestore;
 import com.rs.rmk.btl_ltnc.exception.FirestoreException;
@@ -46,5 +43,28 @@ public class FirestorePatient {
             throw new FirestoreException(ErrorFirestore.NOT_STORE_DATA);
         }
 
+    }
+
+    public Boolean deletePatient(String collection, String documentID) throws FirestoreException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference docRef = dbFirestore.collection(collection).document(documentID);
+
+        try {
+            // Kiểm tra document có tồn tại không
+            ApiFuture<DocumentSnapshot> docSnapshotFuture = docRef.get();
+            DocumentSnapshot documentSnapshot = docSnapshotFuture.get();
+
+            if (documentSnapshot.exists()) {
+                // Document tồn tại, thực hiện xóa và đợi kết quả
+                ApiFuture<WriteResult> writeResult = docRef.delete();
+                writeResult.get(); // Đợi kết quả
+                return true; // Xóa thành công
+            } else {
+                // Document không tồn tại
+                return false;
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            throw new FirestoreException(ErrorFirestore.NOT_DELETE_DATA);
+        }
     }
 }
