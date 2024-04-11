@@ -45,7 +45,7 @@ document.getElementById("submit").addEventListener("click",
         }
         let f = new FormData();
         f.append("file", file);
-        fetch('/api/medicine/upload', {
+        fetch('/api/Image', {
             method: 'POST',
             body: f
         }).then(response => {
@@ -101,7 +101,7 @@ document.getElementById("search-submit").addEventListener("click",
                 })
                 .then(data => {
                     console.log(data)
-                    if (data.length != 0) {
+                    if (data.length !== 0) {
                         let table = document.querySelector(".table tbody");
                         let rows = table.querySelectorAll("tr");
                         for (let i = 0; i < rows.length; i++) {

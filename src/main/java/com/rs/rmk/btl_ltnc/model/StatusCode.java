@@ -11,6 +11,7 @@ public enum StatusCode {
     ERROR_LOGIN(202),
 
     //ERROR WITH FIREBASE
+    NOT_GET_IMAGE(513),
     DOCUMENT_NOT_FOUND(505),
     NOT_STORE_DATA(506),
     NOT_DELETE_DATA(507),
@@ -22,7 +23,6 @@ public enum StatusCode {
 
     // ERROR VALIDATION
     VALIDATION_ERROR(700);
-
 
     int code;
 
