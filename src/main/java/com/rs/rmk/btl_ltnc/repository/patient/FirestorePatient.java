@@ -45,6 +45,9 @@ public class FirestorePatient {
 
     }
 
+
+
+
     public Boolean deletePatient(String collection, String documentID) throws FirestoreException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference docRef = dbFirestore.collection(collection).document(documentID);

@@ -130,6 +130,9 @@ body {
   margin-top: 3rem;
   background-color: var(--box-hover);
   padding: 2rem 3%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer .footer-container {

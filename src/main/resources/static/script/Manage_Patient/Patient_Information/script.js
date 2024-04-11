@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
   var tabLinks = document.querySelectorAll(".list-group-item");
 
   tabLinks.forEach(function (tabLink) {
@@ -22,14 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
       targetPane.classList.add("active", "show");
     });
   });
-});
+// });
 
 // TAO MOT BENH NHAN MOI
 document.querySelector(".text-right .btn-primary").addEventListener("click",() =>{
 let Infomation;
 
   Infomation = {
-      imgurl: null,
       name: document.querySelector('.form-group input[name="name"]').value,
       phone_number: document.querySelector('.form-group input[name="phone"]').value,
       address: document.querySelector('.form-group input[name="address"]').value,
@@ -119,29 +118,6 @@ function LoadDataPatient(data) {
               <div class="col-md-9">
                 <div class="tab-content">
                   <div class="tab-pane fade active show" id="account-general">
-                    <div class="card-body media align-items-center">
-                      <img
-                              th:src="@{/img/Logo/logo-footer.jpg}"
-                              alt
-                              class="d-block ui-w-80"
-                      />
-                      <div class="media-body ml-4">
-                        <label class="btn btn-outline-primary"
-                               style="font-size:small;"
-                        >
-                          Chỉnh sửa ảnh
-                          <input type="file" class="account-settings-fileinput" name="img" />
-                        </label>
-                        &nbsp;
-                        <button type="button" class="btn btn-default md-btn-flat" style="font-size:small;">
-                          Đặt lại
-                        </button>
-                        <div class="text-light small mt-1">
-                          Allowed JPG, GIF or PNG. Max size of 800K
-                        </div>
-                      </div>
-                    </div>
-                    <hr class="border-light m-0" />
                     <div class="card-body">
                       <div class="form-group">
                         <label class="form-label" style="font-size:small;">Họ và tên</label>
@@ -163,7 +139,6 @@ function LoadDataPatient(data) {
                                   class="form-control mb-1"
                                   style="font-size:small;"
                                   value="${data.room}"
-                                  readonly
                           />
         
                       </div>
@@ -174,8 +149,7 @@ function LoadDataPatient(data) {
                                 type="text"
                                 class="form-control mb-1"
                                 style="font-size:small;"
-                                value="${data.phone}"
-                                readonly
+                                value="${data.phone_number}"
                         />
         
                       </div>
@@ -187,7 +161,6 @@ function LoadDataPatient(data) {
                                 class="form-control mb-1"
                                 style="font-size:small;"
                                 value="${data.address}"
-                                readonly
                         />
                       </div>
                       <div class="form-group">
@@ -207,14 +180,12 @@ function LoadDataPatient(data) {
                     <div class="card-body pb-2">
                       <div class="form-group">
                         <label class="form-label" style="font-size:small;">Tình trạng</label>
-                        <textarea class="form-control" rows="5" style="font-size:small;" name="status" readonly>
-                            "${data.status}"
+                        <textarea class="form-control" rows="5" style="font-size:small;" name="status" >${data.status}
                         </textarea>
                       </div>
                       <div class="form-group">
                         <label class="form-label" style="font-size:small;" >Lịch trình điều trị</label>
-                        <textarea readonly class="form-control" rows="5" style="font-size:small;" name="treatment_schedule">
-                            "${data.treatment_schedule}"
+                        <textarea class="form-control" rows="5" style="font-size:small;" name="treatment_schedule">${data.treatment_schedule}
                         </textarea>
                       </div>
                       <div class="form-group">
@@ -224,20 +195,18 @@ function LoadDataPatient(data) {
                                 class="form-control"
                                 row ="5"
                                 style="font-size:small;"
-                                readonly
-                        >
-                            "${data.medical_history}"
+                        >${data.medical_history}
                         </textarea>
                       </div>
                       <div class="form-group">
                         <label class="form-label" style="font-size:small;">Bác sĩ phụ trách</label>
-                        <select class="custom-select" style="font-size:small;" name="dr">
-                          <option>Phan Tuấn Kiệt </option>
-                          <option selected>Trần Lâm (đẹp trai)</option>
-                          <option>Hồ Gia Thắng</option>
-                          <option>Dương Hải Lâm</option>
-                          <option>Nguyễn Anh Tài</option>
-                          <option>Nguyễn Minh Tâm</option>
+                        <select class="custom-select" style="font-size:small;" name="dr" id="select-dr">
+                          <option value="tuankiet">Phan Tuấn Kiệt </option>
+                          <option value="tranlam" selected>Trần Lâm (đẹp trai)</option>
+                          <option value="giathang">Hồ Gia Thắng</option>
+                          <option value="hailam">Dương Hải Lâm</option>
+                          <option value="anhtai">Nguyễn Anh Tài</option>
+                          <option value="minhtam">Nguyễn Minh Tâm</option>
                         </select>
                       </div>
                     </div>
@@ -253,6 +222,17 @@ function LoadDataPatient(data) {
           </div>
         `
     document.querySelector(".container").innerHTML = template;
+
+    var selectdr = document.getElementById('select-dr');
+    console.log(selectdr)
+    for (var i = 0; i < selectdr.options.length; i++) {
+        var option = selectdr.options[i]
+        if (option.value === data.dr) {
+            option.selected = true
+            option.disabled = true
+            break
+        }
+    }
 
     // document.addEventListener("DOMContentLoaded", function () {
         var tabLinks = document.querySelectorAll(".list-group-item");
@@ -278,6 +258,39 @@ function LoadDataPatient(data) {
                 targetPane.classList.add("active", "show");
             });
         });
+
+
+    document.querySelector(".text-right .btn-primary").addEventListener("click",() =>{
+        let Infomation;
+
+        Infomation = {
+            name: document.querySelector('.form-group input[name="name"]').value,
+            phone_number: document.querySelector('.form-group input[name="phone"]').value,
+            address: document.querySelector('.form-group input[name="address"]').value,
+            b_day: document.querySelector('.form-group input[name="b_day"]').value,
+            status: document.querySelector('.form-group textarea[name="status"]').value,
+            treatment_schedule: document.querySelector('.form-group textarea[name="treatment_schedule"]').value,
+            medical_history: document.querySelector('.form-group textarea[name="medical_history"]').value,
+            dr: document.querySelector('.form-group select[name="dr"]').value,
+            room: document.querySelector('.form-group input[name="room"]').value,
+        }
+
+        console.log(Infomation)
+
+        fetch(`/updatedatainfo/${data.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Infomation), // Chuyển đổi đối tượng JavaScript thành chuỗi JSON
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.status === true)
+                alert("Đã lưu thành công")
+            })
+            .catch(err => console.log(err))
+    })
     }
 
 document.getElementById("cancle-notify").addEventListener("click", ()=>{
