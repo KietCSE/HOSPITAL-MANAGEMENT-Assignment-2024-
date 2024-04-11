@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,41 +16,40 @@
 
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
     <style>
-        #FORM {
-        }
+        #FORM {}
     </style>
 </head>
 
 <body>
     <header class="header">
-    <a href="#" class="logo">
-        <div class="BKUlogo">
-            <img th:src="@{/img/Logo/logo.png}" alt="">
+        <a href="#" class="logo">
+            <div class="BKUlogo">
+                <img th:src="@{/img/Logo/logo.png}" alt="">
+            </div>
+            HCMUT
+        </a>
+
+        <nav class="navbar">
+            <a th:href="@{/#home}">Trang chủ</a>
+            <a th:href="@{/#features}">Chức năng</a>
+            <a th:href="@{/#info}">Thông tin</a>
+            <a th:href="@{/#achieve}">Thành tựu</a>
+            <a th:href="@{/#contact}">Liên hệ</a>
+        </nav>
+
+        <div class="login-btn">
+            <button class="user btn">
+                <i class="fa-solid fa-user"></i>
+                <a href="#">Tài khoản</a>
+            </button>
         </div>
-        HCMUT
-    </a>
 
-    <nav class="navbar">
-        <a th:href="@{/#home}">Trang chủ</a>
-        <a th:href="@{/#features}">Chức năng</a>
-        <a th:href="@{/#info}">Thông tin</a>
-        <a th:href="@{/#achieve}">Thành tựu</a>
-        <a th:href="@{/#contact}">Liên hệ</a>
-    </nav>
-
-    <div class="login-btn">
-        <button class="user btn">
-            <i class="fa-solid fa-user"></i>
-            <a href="#">Tài khoản</a>
-        </button>
-    </div>
-
-    <script>
-        document.querySelector(".login-btn").addEventListener("click", () => {
-            window.location.href = "/login";
-        });
-    </script>
-</header>
+        <script>
+            document.querySelector(".login-btn").addEventListener("click", () => {
+                window.location.href = "/login";
+            });
+        </script>
+    </header>
 
 
     <section class="wrapper">
@@ -117,6 +117,9 @@
                     <label for="Date">Ngày nhập:</label><br>
                     <input type="date" id="Date" name="Date" value=""><br>
 
+                    <label for="Image">Thêm hình ảnh</label><br>
+                    <input type="file" id="Image" name="Image" value=""><br>
+
                 </div>
 
                 <section class="button">
@@ -132,7 +135,7 @@
             <div class="footer-box">
 
                 <div class="footer-BKUlogo">
-                    <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
+                    <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
                     <div class="footer-logo-content">
                         <span>HOSPITAL HCMUT UNIVERSITY</span>
                         <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>

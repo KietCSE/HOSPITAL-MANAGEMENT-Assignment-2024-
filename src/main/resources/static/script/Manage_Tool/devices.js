@@ -1,52 +1,91 @@
 document.getElementById("submit").addEventListener("click",
-    function(event) {
-    event.preventDefault(); // Ngăn chặn việc gửi yêu cầu mặc định của form
+    function (event) {
+        event.preventDefault(); // Ngăn chặn việc gửi yêu cầu mặc định của form
 
-    // Lấy thông tin từ các trường input trong form
-    var name = document.getElementById("Name").value
-    var type = document.getElementById("Type").value
-    var supplier = document.getElementById("Supplier").value
-    var totalAmount = document.getElementById("TotalAmount").value
-    var date = document.getElementById("Date").value
+        // Lấy thông tin từ các trường input trong form
+        var name = document.getElementById("Name").value
+        var type = document.getElementById("Type").value
+        var supplier = document.getElementById("Supplier").value
+        var totalAmount = document.getElementById("TotalAmount").value
+        var date = document.getElementById("Date").value
 
-    if (name === '' || type === '' || supplier === '' ||
-        totalAmount === '' || date === '') {
-        alert("Vui lòng điền đầy đủ thông tin");
-        return;
-    }
 
-    var formData = {
-        Name: name,
-        Type: type,
-        Supplier: supplier,
-        TotalAmount: totalAmount,
-        InUseAmount: 0,
-        DamagedAmount: 0,
-        StoredAmount: totalAmount,
-        Date: date
-    };
-    console.log(formData)
-    // Gửi yêu cầu POST đến server
-    fetch('/api/devices/add', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-        .then(response => {
+        var formData = {
+            Name: name,
+            Type: type,
+            Supplier: supplier,
+            TotalAmount: totalAmount,
+            InUseAmount: 0,
+            DamagedAmount: 0,
+            StoredAmount: totalAmount,
+            Date: date,
+            Img_url: null
+        };
+
+        if (name === '' || type === '' || supplier === '' ||
+            totalAmount === '' || date === '') {
+            alert("Vui lòng điền đầy đủ thông tin");
+            return;
+        }
+
+        // Xử lý hình ảnh ///////////////////////////////////////
+        let File = document.getElementById("Image");
+        if (!File) {
+            alert("Vui lòng chọn hình ảnh")
+            return;
+        }
+        let file = File.files[0];
+        if (!["image/jpeg", "image/png", "image/gif"].includes(file.type)) {
+            alert("Định dạng ảnh không hợp lệ");
+            return;
+        }
+        if (file.size > 2 * 1024 * 1024) {
+            alert("Kích thước ảnh không được vượt quá 2MB");
+            return;
+        }
+        let f = new FormData();
+        f.append("file", file);
+        fetch('/api/medicine/upload', {
+            method: 'POST',
+            body: f
+        }).then(response => {
             if (response.ok) {
-                alert("Dữ liệu đã được gửi thành công!");
-                // Thực hiện các hành động khác sau khi gửi thành công
-            } else {
-                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                return response.text();
             }
-        })
-        .catch(error => {
-            console.error('Đã xảy ra lỗi:', error);
-            alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+            else {
+                throw new Error("Không thể up ảnh");
+            }
+        }).then(url => {
+            formData.Img_url = url;
+        }).catch(error => {
+            alert(error);
         });
-});
+        /////////////////////////////////////////////////////
+
+        console.log(formData)
+
+
+        // Gửi yêu cầu POST đến server
+        fetch('/api/devices/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Dữ liệu đã được gửi thành công!");
+                    // Thực hiện các hành động khác sau khi gửi thành công
+                } else {
+                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                }
+            })
+            .catch(error => {
+                console.error('Đã xảy ra lỗi:', error);
+                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+            });
+    });
 
 document.getElementById("search-submit").addEventListener("click",
     function (event) {

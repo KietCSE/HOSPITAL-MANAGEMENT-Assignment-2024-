@@ -14,6 +14,7 @@ public class DevicesApiResponse {
     private String name;
     private String type;
     private String supplier;
+    private String img_url;
     private int totalAmount;
     private int inUseAmount;
     private int damagedAmount;
