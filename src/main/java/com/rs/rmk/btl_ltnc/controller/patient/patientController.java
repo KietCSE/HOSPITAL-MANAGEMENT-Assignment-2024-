@@ -64,6 +64,9 @@ public class patientController {
         patient.setId(id);
         FirestorePatient firestorePatient = new FirestorePatient();
         boolean check = firestorePatient.postPatient("Patient", patient);
+        ApiResponse<?> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(check);
+        return apiResponse;
     }
 
     @PostMapping("/deletePatient/{id}")
