@@ -48,6 +48,7 @@ function useDevicesData(devices) {
     document.getElementById("infoInUseAmount").innerHTML = devices.inUseAmount
     document.getElementById("infoDamagedAmount").innerHTML = devices.damagedAmount
     document.getElementById("infoStoredAmount").innerHTML = devices.storedAmount
+    document.getElementById("img").src = devices.img_url
 
     //===================//
     //Hiển thị Update Log

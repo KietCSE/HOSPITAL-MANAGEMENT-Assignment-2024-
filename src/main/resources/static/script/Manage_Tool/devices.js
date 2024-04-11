@@ -3,14 +3,14 @@ document.getElementById("submit").addEventListener("click",
         event.preventDefault(); // Ngăn chặn việc gửi yêu cầu mặc định của form
 
         // Lấy thông tin từ các trường input trong form
-        var name = document.getElementById("Name").value
-        var type = document.getElementById("Type").value
-        var supplier = document.getElementById("Supplier").value
-        var totalAmount = document.getElementById("TotalAmount").value
-        var date = document.getElementById("Date").value
+        let name = document.getElementById("Name").value
+        let type = document.getElementById("Type").value
+        let supplier = document.getElementById("Supplier").value
+        let totalAmount = document.getElementById("TotalAmount").value
+        let date = document.getElementById("Date").value
 
 
-        var formData = {
+        let formData = {
             Name: name,
             Type: type,
             Supplier: supplier,
@@ -57,34 +57,24 @@ document.getElementById("submit").addEventListener("click",
             }
         }).then(url => {
             formData.Img_url = url;
+            console.log(formData);
+            fetch('/api/devices/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Dữ liệu đã được gửi thành công!");
+                    } else {
+                        alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                    }
+                })
         }).catch(error => {
             alert(error);
         });
-        /////////////////////////////////////////////////////
-
-        console.log(formData)
-
-
-        // Gửi yêu cầu POST đến server
-        fetch('/api/devices/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(response => {
-                if (response.ok) {
-                    alert("Dữ liệu đã được gửi thành công!");
-                    // Thực hiện các hành động khác sau khi gửi thành công
-                } else {
-                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
-                }
-            })
-            .catch(error => {
-                console.error('Đã xảy ra lỗi:', error);
-                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
-            });
     });
 
 document.getElementById("search-submit").addEventListener("click",
