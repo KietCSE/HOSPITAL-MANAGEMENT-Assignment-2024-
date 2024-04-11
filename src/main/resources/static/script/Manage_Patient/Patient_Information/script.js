@@ -32,7 +32,6 @@ let form;
 
 
   Infomation = {
-      imgurl: null,
       name: document.querySelector('.form-group input[name="name"]').value,
       phone_number: document.querySelector('.form-group input[name="phone"]').value,
       address: document.querySelector('.form-group input[name="address"]').value,
@@ -118,29 +117,6 @@ function LoadDataPatient(data) {
               <div class="col-md-9">
                 <div class="tab-content">
                   <div class="tab-pane fade active show" id="account-general">
-                    <div class="card-body media align-items-center">
-                      <img
-                              th:src="@{/img/Logo/logo-footer.jpg}"
-                              alt
-                              class="d-block ui-w-80"
-                      />
-                      <div class="media-body ml-4">
-                        <label class="btn btn-outline-primary"
-                               style="font-size:small;"
-                        >
-                          Chỉnh sửa ảnh
-                          <input type="file" class="account-settings-fileinput" name="img" />
-                        </label>
-                        &nbsp;
-                        <button type="button" class="btn btn-default md-btn-flat" style="font-size:small;">
-                          Đặt lại
-                        </button>
-                        <div class="text-light small mt-1">
-                          Allowed JPG, GIF or PNG. Max size of 800K
-                        </div>
-                      </div>
-                    </div>
-                    <hr class="border-light m-0" />
                     <div class="card-body">
                       <div class="form-group">
                         <label class="form-label" style="font-size:small;">Họ và tên</label>
