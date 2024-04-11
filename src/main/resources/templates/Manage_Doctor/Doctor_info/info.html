@@ -53,39 +53,157 @@
     <!-- end header  -->
 
 
-    <div class="info">
-      <div class="content">
-        <div class="image">
-          <img th:src="@{/img/Manage_Doctor/Doctor_info/doc1.png}" alt="" />
-        </div>
-        <div class="content-block">
-          <h1><b>Bác sĩ. Nguyễn</b></h1>
-          <hr />
-          <h3><b>Chức vụ:</b>Bác sĩ chuyên khoa</h3>
-          <h3><b>Kinh nghiệm:</b>32 năm</h3>
-          <h3><b>Vị trí chuyên môn:</b>Bác sĩ chuyên khoa</h3>
-          <h3><b>Chuyên khoa:</b>...</h3>
-          <hr />
-          <h2>LĨNH VỰC CHUYÊN SÂU</h2>
-          <li>Xét nghiệm....</li>
-          <hr />
-          <h2>BẰNG CẤP CHUYÊN MÔN</h2>
-          <li>Bằng chuyên khoa I</li>
-          <hr />
-          <h2>ĐÀO TẠO NÂNG CAO</h2>
-          <li>Chứng chỉ đào tạo ...</li>
-          <li>Chứng nhận phẫu thuật nội soi</li>
-          <li>Bằng B tiếng Anh quốc gia</li>
-          <hr />
-          <h2>QUÁ TRÌNH CÔNG TÁC</h2>
-          <li>1992 - 1996: BV A</li>
-          <li>1997 - 2005: BV B</li>
-          <li>2005 - 2019: BV C</li>
-          <li>2019 - nay: BV D</li>
-          <hr />
+    <div class="content" id="mainContent">
+      <div class="content-block">
+        <h1 style="color: #f47724">Thông tin bác sĩ</h1>
+        <hr />
+        <table class="table-info">
+          <tr>
+            <th
+              class="info-2"
+              colspan="2"
+              style="
+                text-align: center;
+                background-color: #0c6aaa;
+                color: #fff;
+                text-transform: uppercase;
+              "
+            >
+              Thông tin chung
+            </th>
+          </tr>
+
+          <tr>
+            <th width="30%">Họ tên</th>
+            <td>Nguyễn Văn A</td>
+          </tr>
+          <tr>
+            <th width="30%">Năm sinh</th>
+            <td>1900</td>
+          </tr>
+          <tr>
+            <th class="info-2" colspan="2">Thông tin chi tiết</th>
+          </tr>
+          <tr>
+            <th width="30%">Bằng cấp</th>
+            <td id="bangCap">Havard University</td>
+          </tr>
+          <tr>
+            <th width="30%">Chuyên khoa</th>
+            <td id="chuyenKhoa">Tâm lý</td>
+          </tr>
+          <tr>
+            <th width="30%">Lĩnh vực chuyên sâu</th>
+            <td id="linhVuc">Overthinking</td>
+          </tr>
+        </table>
+        <div class="btn-acc-info">
+          <button
+            type="button"
+            class="btn-pri"
+            data-name="Cập nhật thông tin"
+            onclick="toggleContent()"
+          >
+            Cập nhật thông tin
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Update -->
+
+    <div class="contentUp">
+      <div class="content-blockUp" id="updateContent" style="display: none">
+        <h1 style="color: #f47724">Cập nhật thông tin liên lạc</h1>
+        <hr />
+
+        <div class="formUp">
+          <h3>Thông tin chung</h3>
+          <hr />
+          <div class="card-bodyUp">
+            <div class="form-groupUp">
+              <label class="form-labelUp" style="font-size: small"
+                >Họ tên</label
+              >
+              <input
+                type="text"
+                class="form-controlUp mb-1"
+                style="font-size: small"
+                value="Nguyễn Văn A"
+                readonly
+              />
+            </div>
+            <div class="form-groupUp">
+              <label class="form-labelUp" style="font-size: small"
+                >Năm sinh</label
+              >
+              <input
+                type="text"
+                class="form-controlUp mb-1"
+                style="font-size: small"
+                value="1900"
+                readonly
+              />
+            </div>
+          </div>
+          <h3>Thông tin chi tiết</h3>
+          <hr />
+
+          <div class="card-bodyUp">
+            <div class="form-groupUp">
+              <label class="form-labelUp" style="font-size: small"
+                >Bằng cấp</label
+              >
+              <input
+                type="text"
+                class="form-controlUp mb-1"
+                style="font-size: small"
+                value="Havard University"
+                id="input_bangCap"
+              />
+            </div>
+            <div class="form-groupUp">
+              <label class="form-labelUp" style="font-size: small"
+                >Chuyên khoa</label
+              >
+              <input
+                type="text"
+                class="form-controlUp mb-1"
+                style="font-size: small"
+                value="Tâm lý"
+                id="input_chuyenKhoa"
+              />
+            </div>
+            <div class="form-groupUp">
+              <label class="form-labelUp" style="font-size: small"
+                >Lĩnh vực chuyên sâu</label
+              >
+              <input
+                type="text"
+                class="form-controlUp mb-1"
+                style="font-size: small"
+                value="Overthinking"
+                id="input_linhVuc"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="btn-acc-infoUp">
+          <button
+            type="button"
+            class="btn-pri"
+            data-name="Cập nhật thông tin"
+            onclick="toggleContent()"
+            id="cl"
+          >
+            Cập nhật
+          </button>
+        </div>
+      </div>
+    </div>
+    <script th:src="@{/script/Manage_Doctor/Doctor_info/script.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-1.10.2.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js}"></script>
 
 
 

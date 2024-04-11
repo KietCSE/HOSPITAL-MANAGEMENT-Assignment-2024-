@@ -1,12 +1,6 @@
 // Thêm task
-function addTask({
-    name = '',
-    location = '',
-    date = 1,
-    day = '',
-    time = '',
-    patient = ''
-}) {
+function addTask(taskObj, date, patient) {
+    console.log(taskObj);
     const week = document.querySelector('.week');
 
     const weekDay = week.children[date - 1];
@@ -15,12 +9,13 @@ function addTask({
 
     const task = document.createElement('div');
     task.classList.add('task');
-    task.innerHTML = `
-        <div class="task__short-description">
-            <h3 class="task__name">${name}</h3>
-            <p class="task__location">${location}</p>
-            <p class="task__day">${day}</p>
-            <p class="task__time">${time}</p>
+    task.setAttribute('task-id', taskObj.id);
+    task.innerHTML =
+        `<div class="task__short-description">
+            <h3 class="task__name">${taskObj.name}</h3>
+            <p class="task__location">${taskObj.location}</p>
+            <p class="task__day">${taskObj.day}</p>
+            <p class="task__time">${taskObj.from} - ${taskObj.to}</p>
         </div>
         <div class="task__detail">
             <div class="head">
@@ -35,18 +30,18 @@ function addTask({
                 </div>
             </div>
             <div class="detail">
-                <h3 class="detail__name">${name}</h3>
+                <h3 class="detail__name">${taskObj.name}</h3>
                 <div class="detail__location">
                     <div class="detail__icon">
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
-                    <p>${location}</p>
+                    <p>${taskObj.location}</p>
                 </div>
                 <div class="detail__time">
                     <div class="detail__icon">
                         <i class="fa-solid fa-clock"></i>
                     </div>
-                    <p>${day} - ${time}</p>
+                    <p>${taskObj.day} - ${taskObj.from} - ${taskObj.to}</p>
                 </div>
                 <div class="detail__patient-info">
                     <div class="detail__icon">
@@ -55,8 +50,51 @@ function addTask({
                     <p class="patient-info">Thông tin bệnh nhân</p>
                 </div>
             </div>
-        </div>
-    `
+        </div>`
+    //Add eventListener for task
+    task.addEventListener('click', function(event) {
+        const detailTasks = document.querySelectorAll('.task__detail');
+        for (const item of detailTasks) {
+            if (item.classList.contains('appear')) {
+                item.classList.remove('appear');
+            }
+        }
+        const taskDetail = task.querySelector('.task__detail');
+        taskDetail.classList.add('appear');
+
+        if (event.target.closest('.detail__close')) {
+            taskDetail.classList.remove('appear');
+        }
+        if (event.target.closest('.task__problem')) {
+            if(confirm('Bạn có chắc muốn đổi lịch không?')) {
+                alert('Yêu cầu của bạn đang chờ xử lí');
+            }
+        }
+        else if (event.target.closest('.delete__task')) {
+            if (confirm('Bạn có chắc chắn là muốn xóa không?')) {
+                fetch("http://localhost:8080/schedule/delete?doctorName=hailam", {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(taskObj),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                         console.log(data);
+                        task.remove();
+                        alert("Xóa thành công :(");
+                    })
+                    .catch(err => console.log(err));
+            }
+        }
+        else if(event.target.closest('.patient-info')) {
+            sessionStorage.setItem("newPatient", false)
+            sessionStorage.setItem("IdPatientInfo", taskObj.patientID);
+            window.location.href = "/patient/info";
+        }
+        // else if ()
+    })
     taskLists.appendChild(task);
 }
 
@@ -92,15 +130,16 @@ openForm.addEventListener('click', function() {
 
         const patient = form.querySelector('.patient__value');
 
-        addTask({
+        let task = {
             name: name.value,
             location: location.value,
-            date: dateNum,
             day: reverseString(day.value),
-            time: time,
-            patient: patient.value
-        });
-    
+            from: timeFrom.value,
+            to: timeTo.value,
+            patientID: patient.value
+        }
+
+
         form.classList.remove('open');
         name.value = '';
         day.value = '';
@@ -108,52 +147,73 @@ openForm.addEventListener('click', function() {
         timeTo.value = '';
         location.value = '';
         patient.value = '';
-        detailTask();
+
+        //Thêm vào database
+        fetch("http://localhost:8080/schedule/add?doctorName=hailam", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(task),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (date >= new Date()) {
+                    addTask(data, dateNum, "");
+                }
+                alert("Thêm thành công :)")
+            })
+            .catch(err => console.log(err));
     })
 
 })
-
-// Xem chi tiết task và các thao tác trên nó
-function detailTask() {
-    const tasks = document.querySelectorAll('.task');
-
-    for (const task of tasks) {
-        task.addEventListener('click', function(event) {
-            const detailTasks = document.querySelectorAll('.task__detail');
-            for (const item of detailTasks) {
-                if (item.classList.contains('appear')) {
-                    item.classList.remove('appear');
-                }
-            }
-            const taskDetail = task.querySelector('.task__detail');
-            taskDetail.classList.add('appear');
-
-            if (event.target.closest('.detail__close')) {
-                taskDetail.classList.remove('appear');
-            }
-            if (event.target.closest('.task__problem')) {
-                if(confirm('Bạn có chắc muốn đổi lịch không?')) {
-                    alert('Yêu cầu của bạn đang chờ xử lí?');
-                }
-            }
-            else if (event.target.closest('.delete__task')) {
-                if (confirm('Bạn có chắc chắn là muốn xóa không?')) {
-                    task.remove();
-                }
-            }
-            else if(event.target.closest('.patient-info')) {
-                window.location.href = "../Manage_Patient/List_Patient/index.html";
-            }
-            // else if ()
-        })
-    }
-}
-
-detailTask();
 
 // Đảo ngược 1 chuỗi
 function reverseString(str) {
     let splitStr = str.split('-');
     splitStr = splitStr.reverse();
-    return splitStr.join('-');
+    return splitStr.join('/');
 }
+
+function reverse(str) {
+    let arr = str.split('/');
+    return arr.reverse().join('/');
+}
+
+//Lấy lịch trình từ database
+//Parameter nameDoctor lấy từ tài khoản đang đăng nhập
+function loadSchedule() {
+    fetch("http://localhost:8080/schedule/list?doctorName=hailam")
+        .then(response => response.json())
+        .then(data => {
+            //data ~ Tuần
+            for (let index = 0; index < data.length; index++) {
+                //data[index] ~ Thứ trong tuần
+                data[index].sort((task, otherTask) => {
+                    let result = 0;
+                    const dateTask = new Date(reverse(task.day));
+                    const dateOtherTask = new Date(reverse(otherTask.day));
+                    if (dateTask < dateOtherTask) {
+                        result = -1;
+                    }
+                    else if (dateTask > dateOtherTask) {
+                        result = 1;
+                    }
+                    return result;
+                });
+                for (let task of data[index]) {
+                    let date = index + 1;
+                    let today = new Date();
+                    let taskDay = new Date(reverse(task.day));
+                    if (taskDay < today) {
+                        continue;
+                    }
+                    addTask(task, date, "");
+                }
+            }
+        })
+        .catch(err => console.log(err));
+}
+
+loadSchedule();
+
