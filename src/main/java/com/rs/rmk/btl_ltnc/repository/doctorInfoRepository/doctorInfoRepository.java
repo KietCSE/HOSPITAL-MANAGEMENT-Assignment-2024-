@@ -24,9 +24,9 @@ public class doctorInfoRepository {
         return doctorInfoModels;
     }
 
-    public doctorInfoModel getDoctorInfo(String doctorName) throws ExecutionException, InterruptedException {
+    public doctorInfoModel getDoctorInfo(String doctorID) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
-        DocumentReference doctorRef = database.collection("Doctor").document(doctorName);
+        DocumentReference doctorRef = database.collection("Doctor").document(doctorID);
         ApiFuture<DocumentSnapshot> future = doctorRef.get();
         DocumentSnapshot snapshot = future.get();
         if (snapshot.exists()) {
@@ -39,20 +39,20 @@ public class doctorInfoRepository {
 
     public doctorInfoModel addDoctorInfo(doctorInfoModel doctorInfoModel) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> writeResult = database.collection("Doctor").document(doctorInfoModel.getDoctorNameCode()).set(doctorInfoModel);
+        ApiFuture<WriteResult> writeResult = database.collection("Doctor").document(doctorInfoModel.getId()).set(doctorInfoModel);
         return doctorInfoModel;
     }
 
-    public doctorInfoModel updateDoctorInfo(String doctorNameCode, Map<String, Object> update) throws ExecutionException, InterruptedException {
+    public doctorInfoModel updateDoctorInfo(String doctorID, Map<String, Object> update) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
-        DocumentReference doctorRef = database.collection("Doctor").document(doctorNameCode);
+        DocumentReference doctorRef = database.collection("Doctor").document(doctorID);
         ApiFuture<WriteResult> writeResult = doctorRef.update(update);
-        return getDoctorInfo(doctorNameCode);
+        return getDoctorInfo(doctorID);
     }
 
-    public boolean deleteDoctorInfo(String doctorName) throws ExecutionException, InterruptedException {
+    public boolean deleteDoctorInfo(String doctorID) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
-        DocumentReference doctorRef = database.collection("Doctor").document(doctorName);
+        DocumentReference doctorRef = database.collection("Doctor").document(doctorID);
         ApiFuture<WriteResult> writeResult = doctorRef.delete();
         return true;
     }

@@ -20,16 +20,13 @@ public class doctorInfoService {
         return repository.getDoctorList();
     }
 
-    public doctorInfoModel getDoctorInfo(String doctorName) throws ExecutionException, InterruptedException {
-        return repository.getDoctorInfo(doctorName);
+    public doctorInfoModel getDoctorInfo(String doctorID) throws ExecutionException, InterruptedException {
+        return repository.getDoctorInfo(doctorID);
     }
 
     public doctorInfoModel addDoctorInfo(doctorInfoModel doctorInfoModel) throws ExecutionException, InterruptedException {
         LocalTime now = LocalTime.now();
         doctorInfoModel.setId(now.toString());
-        if (doctorInfoModel.getDoctorNameCode() == null) {
-            doctorInfoModel.setDoctorNameCode(doctorInfoModel.getId());
-        }
         return repository.addDoctorInfo(doctorInfoModel);
     }
 
@@ -43,10 +40,10 @@ public class doctorInfoService {
     }
     public doctorInfoModel updateDoctorInfo(doctorInfoModel doctorInfoModel) throws ExecutionException, InterruptedException {
         Map<String, Object> update = convertToMap(doctorInfoModel);
-        return repository.updateDoctorInfo(doctorInfoModel.getDoctorNameCode(), update);
+        return repository.updateDoctorInfo(doctorInfoModel.getId(), update);
     }
 
-    public boolean deleteDoctorInfo(String doctorName) throws ExecutionException, InterruptedException {
-        return repository.deleteDoctorInfo(doctorName);
+    public boolean deleteDoctorInfo(String doctorID) throws ExecutionException, InterruptedException {
+        return repository.deleteDoctorInfo(doctorID);
     }
 }

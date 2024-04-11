@@ -6,9 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class doctorInfoModel {
-    private String doctorName;
-    private String doctorNameCode;
+    private String fullName;
     private String yearOfBirth;
+    private String phoneNumber;
+    private String address;
     private String university;
     private String departmentName;
     private String major;
