@@ -61,6 +61,7 @@ function Fetch(urlGate, urlWindow) {
             }
         })
         .catch(error => {
+            alert("Bạn không có quyền truy cập")
             console.log(error)
         });
 }
@@ -106,26 +107,25 @@ document.querySelector(".schedule_info").addEventListener("click", () => {
 });
 
 document.querySelector(".doctor_info").addEventListener("click", () => {
-     window.location.href = "/doctor/list";
-    //Fetch("/navigateDoctor", "/doctor/list")
+    // window.location.href = "/doctor/list";
+    Fetch("/navigateDoctor", "/doctor/list")
 
 })
 
 document.querySelector(".tool_info").addEventListener("click", () => {
-    window.location.href = "/tool/form";
-    //Fetch("/navigateTool", "/tool/form")
+    // window.location.href = "/tool/form";
+    Fetch("/navigateTool", "/tool/form")
 
 })
 
 document.querySelector(".medicine_info").addEventListener("click", () => {
-     window.location.href = "/medicine/form";
-    //Fetch("/navigateMedicine", "/medicine/form")
+    // window.location.href = "/medicine/form";
+    Fetch("/navigateMedicine", "/medicine/form")
 
 })
 
 document.querySelector(".room").addEventListener("click", () => {
-    window.location.href = "/room";
-    //Fetch("/navigateMedicine", "/medicine/form")
-
+    // window.location.href = "/room";
+    Fetch("/navigateMedicine", "/medicine/form")
 })
 

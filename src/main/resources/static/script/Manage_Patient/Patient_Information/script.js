@@ -24,12 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// TAO MOT BENH NHAN MOI
 document.querySelector(".text-right .btn-primary").addEventListener("click",() =>{
 let Infomation;
-let form;
-
-  // form = document.querySelectorAll(".form-group")
-
 
   Infomation = {
       imgurl: null,
@@ -55,12 +52,16 @@ let form;
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data.status === true)
-            alert("Đã lưu thành công")
+            if (data.status === true) {
+                document.querySelector('.ID-patient').innerText = data.data
+                document.querySelector('.notification').style.visibility = 'visible'
+            }
         })
         .catch(err => console.log(err))
 })
 
+
+// CHUYEN TRANG THONG TIN BENH NHAN
 var checkNewPatient = sessionStorage.getItem("newPatient")
 console.log(typeof checkNewPatient)
 if (checkNewPatient === 'false') {
@@ -278,5 +279,16 @@ function LoadDataPatient(data) {
             });
         });
     }
+
+document.getElementById("cancle-notify").addEventListener("click", ()=>{
+    document.querySelector('.notification').style.visibility = 'hidden'
+})
+
+document.querySelector('.notification .content-notif .info-copy .copy').addEventListener('click', () => {
+    let id = document.querySelector('.info-copy span').textContent;
+    navigator.clipboard.writeText(id).then(r => {
+        document.querySelector('.copy-notify').innerText = "Đã copy vào clipbroad"
+    })
+})
 
 // }
