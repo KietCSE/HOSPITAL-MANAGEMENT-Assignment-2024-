@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 // CLASS LIỆT KÊ CÁC KIỂU LỖI CÓ THỂ NÉM RA TỪ FIREBASE
 
 public enum ErrorFirestore {
+    NOT_GET_IMAGE(StatusCode.NOT_GET_IMAGE, "Cant find the image", HttpStatus.BAD_REQUEST),
     DOCUMENT_NOT_FOUND(StatusCode.DOCUMENT_NOT_FOUND, "Cant find the document",HttpStatus.NOT_FOUND),
     NOT_STORE_DATA(StatusCode.NOT_STORE_DATA, "Cant store data into firestore", HttpStatus.NOT_FOUND),
     NOT_DELETE_DATA(StatusCode.NOT_DELETE_DATA, "Cant delete data in firestore", HttpStatus.BAD_REQUEST),
