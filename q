@@ -1,0 +1,161 @@
+[33mcommit 15d2b50f8f1e532e11918d3711582aa5104f2416[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Fri Apr 5 07:20:35 2024 +0700
+
+    "Fix thymeleaf 4.0"
+
+[33mcommit f2c47a67f5db2680de9f595d33190dd17bcd07a2[m
+Merge: b313065 4b3b721
+Author: Hồ Gia Thắng <137809975+RavenTheshadow@users.noreply.github.com>
+Date:   Fri Apr 5 06:58:42 2024 +0700
+
+    Merge pull request #5 from RavenTheshadow/AddException
+    
+    add validation exception
+
+[33mcommit 4b3b721a3420ce7e5153ec56cf00edb0cfb9ec80[m
+Author: TuanKiet <ptkiet170104@gmail.com>
+Date:   Fri Apr 5 00:42:27 2024 +0700
+
+    add validation exception
+
+[33mcommit b313065630e70d288759ba52da5931eebceb644f[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Thu Apr 4 23:11:12 2024 +0700
+
+    "Haizzzzzz"
+
+[33mcommit 301bd39372233a6323aeed7fe54c1faa9a6aa742[m
+Merge: 326fa11 c8ec1c2
+Author: Hồ Gia Thắng <137809975+RavenTheshadow@users.noreply.github.com>
+Date:   Thu Apr 4 18:52:29 2024 +0700
+
+    Merge pull request #4 from RavenTheshadow/FixloginPage
+    
+    "Upfile theo ý bạn Lâm"
+
+[33mcommit c8ec1c23740680181c12083408ba80237bccc73f[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Thu Apr 4 18:49:00 2024 +0700
+
+    "Upfile theo ý bạn Lâm"
+
+[33mcommit 326fa11c0a66349a5b9dbc5b11c93cd6b1abf2dc[m
+Merge: a881c9d 3c615cd
+Author: Hồ Gia Thắng <137809975+RavenTheshadow@users.noreply.github.com>
+Date:   Thu Apr 4 17:22:59 2024 +0700
+
+    Merge pull request #3 from RavenTheshadow/AddException
+    
+    Thêm exception
+
+[33mcommit 3c615cd1d74b937da2cb5bc8fb203ba6fb8e9733[m
+Author: TuanKiet <ptkiet170104@gmail.com>
+Date:   Thu Apr 4 10:20:18 2024 +0700
+
+    Thêm exception
+
+[33mcommit a881c9d9d92509133dbfa59f8ca43a4fab56bc91[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Thu Apr 4 08:22:13 2024 +0700
+
+    "Undo file theo ý bạn Lâm"
+
+[33mcommit 747d2a454bbc313dc6a1d80b8f9338a3b1cb9bea[m
+Merge: 7d7ad39 b46fa18
+Author: Hồ Gia Thắng <137809975+RavenTheshadow@users.noreply.github.com>
+Date:   Wed Apr 3 23:00:35 2024 +0700
+
+    Merge pull request #2 from RavenTheshadow/Link_File
+    
+    "Link file. Use localhost:8080 to see"
+
+[33mcommit b46fa18a4e48d4076bc56dfc4e25997f837c4c7f[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Wed Apr 3 22:56:18 2024 +0700
+
+    "Link file. Use localhost:8080 to see"
+
+[33mcommit 7d7ad39ac7e1e5eda47af2b4868d8c6dee8de352[m
+Merge: 57e7ebc ee90da7
+Author: Hồ Gia Thắng <137809975+RavenTheshadow@users.noreply.github.com>
+Date:   Wed Apr 3 11:05:16 2024 +0700
+
+    Merge pull request #1 from RavenTheshadow/fix_medicine
+    
+    merge pls
+
+[33mcommit ee90da71b32dd5049d5192e5cd4a3faac8e0a94a[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Wed Apr 3 00:13:41 2024 +0700
+
+    ""
+
+[33mcommit 57e7ebcaf32fe7d0d8e1a3595be4dc4a422cf15f[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Tue Apr 2 14:46:29 2024 +0700
+
+    "Add google firebase & init google firebase service"
+
+[33mcommit e31ac7a926b5f3ff965018fae15ee89a51e12753[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Tue Apr 2 14:25:45 2024 +0700
+
+    "Add medicine info history"
+
+[33mcommit 39fb684ad96b42b58e585068cafa972c4a538358[m
+Author: KietPhanTuan <111187819+KietPhanTuan@users.noreply.github.com>
+Date:   Tue Apr 2 09:47:59 2024 +0700
+
+    Update .gitignore
+
+[33mcommit 1b1387e4b76e41f0395f7b36fb8df34264a214f3[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Sun Mar 31 22:29:27 2024 +0700
+
+    ""
+
+[33mcommit 7d0da48ce5bacf1d79e7d103311be91302f7010e[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Sun Mar 31 22:15:31 2024 +0700
+
+    ""
+
+[33mcommit 49073aa033dab89ba721aec5b2406655c3869f0a[m
+Merge: a2cee97 8bf2cde
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Sun Mar 31 17:11:35 2024 +0700
+
+    Merge remote-tracking branch 'BTL_LTNC/master'
+
+[33mcommit a2cee978564b9d2efff1396990dde2c5f6d09a48[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Sun Mar 31 17:08:44 2024 +0700
+
+    Sua link lien ket trang medicine
+
+[33mcommit 8bf2cdeacb716f5ac7eb9816f03b4c320b91081e[m
+Author: Hailam2104 <lam.duong210425@hcmut.edu.vn>
+Date:   Sun Mar 31 16:40:37 2024 +0700
+
+    Revert "test"
+    
+    This reverts commit d162da95408957d43d86334ab4f17cfd431372d4.
+
+[33mcommit d162da95408957d43d86334ab4f17cfd431372d4[m
+Author: Hailam2104 <lam.duong210425@hcmut.edu.vn>
+Date:   Sun Mar 31 16:38:52 2024 +0700
+
+    test
+
+[33mcommit 9680a1cb93b96a15c1593ba4df48c8b590319885[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Sun Mar 31 16:20:27 2024 +0700
+
+    MSG
+
+[33mcommit 5ab03f899a4fccc5da246059a6d69b3a863f6eae[m
+Author: RavenTheshadow <hogiathang2@gmail.com>
+Date:   Sun Mar 31 16:15:54 2024 +0700
+
+    First_Commit

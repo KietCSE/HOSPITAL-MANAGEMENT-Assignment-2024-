@@ -19,6 +19,7 @@
     />
     <!-- link css file  -->
     <link rel="stylesheet" th:href="@{/css/Manage_Doctor/Doctor_list/HomeStyle.css}" />
+    <link rel="stylesheet" th:href="@{/css/Manage_Doctor/Doctor_list/style.css}" />
     <title>Doctor</title>
   </head>
   <body>
@@ -55,103 +56,46 @@
     <!-- end header  -->
     <!-- ======Sreach====== -->
     <section class="table_header">
-      <h1>TÌM KIẾM BÁC SĨ</h1>
-    </section>
+      <h1>THÔNG TIN BÁC SĨ</h1>
+  </section>
 
-    <div class="search">
+  <div class="search">
       <div class="search-icon">
-        <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-magnifying-glass"></i>
       </div>
-      <input type="text" value="" placeholder="Tên bác sĩ" />
+      <input type="text" value="" placeholder="Tên bác sĩ">
       <button class="search-btn">Tìm kiếm</button>
-    </div>
-    <!-- Team -->
+  </div>
 
+  <!-- table  -->
 
-    <section class="slider-doctor">
-      <div class="container">
-        <div class="slider-doctor-content">
-          <div class="slider-doctor-content-tittle">
-            <h1>Đội ngũ bác sĩ</h1>
-          </div>
-          <div class="slider-doctor-container">
-            <div class="slider-doctor-content-items">
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc1.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc2.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc3.png}" alt="" />
+  <div class="table">
+      <section class="table_body">
+          <table>
+              <thead>
+                  <tr>
+                      <th>STT</th>
+                      <th>Tên</th>
+                      <th>Năm sinh</th>
+                      <th>Chuyên ngành</th>
+                      <th>Xóa</th>
+                  </tr>
+              </thead>
 
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc2.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-          </div>
-          <div class="slider-doctor-content-items">
-            <div class="slider-doctor-content-item">
-              <img th:src="@{/img/Manage_Doctor/Doctor_list/doc3.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-              <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc3.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc3.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              <div class="slider-doctor-content-item">
-                <img th:src="@{/img/Manage_Doctor/Doctor_list/doc3.png}" alt="" />
-                <div class="slider-doctor-content-item-text">
-                  <p>Dr.</p>
-                  <p>Chuyên Khoa</p>
-                </div>
-                <a th:href="@{/doctor/info}" target="_blank"><b>More info</b></a>
-              </div>
-              
-          </div>
-          <div class="slider-btn">
-            <i class="fas fa-chevron-left"></i>
-            <i class="fas fa-chevron-right"></i>
-          </div>
-        </div>
-      </div>
-    </section>
+              <tbody>
+
+              </tbody>
+
+          </table>
+      </section>
+  </div>
+  <!-- </div> -->
+
+<!--  <div class="button">-->
+<!--      <div class="btn">-->
+<!--          <button>Thêm mới</button>-->
+<!--      </div>-->
+<!--  </div>-->
 
 
     <!-- start footer  -->
@@ -161,7 +105,7 @@
         <div class="footer-box">
 
           <div class="footer-BKUlogo">
-            <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
+            <img th:src="@{/static/img/Logo/logo-footer.jpg}" alt="">
             <div class="footer-logo-content">
               <span>HOSPITAL HCMUT UNIVERSITY</span>
               <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
@@ -205,6 +149,7 @@
 
     <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
     <!-- custom file js -->
-    <script th:src="@{/script/Manage_Doctor/Doctor_list/HomeScript.js}"></script>
+<!--    <script th:src="@{/script/Manage_Doctor/Doctor_list/HomeScript.js}"></script>-->
+    <script th:src="@{/script/Manage_Doctor/Doctor_list/script.js}"></script>
   </body>
 </html>

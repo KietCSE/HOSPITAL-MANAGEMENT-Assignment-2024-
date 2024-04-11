@@ -7,6 +7,9 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -30,7 +33,6 @@ public class JWTtoken {
         // create payload which is the body of jwt
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
                 .subject(username)
-                .issuer("Tuankiet")
                 .issueTime(new Date())
                 .expirationTime(new Date(Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
                 ))
@@ -46,7 +48,16 @@ public class JWTtoken {
             // sign token with the key
             jwsObject.sign(new MACSigner(key.getBytes()));
             // return jwt
-            return jwsObject.serialize();
+            String jwt = jwsObject.serialize();
+            // save SecurityContextHolder
+            Authentication authentication = new UsernamePasswordAuthenticationToken(username, null);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            log.info(authentication.toString());
+            var a = SecurityContextHolder.getContext().getAuthentication();
+            log.info(a.toString());
+
+            return jwt;
+
         } catch (JOSEException e) {
             throw new RuntimeException(e);
         }
@@ -65,5 +76,6 @@ public class JWTtoken {
         //trả vê
         return confirm && expityTime.after(new Date());
     }
+
 }
 

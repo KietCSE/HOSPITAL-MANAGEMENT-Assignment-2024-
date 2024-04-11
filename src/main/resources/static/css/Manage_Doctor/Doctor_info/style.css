@@ -196,33 +196,118 @@ body {
   margin-top: 20px;
 }
 .info {
-  padding: 56px 0 65px;
-  background: #fff;
-  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .content {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  padding: 50px;
+  margin-top: 100px;
 }
-.image img {
-  width: 50%;
-  object-fit: cover;
-  border-radius: 50px;
-  margin-left: 100px;
-  margin-top: 20px;
+.content-block {
+  border: 1px solid grey;
+  padding: 20px;
 }
-.content h1 {
-  font-size: 36px;
-}
-.content-block h3 {
-  margin-left: 20px;
-  font-size: 18px;
+.table-info {
+  width: 80vw;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 16px;
 }
 
-.content-block h2 {
-  font-size: 30px;
-  color: var(--primary-blue);
+.table-info th,
+.table-info td {
+  padding: 10px;
+  border: 1px solid #ccc;
 }
-.content-block li {
-  margin-left: 20px;
+.info-2 {
+  text-align: center;
+  background-color: #0c6aaa;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.btn-acc-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-pri {
+  padding: 10px 24px;
   font-size: 16px;
+  background-color: #0c6aaa;
+  color: white;
+  border-radius: 5%;
+}
+
+.btn-pri:hover {
+  text-decoration: underline;
+}
+
+/* CSS */
+
+.contentUp {
+  margin: 0 auto;
+}
+.content-blockUp {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.formUp {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.formUp h3 {
+  font-size: 20px;
+  color: #0c6aaa;
+}
+
+.formUp hr {
+  border-color: #ccc;
+  margin-top: 10px;
+}
+
+.form-groupUp {
+  margin-bottom: 20px;
+}
+
+.form-labelUp {
+  font-size: 16px;
+}
+
+.form-controlUp {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-acc-infoUp {
+  text-align: center;
+}
+
+.btn-priUp {
+  background-color: #0c6aaa;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-priUp:hover {
+  background-color: #095c8b;
 }

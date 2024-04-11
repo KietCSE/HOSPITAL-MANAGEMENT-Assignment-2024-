@@ -19,22 +19,22 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecurityConfig {
     protected static final String key = "xRGK4LsZiU5ldkp/cyUqXPOLHElMXfGyu3B0RiK3L194R6kCPTopWhrORzoZNVSs";
 
-    private final String[] ADMIN_ENDPOINT = {"/navigateDoctor", "/navigatePatient", "/navigateTool", "/navigateMedicine"};
+    private final String[] ADMIN_ENDPOINT = {"/navigateDoctor", "/navigatePatient", "/navigateTool", "/navigateMedicine",};
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request -> request
-                        .requestMatchers(ADMIN_ENDPOINT).hasAuthority("SCOPE_ADMIN")
+//                        .requestMatchers(ADMIN_ENDPOINT).hasAuthority("SCOPE_ADMIN")
                         .anyRequest().permitAll())
-                .exceptionHandling(exceptionHandling ->
-                        exceptionHandling
-                                .accessDeniedHandler((request, response, accessDeniedException) -> {
-                                    // Xử lý ngoại lệ AccessDeniedException tại đây
-                                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
-                                })
-                                .authenticationEntryPoint((request, response, authException) -> {
-                                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
-                                }));
+                        .exceptionHandling(exceptionHandling ->
+                                exceptionHandling
+                                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                            // Xử lý ngoại lệ AccessDeniedException tại đây
+                                            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
+                                        })
+                                        .authenticationEntryPoint((request, response, authException) -> {
+                                            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
+                                        }));
 
 
 
