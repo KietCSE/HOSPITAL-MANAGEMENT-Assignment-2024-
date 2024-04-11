@@ -58,10 +58,19 @@ public class patientController {
         return apiResponse;
     }
 
+
+    @PostMapping("/updatedatainfo/{id}")
+    public ApiResponse<?> UpdateInfo(@RequestBody info patient, @PathVariable String id) throws FirestoreException {
+        patient.setId(id);
+        FirestorePatient firestorePatient = new FirestorePatient();
+        boolean check = firestorePatient.postPatient("Patient", patient);
+    }
+
     @PostMapping("/deletePatient/{id}")
     public ApiResponse<?> DeletePatient(@PathVariable String id) throws FirestoreException {
         FirestorePatient firestorePatient = new FirestorePatient();
         boolean check = firestorePatient.deletePatient("Patient", id);
+
         ApiResponse<?> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(check);
         return apiResponse;

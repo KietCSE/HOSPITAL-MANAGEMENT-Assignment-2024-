@@ -14,7 +14,6 @@ import java.awt.*;
 
 public class info {
     private String id;
-    private String imgurl;
     private String name;
     private String room;
     private String phone_number;
