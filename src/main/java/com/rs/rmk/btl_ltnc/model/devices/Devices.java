@@ -15,6 +15,7 @@ public class Devices {
     String ID;
     String Name;
     String Type;
+    String Img_url;
     String Supplier;
     int TotalAmount;
     int InUseAmount;
@@ -32,8 +33,11 @@ public class Devices {
         String ID;
         String Located;
         String State;
+
         public Items(String id, String located, String state) {
-            this.ID = id; this.Located = located; this.State = state;
+            this.ID = id;
+            this.Located = located;
+            this.State = state;
         }
     }
 
@@ -47,9 +51,13 @@ public class Devices {
         int InUseAmount;
         int DamagedAmount;
         int StoredAmount;
-        public Update (String date, int totalAmount, int inUseAmount, int damagedAmount, int storedAmount) {
-            this.Date = date; this.TotalAmount = totalAmount; this.InUseAmount = inUseAmount;
-            this.DamagedAmount = damagedAmount; this.StoredAmount = storedAmount;
+
+        public Update(String date, int totalAmount, int inUseAmount, int damagedAmount, int storedAmount) {
+            this.Date = date;
+            this.TotalAmount = totalAmount;
+            this.InUseAmount = inUseAmount;
+            this.DamagedAmount = damagedAmount;
+            this.StoredAmount = storedAmount;
         }
     }
 }

@@ -19,29 +19,34 @@
 
 <body>
     <header class="header">
-        <a href="#" class="logo">
-            <div class="BKUlogo">
-                <img th:src="@{/img/Logo/logo.png}" alt="">
-            </div>
-            HCMUT
-        </a>
-
-        <nav class="navbar">
-            <a href="#home">Trang chủ</a>
-            <a href="#features">Chức năng</a>
-            <a href="#info">Thông tin</a>
-            <a href="#achieve">Thành tựu</a>
-            <a href="#contact">Liên hệ</a>
-        </nav>
-
-        <div class="login-btn">
-            <button class="user btn">
-                <i class="fa-solid fa-user"></i>
-                <a href="#">Tài khoản</a>
-            </button>
+    <a href="#" class="logo">
+        <div class="BKUlogo">
+            <img th:src="@{/img/Logo/logo.png}" alt="">
         </div>
-    </header>
+        HCMUT
+    </a>
 
+    <nav class="navbar">
+        <a th:href="@{/#home}">Trang chủ</a>
+        <a th:href="@{/#features}">Chức năng</a>
+        <a th:href="@{/#info}">Thông tin</a>
+        <a th:href="@{/#achieve}">Thành tựu</a>
+        <a th:href="@{/#contact}">Liên hệ</a>
+    </nav>
+
+    <div class="login-btn">
+        <button class="user btn">
+            <i class="fa-solid fa-user"></i>
+            <a href="#">Tài khoản</a>
+        </button>
+    </div>
+
+    <script>
+        document.querySelector(".login-btn").addEventListener("click", () => {
+            window.location.href = "/login";
+        });
+    </script>
+</header>
 
     <section class="wrapper">
         <h1>THÔNG TIN THUỐC</h1>
@@ -107,9 +112,6 @@
             </div>
         </div>
     </section>
-
-
-
 
     <section class="footer">
         <div class="footer-container">

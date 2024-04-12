@@ -34,7 +34,7 @@ document.querySelector(".import form .submit").addEventListener("click", async f
                 }
                 let f = new FormData();
                 f.append("file", file);
-                let response = await fetch("/api/medicine/upload", {
+                let response = await fetch("/api/Image", {
                     method: "POST",
                     body: f
                 });
@@ -59,20 +59,21 @@ document.querySelector(".import form .submit").addEventListener("click", async f
             }
 
             let data = await response.json();
-            if(data.status === false) {
+            if (data.status === false) {
                 throw new Error(data.message);
             } else {
+                console.log(data.data);
                 Medicine_Obj = {
                     ID: makeID(),
-                    Name: data.result.name,
+                    Name: data.data.name,
                     Amount: form.querySelector('input[name="Amount"]').value,
                     Validated: form.querySelector('input[name="Validated"]').value,
-                    Type: data.result.type,
-                    Classify: data.result.classify,
-                    Description: data.result.description,
-                    Uses: data.result.uses,
-                    N_Uses: data.result.n_Uses,
-                    Img_Url: data.result.img_Url,
+                    Type: data.data.type,
+                    Classify: data.data.classify,
+                    Description: data.data.description,
+                    Uses: data.data.uses,
+                    N_Uses: data.data.n_Uses,
+                    Img_Url: data.data.img_Url,
 
                     History: {
                         Day_Input: form.querySelector('input[name="Date"]').value,
@@ -81,8 +82,6 @@ document.querySelector(".import form .submit").addEventListener("click", async f
                 };
             }
         }
-
-        console.log("Medicine object created successfully:", Medicine_Obj);
         if (Object.values(Medicine_Obj).some(value => value === "")) {
             throw "Hãy điền đầy đủ thông tin";
         }
@@ -104,6 +103,21 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         if (Date.parse(Medicine_Obj.Validated) < Date.parse(Medicine_Obj.History.Day_Input)) {
             throw "Ngày hết hạn không thể nhỏ hơn ngày nhập";
         }
+        const postResponse = await fetch("/api/medicine/add", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Medicine_Obj)
+        });
+        if (!postResponse.ok) {
+            throw new Error("Không thể thêm dữ liệu vào server");
+        }
+        let data = await postResponse.json();
+        if (data.status === false) {
+            throw new Error(data.message);
+        }
+        console.log(data.message);
 
         let newRow = document.createElement('tr');
         newRow.innerHTML = `
@@ -117,18 +131,6 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         <td class="LINK"><a href="/medicine/info/${Medicine_Obj.ID}">TT Sản phẩm</a></td>
         <td class="DELETE">Xóa</td>`;
         document.querySelector("table tbody").appendChild(newRow);
-
-        const postResponse = await fetch("/api/medicine/add", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Medicine_Obj)
-        });
-        if (!postResponse.ok) {
-            throw new Error("Không thể thêm dữ liệu vào server");
-        }
-        console.log("Post Request Success");
     } catch (error) {
         console.error("Error:", error);
         alert(error);
@@ -240,7 +242,11 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                     throw ("Failed");
                 }
             }).then(data => {
-                let Medicine_Obj = data;
+                console.log(data.data);
+
+                if(data.status === false) throw new Error(data.message);
+
+                let Medicine_Obj = data.data;
                 Medicine_Obj.amount = NewAmount;
                 Medicine_Obj.history.export_Date.push(Date_Export);
 
@@ -252,16 +258,15 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                     body: JSON.stringify(Medicine_Obj)
                 }).then(response => {
                     if (response.ok) {
-                        console.log("Success");
+                        return response.json();
                     } else {
-                        console.log("Failed");
                         throw ("Failed");
                     }
+                }).then(data => {
+                    if(!data.status) throw new Error(data.message);
+                    console.log(data.message);
                 });
-            }).catch(error => {
-                console.log(error);
-                throw ("Failed");
-            });
+            })
         }
     } catch (error) {
         alert(error);
@@ -278,7 +283,7 @@ fetch("/api/medicine/getAllMedicine")
             throw new Error("Không thể lấy dữ liệu từ server");
         }
     }).then(data => {
-        console.log(data);
+        console.log( (data.length === 0) ? "Không có dữ liệu" : "");
         for (let i = 0; i < data.length; i++) {
             let Medicine_Obj = data[i];
             let newRow = document.createElement('tr');
@@ -311,12 +316,19 @@ document.querySelector('.table tbody').addEventListener("click", async function 
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if (response.ok) {
-                console.log("Xoá thành công");
-            } else {
-                console.log("Xóa thất bại");
-                throw ("Xóa thất bại");
+            if(!response.ok) {
+                throw new Error("Không thể xóa thông tin");
             }
+            return response.json();
+        }).then( data =>{
+            if(data.status === false) {
+              throw new Error(data.message);
+            }
+            else {
+                console.log("Xóa thông tin thành công");
+            }
+        }).catch(Error =>{
+            alert(Error)
         });
         row.remove();
     }
