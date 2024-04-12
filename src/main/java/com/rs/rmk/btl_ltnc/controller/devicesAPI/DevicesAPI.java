@@ -20,19 +20,19 @@ public class DevicesAPI {
 
     @PostMapping("/searchDevices")
     public ArrayList<Map<String, ?>> searchDevices (@RequestBody String searchContent) throws ExecutionException, InterruptedException {
-        System.out.println(searchContent);
+
         return DevicesGoogleApi.searchDevices(searchContent);
     }
 
     @PostMapping("/getInfoByID")
     public ArrayList<Map<String, ?>> getInfoByID (@RequestBody String idToSearch) throws ExecutionException, InterruptedException {
-        System.out.println(idToSearch);
+
         return DevicesGoogleApi.getInfoByID(idToSearch);
     }
 
     @PostMapping("/updateItem")
     public boolean updateItem (@RequestBody Map<String, String> req) throws ExecutionException, InterruptedException {
-        System.out.println(req.toString());
+
         String ID = req.get("ID");
         String Act = req.get("Act");
         String Location = req.get("Location");
@@ -41,13 +41,13 @@ public class DevicesAPI {
 
     @PostMapping("/save")
     public boolean save (@RequestBody String id) throws ExecutionException, InterruptedException {
-        System.out.println(id);
+
         return DevicesGoogleApi.saveUpdateLog(id);
     }
 
     @DeleteMapping("/delete")
     public boolean delete (@RequestBody String id) throws ExecutionException, InterruptedException {
-        System.out.println(id);
+
         return DevicesGoogleApi.deleteDevice(id);
     }
 }

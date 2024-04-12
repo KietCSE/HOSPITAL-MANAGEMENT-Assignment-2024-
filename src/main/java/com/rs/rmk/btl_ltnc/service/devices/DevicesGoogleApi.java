@@ -88,7 +88,7 @@ public class DevicesGoogleApi {
             int indexOfItem = devices.indexOfItem(itemID);
             if (indexOfItem == -1) {return false;}
             DevicesApiResponse.Item item = devices.getItemsList().get(indexOfItem);
-            System.out.println(item);
+
             String lastState = item.getState();
             if (Act.equalsIgnoreCase("Use")) {
                 item.setState("in use");
