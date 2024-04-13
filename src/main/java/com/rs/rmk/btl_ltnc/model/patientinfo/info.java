@@ -46,4 +46,9 @@ public class info {
     @Max(value = 100, message = "Điểm đánh giá phải từ 0-100")
     private Integer comment_healthcare;
 
+    private String morning;
+    private String afternoon;
+    private String evening;
+    private String note;
+
 }
