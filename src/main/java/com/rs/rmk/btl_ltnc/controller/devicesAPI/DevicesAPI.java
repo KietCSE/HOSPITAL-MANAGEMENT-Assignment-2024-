@@ -1,11 +1,18 @@
 package com.rs.rmk.btl_ltnc.controller.devicesAPI;
 
+import com.rs.rmk.btl_ltnc.exception.FirestoreException;
+import com.rs.rmk.btl_ltnc.model.ApiResponse;
+import com.rs.rmk.btl_ltnc.model.StatusCode;
 import com.rs.rmk.btl_ltnc.model.devices.Devices;
+import com.rs.rmk.btl_ltnc.model.devices.DevicesApiResponse;
 import com.rs.rmk.btl_ltnc.service.devices.DevicesGoogleApi;
+import com.rs.rmk.btl_ltnc.service.devices.GetDevice;
+import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.stream.Location;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -50,4 +57,16 @@ public class DevicesAPI {
         System.out.println(id);
         return DevicesGoogleApi.deleteDevice(id);
     }
+
+
+    //________________________________________________________________________________________________________
+    @GetMapping("/get/listDevice/{rID}")
+    public ApiResponse<?> GetList(@PathVariable String rID) throws FirestoreException {
+
+        List<DevicesApiResponse.Item> result = GetDevice.getMedicine(rID);
+        return (result != null) ? new ApiResponse<>(StatusCode.SUCCESS, "Get Data thanh cong", result, true)
+                : new ApiResponse<>(StatusCode.ERROR, "Fail", null, false);
+    }
+
+    //________________________________________________________________________________________________________
 }

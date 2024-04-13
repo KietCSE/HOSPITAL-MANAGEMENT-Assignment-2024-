@@ -66,4 +66,9 @@ public class WebsiteController {
 
     @GetMapping("/room")
     public String Room(HttpServletRequest request) {return "/Patient_Room/Room";}
+
+    @GetMapping("/evaluate")
+    public String evaluate(HttpServletRequest request) {
+        return "/Evaluate/evaluate";
+    }
 }

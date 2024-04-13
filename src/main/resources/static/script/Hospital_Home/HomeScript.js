@@ -125,6 +125,6 @@ document.querySelector(".medicine_info").addEventListener("click", () => {
 })
 
 document.querySelector(".room").addEventListener("click", () => {
-    Fetch("/navigateMedicine", "/medicine/form")
+    Fetch("/navigateMedicine", "/room")
 })
 

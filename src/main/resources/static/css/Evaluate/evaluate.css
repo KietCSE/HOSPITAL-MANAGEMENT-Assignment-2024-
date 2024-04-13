@@ -1,0 +1,82 @@
+.container-layout {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-layout .container {
+    background-color: #BADDF6;
+    min-width: 50vw;
+    height: 60vh;
+    margin-top: 100px;
+    border-radius: 20px;
+    padding: 3rem 8rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+.container-layout .container .evaluate {
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.container-layout .container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.container-layout .container .box-evaluate{
+    display: flex;
+    padding: 1rem;
+    font-size: 1.5rem;
+    justify-content: left;
+    align-items: center;
+
+}
+
+.container-layout .container .box-evaluate span {
+    font-size: 2rem;
+
+}
+
+.container-layout .container .status{
+    background-color: #0073B1;
+    min-width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: black;
+}
+
+.container-layout .container .very-good {
+    background-color: #08E283;
+}
+
+
+.container-layout .container .normal{
+    background-color: #FAD36F;
+}
+
+.container-layout .container .bad {
+    background-color: red;
+}
+
+.container-layout .container .box-evaluate .score {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--box-hover);
+}
