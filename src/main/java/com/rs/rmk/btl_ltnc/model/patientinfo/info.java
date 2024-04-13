@@ -32,4 +32,18 @@ public class info {
     private String treatment_schedule;
     private String medical_history;
     private String dr;
+
+    @Min(value = 0, message = "Điểm đánh giá phải từ 0-100")
+    @Max(value = 100, message = "Điểm đánh giá phải từ 0-100")
+    private Integer comment_customer_care;
+    @Min(value = 0, message = "Điểm đánh giá phải từ 0-100")
+    @Max(value = 100, message = "Điểm đánh giá phải từ 0-100")
+    private Integer comment_service;
+    @Min(value = 0, message = "Điểm đánh giá phải từ 0-100")
+    @Max(value = 100, message = "Điểm đánh giá phải từ 0-100")
+    private Integer comment_attitude;
+    @Min(value = 0, message = "Điểm đánh giá phải từ 0-100")
+    @Max(value = 100, message = "Điểm đánh giá phải từ 0-100")
+    private Integer comment_healthcare;
+
 }

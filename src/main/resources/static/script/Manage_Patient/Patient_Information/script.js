@@ -38,6 +38,11 @@ let Infomation;
       medical_history: document.querySelector('.form-group textarea[name="medical_history"]').value,
       dr: document.querySelector('.form-group select[name="dr"]').value,
       room: document.querySelector('.form-group input[name="room"]').value,
+
+      comment_customer_care: document.querySelector('.form-group input[name="comment_customer_care"]').value,
+      comment_service: document.querySelector('.form-group input[name="comment_service"]').value,
+      comment_attitude: document.querySelector('.form-group input[name="comment_attitude"]').value,
+      comment_healthcare: document.querySelector('.form-group input[name="comment_healthcare"]').value,
   }
 
   console.log(Infomation)
@@ -121,6 +126,15 @@ function LoadDataPatient(data) {
                           style="font-size: medium;"
                   >Chi tiết</a
                   >
+                  
+                  <a
+                  class="list-group-item list-group-item-action"
+                  data-toggle="list"
+                  href="#account-comment"
+                  style="font-size: medium;"
+                  >Đánh giá</a
+                  >
+                  
                 </div>
               </div>
               <div class="col-md-9">
@@ -219,10 +233,61 @@ function LoadDataPatient(data) {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+
+              
+              <div class="tab-pane fade" id="account-comment">
+        <div class="card-body pb-2">
+          <div class="form-group">
+            <label class="form-label" style="font-size:small;">Dịch vụ hỗ trợ và chăm sóc khách hàng</label>
+            <input
+                    name ="comment_customer_care"
+                    type="number"
+                    class="form-control mb-1"
+                    style="font-size:small;"
+                    placeholder="0-100"
+                    value="${data.comment_customer_care}"
+            />
+            <div class="form-group">
+              <label class="form-label" style="font-size:small;">Cơ sở vật chất và trang thiết bị</label>
+              <input
+                      name ="comment_service"
+                      type="number"
+                      class="form-control mb-1"
+                      style="font-size:small;"
+                      placeholder="0-100"
+                      value="${data.comment_service}"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size:small;">Thái độ nhân viên</label>
+              <input
+                      name ="comment_attitude"
+                      type="number"
+                      class="form-control mb-1"
+                      style="font-size:small;"
+                      placeholder="0-100"
+                      value="${data.comment_attitude}"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size:small;">Chất lượng dịch vụ khám chữa bệnh</label>
+              <input
+                      name = "comment_healthcare"
+                      type="number"
+                      class="form-control mb-1"
+                      style="font-size:small;"
+                      placeholder="0-100"
+                      value="${data.comment_healthcare}"
+              />
             </div>
           </div>
+        </div>
+      </div>
+      </div>
+     </div>
+              
+    </div>
+   </div>
         
         
           <div class="text-right mt-3">
@@ -281,6 +346,11 @@ function LoadDataPatient(data) {
             medical_history: document.querySelector('.form-group textarea[name="medical_history"]').value,
             dr: document.querySelector('.form-group select[name="dr"]').value,
             room: document.querySelector('.form-group input[name="room"]').value,
+
+            comment_customer_care: document.querySelector('.form-group input[name="comment_customer_care"]').value,
+            comment_service: document.querySelector('.form-group input[name="comment_service"]').value,
+            comment_attitude: document.querySelector('.form-group input[name="comment_attitude"]').value,
+            comment_healthcare: document.querySelector('.form-group input[name="comment_healthcare"]').value,
         }
 
         console.log(Infomation)
@@ -299,6 +369,8 @@ function LoadDataPatient(data) {
             })
             .catch(err => console.log(err))
     })
+
+
     }
 
 document.getElementById("cancle-notify").addEventListener("click", ()=>{
