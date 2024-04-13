@@ -46,7 +46,7 @@ let Infomation;
   }
 
   console.log(Infomation)
-
+    // post data benh nhan
     fetch("/postdatainfo", {
         method: 'POST',
         headers: {
@@ -296,6 +296,7 @@ function LoadDataPatient(data) {
         `
     document.querySelector(".container").innerHTML = template;
 
+    // hien thi select doctor khi xem thong tin
     var selectdr = document.getElementById('select-dr');
     console.log(selectdr)
     for (var i = 0; i < selectdr.options.length; i++) {
@@ -364,8 +365,10 @@ function LoadDataPatient(data) {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.status === true)
-                alert("Đã lưu thành công")
+                if (data.status === true) {
+                    document.querySelector('.ID-patient').innerText = data.message
+                    document.querySelector('.notification').style.visibility = 'visible'
+                }
             })
             .catch(err => console.log(err))
     })

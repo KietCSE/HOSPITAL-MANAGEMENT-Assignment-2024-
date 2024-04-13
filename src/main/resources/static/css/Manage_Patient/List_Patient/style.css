@@ -133,7 +133,7 @@ body {
     margin-top: 3rem;
     background-color: var(--box-hover);
     padding: 2rem 3%;
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
 
