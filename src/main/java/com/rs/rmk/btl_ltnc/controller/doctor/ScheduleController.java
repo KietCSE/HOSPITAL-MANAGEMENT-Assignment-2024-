@@ -20,23 +20,18 @@ public class ScheduleController {
         return scheduleService.getSchedule(doctorID);
     }
 
-    @PostMapping("schedule/add")
+    @PostMapping("/schedule/admin/add")
     public taskModel addTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
         return scheduleService.addTask(doctorID, task);
     }
 
-    @DeleteMapping("schedule/delete")
+    @DeleteMapping("/schedule/admin/delete")
     public boolean deleteTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
         return scheduleService.deleteTask(doctorID, task);
     }
 
-//    @GetMapping("/schedule/day")
-//    public List<taskModel> getTaskListAtDay(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
-//        return scheduleService.getTaskListAtDay(doctorID, task.getDay());
-//    }
-//
-//    @GetMapping("/schedule/test")
-//    public List<String> getListDoctorID() throws ExecutionException, InterruptedException {
-//        return scheduleService.getListDoctorID();
-//    }
+    @GetMapping("/schedule/test")
+    public List<String> getListDoctorID(@RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.changeSchedule(task.getDay(), task.getFrom(), task.getTo(), task.getDepartmentName());
+    }
 }

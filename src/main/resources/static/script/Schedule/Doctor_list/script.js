@@ -5,7 +5,7 @@ fetch("http://localhost:8080/api/doctor/list")
           addRow(index + 1, data[index]);
         }
     })
-    .catch(err => console.log(err));
+    .catch(err => alert(err));
 
 function addRow(stt, doctor) {
   let tbody = document.querySelector('.table table tbody');
@@ -19,6 +19,7 @@ function addRow(stt, doctor) {
       `
   row.addEventListener('click', function() {
       sessionStorage.setItem('doctorID', doctor.id);
+      sessionStorage.setItem('departmentName', doctor.departmentName);
       window.location.href = '/schedule/admin';
   });
 

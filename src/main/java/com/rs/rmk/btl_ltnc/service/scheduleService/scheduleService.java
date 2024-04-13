@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class scheduleService  {
         int index = time.indexOf(':');
         int hours = Integer.parseInt(time.substring(0, index));
         int minutes = Integer.parseInt(time.substring(index + 1));
-        if (minutes <= 30) {
+        if (minutes < 30) {
             return 2 * hours;
         }
         else {
@@ -48,22 +49,34 @@ public class scheduleService  {
     public List<List<taskModel>> getSchedule(String doctorID) throws ExecutionException, InterruptedException {
         return scheduleRepository.getSchedule(doctorID);
     }
-//
-//    public List<String> dayAndTime(String day, String from, String to, String departmentName) throws ExecutionException, InterruptedException, ParseException {
-//        List<String> listIDs = doctorInfoRepository.getListDoctorID(departmentName);
-//        String date = getDateOfWeek(day);
-//        int[] arr = new int[48];
-//        for (String ID : listIDs) {
-//            List<taskModel> tasks = scheduleRepository.getTaskListAtDay(ID, day, date);
-//            for (taskModel task : tasks) {
-//                int left = toIndex(task.getFrom());
-//                int right = toIndex(task.getTo());
-//                for (int i = left; i <= right; i++) {
-//
-//                }
-//            }
-//        }
-//    }
+
+    public List<String> changeSchedule(String day, String from, String to, String departmentName) throws ExecutionException, InterruptedException, ParseException {
+        List<String> result = new ArrayList<>();
+        List<String> listIDs = doctorInfoRepository.getListDoctorID(departmentName);
+        String date = getDateOfWeek(day);
+        for (String ID : listIDs) {
+            int[] arr = new int[48];
+            List<taskModel> tasks = scheduleRepository.getTaskListAtDay(ID, day, date);
+            for (taskModel task : tasks) {
+                int left = toIndex(task.getFrom());
+                int right = toIndex(task.getTo());
+                for (int i = left; i < right; i++) {
+                    arr[i] = 1;
+                }
+            }
+            boolean ok = true;
+            for (int i = toIndex(from); i < toIndex(to); i++) {
+                if (arr[i] != 0) {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                result.add(ID);
+            }
+        }
+        return result;
+    }
 
     public taskModel addTask(String doctorID, taskModel task) throws ExecutionException, InterruptedException, ParseException {
         String date = getDateOfWeek(task.getDay());

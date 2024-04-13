@@ -13,6 +13,7 @@ public class taskModel {
     private String to;
     private String id;
     private String patientID;
+    private String departmentName;
 
     public taskModel() {}
 
