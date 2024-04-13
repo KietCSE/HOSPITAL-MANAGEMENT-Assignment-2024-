@@ -24,6 +24,17 @@ public class doctorInfoRepository {
         return doctorInfoModels;
     }
 
+    public List<String> getListDoctorID(String departmentName) throws ExecutionException, InterruptedException {
+        Firestore database = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = database.collection("Doctor").whereEqualTo("departmentName", departmentName).get();
+        QuerySnapshot query = querySnapshotApiFuture.get();
+        List<String> doctorIDs = new ArrayList<>();
+        for (QueryDocumentSnapshot document : query) {
+            doctorIDs.add(document.getId());
+        }
+        return doctorIDs;
+    }
+
     public doctorInfoModel getDoctorInfo(String doctorID) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
         DocumentReference doctorRef = database.collection("Doctor").document(doctorID);

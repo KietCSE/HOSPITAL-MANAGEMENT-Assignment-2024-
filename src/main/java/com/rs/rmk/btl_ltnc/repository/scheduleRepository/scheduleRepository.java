@@ -16,14 +16,25 @@ import java.util.concurrent.ExecutionException;
 @Repository
 public class scheduleRepository  {
     /*
-    * Collection: Doctor -> get() <=> ApiFuture<QuerySnapshot> || QuerySnapshot.get() -> QueryDocumentSnapshot
-    * Document: tranlam -> DocumentReference -> get() <=> ApiFuture<DocumentSnapshot>
-    * Collection: schedule ->
-    * Document: Thu2 ->
-    * Collection: tasks ->
-    * Document: ~ task.
-    * */
-
+     * Collection: Doctor -> get() <=> ApiFuture<QuerySnapshot> || QuerySnapshot.get() -> QueryDocumentSnapshot
+     * Document: tranlam -> DocumentReference -> get() <=> ApiFuture<DocumentSnapshot>
+     * Collection: schedule ->
+     * Document: Thu2 ->
+     * Collection: tasks ->
+     * Document: ~ task.
+     * */
+    public List<taskModel> getTaskListAtDay(String doctorID, String day, String date) throws ExecutionException, InterruptedException {
+        Firestore database = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = database.collection("Doctor").document(doctorID)
+                .collection("schedule").document(date)
+                .collection("tasks").whereEqualTo("day", day).get();
+        QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
+        List<taskModel> scheduleAtDay = new ArrayList<>();
+        for (QueryDocumentSnapshot document : querySnapshot) {
+            scheduleAtDay.add(document.toObject(taskModel.class));
+        }
+        return scheduleAtDay;
+    }
     //Get shedule
     private static List<taskModel> getScheduleAtDate(String doctorID, String date) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();

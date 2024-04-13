@@ -129,7 +129,6 @@ document.querySelector(".room").addEventListener("click", () => {
 })
 
 document.querySelector('.create-schedule').addEventListener('click', () =>{
-    sessionStorage.setItem('schedule', 'true');
-    window.location.href = '/doctor/list';
+    window.location.href = '/schedule/doctor/list';
 })
 

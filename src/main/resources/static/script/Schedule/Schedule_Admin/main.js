@@ -1,12 +1,9 @@
-let doctorID = '';
-if (sessionStorage.getItem('userID') != null) {
-    doctorID = sessionStorage.getItem('userID');
-}
-else {
-    doctorID = '12:28:55.491058900';
-}
+let doctorID = sessionStorage.getItem('doctorID');
+
 // Thêm task
 function addTask(taskObj, date, patient) {
+    let arr = taskObj.day.split('-');
+    taskObj.day = arr.join('/');
     const week = document.querySelector('.week');
 
     const weekDay = week.children[date - 1];
@@ -24,6 +21,9 @@ function addTask(taskObj, date, patient) {
         </div>
         <div class="task__detail">
             <div class="head">
+                <div class="delete__task detail__icon">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
                 <div class="task__problem detail__icon">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
@@ -72,16 +72,104 @@ function addTask(taskObj, date, patient) {
                 alert('Yêu cầu của bạn đang chờ xử lí');
             }
         }
-        if(event.target.closest('.patient-info')) {
-            sessionStorage.setItem("newPatient", 'false')
+        else if (event.target.closest('.delete__task')) {
+            if (confirm('Bạn có chắc chắn là muốn xóa không?')) {
+                fetch("http://localhost:8080/schedule/delete?doctorID="+doctorID, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(taskObj),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        task.remove();
+                        alert("Xóa thành công :(");
+                    })
+                    .catch(err => console.log(err));
+            }
+        }
+        else if(event.target.closest('.patient-info')) {
+            sessionStorage.setItem("newPatient", false)
             sessionStorage.setItem("IdPatientInfo", taskObj.patientID);
             window.location.href = "/patient/info";
         }
+        // else if ()
     })
     taskLists.appendChild(task);
 }
 
+const openForm = document.querySelector('.create-btn');
+openForm.addEventListener('click', function() {
+    const form = document.querySelector('.form');
+    form.classList.add('open');
+
+    const closeForm = form.querySelector('.form__close');
+    closeForm.addEventListener('click', function() {
+        form.classList.remove('open');
+        resetForm(form);
+    })
+
+    const submitBtn = form.querySelector('.submit');
+    submitBtn.addEventListener('click', function(event) {
+        const name = form.querySelector('.name__value');
+        const day = form.querySelector('.day__value');
+        const date = new Date(day.value);
+        const dateNum = date.getDay() == 0 ? 7 : date.getDay();
+
+
+        const timeFrom = form.querySelector('.time__from');
+        const timeTo = form.querySelector('.time__to');
+        const time = timeFrom.value + " - " + timeTo.value;
+            
+        const location = form.querySelector('.location__value');
+
+        const patient = form.querySelector('.patient__value');
+
+        let task = {
+            name: name.value,
+            location: location.value,
+            day: reverseString(day.value),
+            from: timeFrom.value,
+            to: timeTo.value,
+            patientID: patient.value
+        }
+
+
+        form.classList.remove('open');
+        resetForm(form);
+
+        //Thêm vào database
+        fetch("http://localhost:8080/schedule/add?doctorID="+doctorID, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(task),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (date >= new Date()) {
+                    addTask(data, dateNum, "");
+                }
+                alert("Thêm thành công :)");
+            })
+            .catch(err => console.log(err));
+    })
+
+})
+
+function resetForm(form) {
+    const name = form.querySelector('.name__value').value = '';
+    const day = form.querySelector('.day__value').value = '';
+    const timeFrom = form.querySelector('.time__from').value = '';
+    const timeTo = form.querySelector('.time__to').value = '';
+    const location = form.querySelector('.location__value').value = '';
+    const patient = form.querySelector('.patient__value').value = '';
+}
+
 // Đảo ngược 1 chuỗi
+// yyyy-mm-dd -> dd-mm-yyyy
 function reverseString(str) {
     let splitStr = str.split('-');
     splitStr = splitStr.reverse();
@@ -127,9 +215,9 @@ function loadSchedule() {
                     return result;
                 });
                 for (let task of data[index]) {
-                    let date = index + 1;
                     let today = new Date();
                     let taskDay = new Date(reverse(task.day));
+                    date = index + 1;
                     if (taskDay < today) {
                         continue;
                     }

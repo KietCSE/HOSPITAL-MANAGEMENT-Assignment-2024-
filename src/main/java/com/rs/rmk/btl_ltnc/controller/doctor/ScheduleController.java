@@ -1,5 +1,6 @@
 package com.rs.rmk.btl_ltnc.controller.doctor;
 
+import com.rs.rmk.btl_ltnc.model.doctorInfo.doctorInfoModel;
 import com.rs.rmk.btl_ltnc.model.task.taskModel;
 import com.rs.rmk.btl_ltnc.service.scheduleService.scheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,14 @@ public class ScheduleController {
     public boolean deleteTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
         return scheduleService.deleteTask(doctorID, task);
     }
+
+//    @GetMapping("/schedule/day")
+//    public List<taskModel> getTaskListAtDay(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+//        return scheduleService.getTaskListAtDay(doctorID, task.getDay());
+//    }
+//
+//    @GetMapping("/schedule/test")
+//    public List<String> getListDoctorID() throws ExecutionException, InterruptedException {
+//        return scheduleService.getListDoctorID();
+//    }
 }

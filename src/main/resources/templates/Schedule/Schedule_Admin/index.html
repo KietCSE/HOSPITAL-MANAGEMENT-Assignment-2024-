@@ -50,6 +50,7 @@
    
     <!-- CODE HERE -->
     <div class="main">
+        <button class="create-btn">Thêm</button>
         <div class="week">
             <div class="week__day detail__right">
                 <h2 class="day">Thứ 2</h2>
@@ -97,8 +98,37 @@
             </div>
         </div>
     </div>
-    <script th:src="@{/script/Schedule/main.js}"></script>
+    <script th:src="@{/script/Schedule/Schedule_Admin/main.js}"></script>
     <div class="space"></div>
+    <div class="form">
+        <div class="form__body">
+            <form action="">
+                <div class="form__close">
+                    <i style="font-size: 25px;" class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="name">
+                    <input type="text" class="name__value" placeholder="Tên công việc">
+                </div>
+                <div class="day-time">
+                    <div class="day">
+                        <input class="cursor-pointer day__value" type="date" name="">
+                    </div>
+                    <div class="time">
+                        <input class="cursor-pointer time__from" type="time">
+                        <p style="font-size: 2rem;"> - </p>
+                        <input class="cursor-pointer time__to" type="time">
+                    </div>
+                </div>
+                <div class="location">
+                    <input type="text" class="location__value" placeholder="Địa điểm">
+                </div>
+                <div class="patient">
+                    <input type="text" name="" class="patient__value" placeholder="Thông tin bệnh nhân">
+                </div>
+                <button class="cursor-pointer submit" type="submit">Xong</button>
+            </form>
+        </div>
+    </div>
     <!-- STOP CODE HERE -->
     <!-- start footer  -->
     <section class="footer">
