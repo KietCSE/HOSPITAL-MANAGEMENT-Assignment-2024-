@@ -102,7 +102,13 @@
           >Đánh giá</a
           >
 
-
+          <a
+                  class="list-group-item list-group-item-action"
+                  data-toggle="list"
+                  href="#account-medical"
+                  style="font-size: medium;"
+          >Đơn thuốc</a
+          >
 
         </div>
       </div>
@@ -112,24 +118,24 @@
             <div class="card-body">
               <div class="form-group">
                 <label class="form-label" style="font-size:small;">Họ và tên</label>
-                  <input
-                          name = "name"
-                          type="text"
-                          class="form-control mb-1"
-                          style="font-size:small;"
-                          placeholder="Tran Van A"
-                  />
+                <input
+                        name = "name"
+                        type="text"
+                        class="form-control mb-1"
+                        style="font-size:small;"
+                        placeholder="Tran Van A"
+                />
               </div>
 
               <div class="form-group">
                 <label class="form-label" style="font-size:small;">Phòng điều trị</label>
-                  <input
-                          name="room"
-                          type="text"
-                          class="form-control mb-1"
-                          style="font-size:small;"
-                          placeholder="Hx-xxx"
-                  />
+                <input
+                        name="room"
+                        type="text"
+                        class="form-control mb-1"
+                        style="font-size:small;"
+                        placeholder="Hx-xxx"
+                />
 
               </div>
               <div class="form-group">
@@ -200,52 +206,82 @@
           </div>
 
 
-      <div class="tab-pane fade" id="account-comment">
-        <div class="card-body pb-2">
-          <div class="form-group">
-            <label class="form-label" style="font-size:small;">Dịch vụ hỗ trợ và chăm sóc khách hàng</label>
-            <input
-                    name ="comment_customer_care"
-                    type="number"
-                    class="form-control mb-1"
-                    style="font-size:small;"
-                    placeholder="0-100"
-            />
-            <div class="form-group">
-              <label class="form-label" style="font-size:small;">Cơ sở vật chất và trang thiết bị</label>
-              <input
-                      name ="comment_service"
-                      type="number"
-                      class="form-control mb-1"
-                      style="font-size:small;"
-                      placeholder="0-100"
-              />
+          <div class="tab-pane fade" id="account-comment">
+            <div class="card-body pb-2">
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;">Dịch vụ hỗ trợ và chăm sóc khách hàng</label>
+                <input
+                        name ="comment_customer_care"
+                        type="number"
+                        class="form-control mb-1"
+                        style="font-size:small;"
+                        placeholder="0-100"
+                />
+                <div class="form-group">
+                  <label class="form-label" style="font-size:small;">Cơ sở vật chất và trang thiết bị</label>
+                  <input
+                          name ="comment_service"
+                          type="number"
+                          class="form-control mb-1"
+                          style="font-size:small;"
+                          placeholder="0-100"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" style="font-size:small;">Thái độ nhân viên</label>
+                  <input
+                          name ="comment_attitude"
+                          type="number"
+                          class="form-control mb-1"
+                          style="font-size:small;"
+                          placeholder="0-100"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" style="font-size:small;">Chất lượng dịch vụ khám chữa bệnh</label>
+                  <input
+                          name = "comment_healthcare"
+                          type="number"
+                          class="form-control mb-1"
+                          style="font-size:small;"
+                          placeholder="0-100"
+                  />
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label class="form-label" style="font-size:small;">Thái độ nhân viên</label>
-              <input
-                      name ="comment_attitude"
-                      type="number"
-                      class="form-control mb-1"
-                      style="font-size:small;"
-                      placeholder="0-100"
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-label" style="font-size:small;">Chất lượng dịch vụ khám chữa bệnh</label>
-              <input
-                      name = "comment_healthcare"
-                      type="number"
-                      class="form-control mb-1"
-                      style="font-size:small;"
-                      placeholder="0-100"
-              />
+          </div>
+          <div class="tab-pane fade" id="account-medical">
+            <div class="card-body pb-2">
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;">Buổi sáng</label>
+                <textarea class="form-control" rows="2" style="font-size:small;" name="morning"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;" >Buổi chiều</label>
+                <textarea class="form-control" rows="2" style="font-size:small;" name="afternoon"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;" >Buổi tối</label>
+                <textarea
+                        class="form-control"
+                        row ="2"
+                        style="font-size:small;"
+                        name="evening"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;" >Chú ý</label>
+                <textarea
+                        class="form-control"
+                        row ="2"
+                        style="font-size:small;"
+                        name="Note"
+                ></textarea>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
-     </div>
+        </div>
     </div>
   </div>
 

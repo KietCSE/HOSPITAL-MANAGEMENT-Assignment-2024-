@@ -162,7 +162,7 @@
     padding: 1%;
     width: 50rem;
     height: 50rem;
-    z-index: 1;
+    z-index: 10;
     overflow: auto;
 }
 
@@ -184,4 +184,18 @@
 .infor .info-Surround span {
     font-size: 20px;
     margin-bottom: 1%;
+}
+
+table {
+    height: 30px;
+    overflow: auto;
+}
+
+table thead th {
+    background-color: #0a55f8;
+}
+
+table thead th, tbody td {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
 }
