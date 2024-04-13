@@ -50,4 +50,11 @@ public class roomService {
             throw new FirestoreException(ErrorFirestore.NOT_GET_DOCUMENT);
         }
     }
+
+    public static void post_Info_2(Room room) {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        dbFirestore.collection(COLLECTION_NAME)
+                .document(room.getRId())
+                .set(room);
+    }
 }
