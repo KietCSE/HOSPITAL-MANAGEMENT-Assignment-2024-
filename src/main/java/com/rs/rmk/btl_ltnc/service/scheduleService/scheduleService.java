@@ -38,7 +38,7 @@ public class scheduleService  {
         int index = time.indexOf(':');
         int hours = Integer.parseInt(time.substring(0, index));
         int minutes = Integer.parseInt(time.substring(index + 1));
-        if (minutes < 30) {
+        if (minutes == 0) {
             return 2 * hours;
         }
         else {
