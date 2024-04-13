@@ -128,3 +128,7 @@ document.querySelector(".room").addEventListener("click", () => {
     Fetch("/navigateMedicine", "/room")
 })
 
+document.querySelector(".evaluate").addEventListener("click", () => {
+    window.location.href = "/evaluate";
+})
+

@@ -19,10 +19,10 @@
 
 .container-layout .container .evaluate {
     height: 90%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+    /*align-items: center;*/
+    /*flex-direction: column;*/
 }
 
 
@@ -50,24 +50,31 @@
     min-width: 120px;
     height: 30px;
     border-radius: 10px;
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    color: black;
+    color: #fff;
+    display: none;
 }
 
 .container-layout .container .very-good {
     background-color: #08E283;
+    color: black;
+
 }
 
 
 .container-layout .container .normal{
     background-color: #FAD36F;
+    color: black;
+
 }
 
 .container-layout .container .bad {
     background-color: red;
+    color: black;
+
 }
 
 .container-layout .container .box-evaluate .score {
@@ -79,4 +86,18 @@
     font-size: 2rem;
     font-weight: 600;
     color: var(--box-hover);
+}
+
+.container-layout .container .box-evaluate .tong
+{
+    font-size: 2.5rem;
+    font-weight: 650;
+}
+
+.title {
+    background-color: orange;
+    color: black;
+    display: inline-block;
+    padding: 0.5rem 3rem;
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%); /*tao ra bang ron*/
 }

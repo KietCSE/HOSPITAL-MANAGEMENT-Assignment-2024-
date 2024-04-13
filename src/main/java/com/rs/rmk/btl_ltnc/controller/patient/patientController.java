@@ -67,6 +67,7 @@ public class patientController {
         boolean check = firestorePatient.postPatient("Patient", patient);
         ApiResponse<?> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(check);
+        apiResponse.setMessage(id);
         return apiResponse;
     }
 

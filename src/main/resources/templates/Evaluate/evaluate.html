@@ -53,47 +53,48 @@
     <!-- CODE HERE -->
     <section class="container-layout">
         <div class="container">
-        <h2>ĐÁNH GIÁ BỆNH VIỆN</h2>
+        <h2 class="title">ĐÁNH GIÁ BỆNH VIỆN</h2>
         <div class="evaluate">
-            <div class="box-evaluate">
-                <span>Tieu chi 1: </span>
-                <div class="score">100</div>
+            <div class="box-evaluate total-score">
+                <span class="tong">TỔNG:</span>
+                <div class="score"></div>
                 <div class="status very-good">Rất tôt</div>
                 <div class="status good">Tốt</div>
                 <div class="status normal">Bình thường</div>
                 <div class="status bad">Tệ</div>
             </div>
 
-            <div class="box-evaluate">
-                <span>Tieu chi 1: </span>
-                <div class="score">100</div>
+
+            <div class="box-evaluate customer-care">
+                <span> Dịch vụ hỗ trợ và chăm sóc khách hàng</span>
+                <div class="score"></div>
                 <div class="status very-good">Rất tôt</div>
                 <div class="status good">Tốt</div>
                 <div class="status normal">Bình thường</div>
                 <div class="status bad">Tệ</div>
             </div>
 
-            <div class="box-evaluate">
-                <span>Tieu chi 1: </span>
-                <div class="score">100</div>
+            <div class="box-evaluate service">
+                <span>Cơ sở vật chất và trang thiết bị</span>
+                <div class="score"></div>
                 <div class="status very-good">Rất tôt</div>
                 <div class="status good">Tốt</div>
                 <div class="status normal">Bình thường</div>
                 <div class="status bad">Tệ</div>
             </div>
 
-            <div class="box-evaluate">
-                <span>Tieu chi 1: </span>
-                <div class="score">100</div>
+            <div class="box-evaluate attitude">
+                <span>Thái độ nhân viên</span>
+                <div class="score"></div>
                 <div class="status very-good">Rất tôt</div>
                 <div class="status good">Tốt</div>
                 <div class="status normal">Bình thường</div>
                 <div class="status bad">Tệ</div>
             </div>
 
-            <div class="box-evaluate">
-                <span>Tieu chi 1: </span>
-                <div class="score">100</div>
+            <div class="box-evaluate health-care">
+                <span>Chất lượng dịch vụ khám chữa bệnh</span>
+                <div class="score"></div>
                 <div class="status very-good">Rất tôt</div>
                 <div class="status good">Tốt</div>
                 <div class="status normal">Bình thường</div>
@@ -151,5 +152,6 @@
     </section>
     <!-- end footer  -->
 
+    <script th:src="@{/script/Evaluate/evaluate.js}"></script>
 </body>
 </html>
