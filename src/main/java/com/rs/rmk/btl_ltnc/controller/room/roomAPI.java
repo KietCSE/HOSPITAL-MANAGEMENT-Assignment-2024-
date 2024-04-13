@@ -49,7 +49,6 @@ public class roomAPI {
             room_T.setRId("H1" + "-" + "10" + (i + 1));
             room_T.setList_Devices(new ArrayList<>());
             room_T.setNumber_Patient(0);
-            room_T.setList_Patients(new ArrayList<>());
             RT.add(room_T);
         }
         for (int i = 0; i < 5; i++) {
@@ -57,7 +56,6 @@ public class roomAPI {
             room_T.setRId("H2" + "-" + "20" + (i + 1));
             room_T.setList_Devices(new ArrayList<>());
             room_T.setNumber_Patient(0);
-            room_T.setList_Patients(new ArrayList<>());
             RT.add(room_T);
         }
         roomService.post_Info(RT);
