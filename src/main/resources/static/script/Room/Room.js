@@ -64,17 +64,17 @@ function Update_Status(ROOM) {
                     room.querySelector(".infor .infor-content #status").innerHTML = "Trạng thái phòng: Phòng trống";
                     room.querySelector(".card-room").style.backgroundColor = "green";
                 }
-                let patients = room.querySelector(".infor .infor-content #patients");
-                patients.innerHTML = "";
-                for (let i = 0; i < ROOM.list_Patients.length; i++) {
-                    let patient = document.createElement("div");
-                    patient.className = "pt";
-                    patient.innerHTML = `
-                        <p>${ROOM.patients[i].name}</p>
-                        <p>${ROOM.patients[i].phone_number}</p>
-                        <p>${ROOM.patients[i].address}</p>`;
-                    patients.appendChild(patient);
-                }
+                // let patients = room.querySelector(".infor .infor-content #patients");
+                // patients.innerHTML = "";
+                // for (let i = 0; i < ROOM.list_Patients.length; i++) {
+                //     let patient = document.createElement("div");
+                //     patient.className = "pt";
+                //     patient.innerHTML = `
+                //         <p>${ROOM.patients[i].name}</p>
+                //         <p>${ROOM.patients[i].phone_number}</p>
+                //         <p>${ROOM.patients[i].address}</p>`;
+                //     patients.appendChild(patient);
+                // }
 
                 let devices = room.querySelector(".infor .infor-content #devices");
                 devices.innerHTML = "";

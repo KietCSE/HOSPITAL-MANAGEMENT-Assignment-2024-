@@ -125,7 +125,11 @@ document.querySelector(".medicine_info").addEventListener("click", () => {
 })
 
 document.querySelector(".room").addEventListener("click", () => {
-    Fetch("/navigateMedicine", "/medicine/form")
+    Fetch("/navigateMedicine", "/room")
+})
+
+document.querySelector(".evaluate").addEventListener("click", () => {
+    window.location.href = "/evaluate";
 })
 
 document.querySelector('.create-schedule').addEventListener('click', () =>{
