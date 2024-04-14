@@ -6,8 +6,6 @@ import com.rs.rmk.btl_ltnc.repository.doctorInfoRepository.doctorInfoRepository;
 import com.rs.rmk.btl_ltnc.repository.scheduleRepository.scheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +23,7 @@ public class scheduleService  {
     @Autowired
     private doctorInfoRepository doctorInfoRepository;
 
-    private static String getDateOfWeek(String Day) throws ParseException {
+    private String getDateOfWeek(String Day) throws ParseException {
         Date day = new SimpleDateFormat("dd/MM/yyyy").parse(Day);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(day);
@@ -34,11 +32,11 @@ public class scheduleService  {
         return date;
     }
 
-    private static int toIndex(String time) {
+    private int toIndex(String time) {
         int index = time.indexOf(':');
         int hours = Integer.parseInt(time.substring(0, index));
         int minutes = Integer.parseInt(time.substring(index + 1));
-        if (minutes == 0) {
+        if (minutes < 30) {
             return 2 * hours;
         }
         else {
@@ -46,11 +44,7 @@ public class scheduleService  {
         }
     }
 
-    public List<List<taskModel>> getSchedule(String doctorID) throws ExecutionException, InterruptedException {
-        return scheduleRepository.getSchedule(doctorID);
-    }
-
-    public List<String> changeSchedule(String day, String from, String to, String departmentName) throws ExecutionException, InterruptedException, ParseException {
+    private List<String> getListIDs(String day, String from, String to, String departmentName) throws ExecutionException, InterruptedException, ParseException {
         List<String> result = new ArrayList<>();
         List<String> listIDs = doctorInfoRepository.getListDoctorID(departmentName);
         String date = getDateOfWeek(day);
@@ -76,6 +70,19 @@ public class scheduleService  {
             }
         }
         return result;
+    }
+
+    public List<doctorInfoModel> getListDoctorCanExchange(taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        List<doctorInfoModel> result = new ArrayList<>();
+        List<String> listIDs = getListIDs(task.getDay(), task.getFrom(), task.getTo(), task.getDepartmentName());
+        for (String ID : listIDs) {
+            result.add(doctorInfoRepository.getDoctorInfo(ID));
+        }
+        return result;
+    }
+
+    public List<List<taskModel>> getSchedule(String doctorID) throws ExecutionException, InterruptedException {
+        return scheduleRepository.getSchedule(doctorID);
     }
 
     public taskModel addTask(String doctorID, taskModel task) throws ExecutionException, InterruptedException, ParseException {

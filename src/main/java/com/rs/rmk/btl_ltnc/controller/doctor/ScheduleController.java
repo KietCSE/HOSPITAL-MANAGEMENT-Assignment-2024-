@@ -30,8 +30,8 @@ public class ScheduleController {
         return scheduleService.deleteTask(doctorID, task);
     }
 
-    @GetMapping("/schedule/test")
-    public List<String> getListDoctorID(@RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
-        return scheduleService.changeSchedule(task.getDay(), task.getFrom(), task.getTo(), task.getDepartmentName());
+    @PostMapping("/schedule/change")
+    public List<doctorInfoModel> getListDoctorCanExchange(@RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.getListDoctorCanExchange(task);
     }
 }
