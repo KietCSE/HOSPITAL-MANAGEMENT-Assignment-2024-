@@ -76,11 +76,7 @@ function addRow(stt, doctor) {
       `
   row.addEventListener('click', function() {
     sessionStorage.setItem('doctorID', doctor.id);
-    let url = "/doctor/info";
-    if (sessionStorage.getItem('schedule') == 'true') {
-        url = "/schedule";
-    }
-    window.location.href = url;
+    window.location.href = "/doctor/info";
   });
 
   row.querySelector('.delete').addEventListener('click', function(event) {
