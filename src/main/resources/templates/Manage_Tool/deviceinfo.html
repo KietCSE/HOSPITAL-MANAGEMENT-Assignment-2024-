@@ -13,7 +13,7 @@
     <link th:rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link th:rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css}" />
+    <link th:rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper11/swiper-bundle.min.css}" />
 </head>
 
 
@@ -153,8 +153,8 @@
                 <input type="text" id="ID" name="ID">
             </label>
             <label for="Use" class="Use">
-                <span>Đưa vào sử dụng hoặc đổi vị trí: <input type="checkbox" name="Use" id="Use"
-                        onclick="toggleCheckbox(this)">
+                <span>Đưa vào sử dụng hoặc đổi vị trí: <input type="checkbox" class="checkbox" name="Use" id="Use"
+                        onclick="onCheckboxChange(this)">
                     <label for="location">
                         Vị trí:
                         <input type="text" id="location" name="location" placeholder="Tòa-Phòng. VD: H1-212">
@@ -163,10 +163,17 @@
             </label>
 
             <label for="Broken" class="Broken Use">
-                <span>Báo hỏng: <input type="checkbox" name="Broken" id="Broken" onclick="toggleCheckbox(this)"> </span>
+                <span>Báo hỏng: <input type="checkbox" name="Broken" class="checkbox" id="Broken"
+                                       onclick="onCheckboxChange(this)"> </span>
             </label>
+
+            <label for="DeleteItem" class="Broken Use">
+                <span>Xóa: <input type="checkbox" name="DeleteItem" class="checkbox" id="DeleteItem"
+                                       onclick="onCheckboxChange(this)"> </span>
+            </label>
+
             <div class="SRR">
-                <div class="Submit">Xác nhận</div>
+                <div class="Submit" id="submitForm">Xác nhận</div>
             </div>
         </form>
     </section>

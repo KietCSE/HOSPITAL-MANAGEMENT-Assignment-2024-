@@ -77,8 +77,8 @@ document.querySelector('.search .search-btn').addEventListener('click', () => {
     count = 0;
     let content = document.querySelector('.search input').value;
     document.querySelector('.table .table_body tbody').innerHTML = ""
+    document.querySelector('.table .table_body tbody')
     if (!content) {
-        console.log("ko nhap")
         list.forEach(function(e) {
             // console.log(e);
             AddPatient(e)
