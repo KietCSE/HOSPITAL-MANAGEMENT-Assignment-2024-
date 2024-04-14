@@ -80,14 +80,30 @@ function useDevicesData(devices) {
     }
 }
 
-function toggleCheckbox(checkbox) {
-    var otherCheckboxId = checkbox.id === "Use" ? "Broken" : "Use";
-    var otherCheckbox = document.getElementById(otherCheckboxId);
-
+function onCheckboxChange(checkbox) {
     if (checkbox.checked) {
-        otherCheckbox.disabled = true;
+        disableOtherCheckboxes(checkbox);
     } else {
-        otherCheckbox.disabled = false;
+        activeOtherCheckboxes(checkbox);
+    }
+}
+
+function disableOtherCheckboxes(checkedCheckbox) {
+    let checkboxes = document.getElementsByClassName('checkbox');
+    for (let i = 0; i < checkboxes.length; i++) {
+        let checkbox = checkboxes[i];
+        if (checkbox !== checkedCheckbox) {
+            checkbox.disabled = true;
+        }
+    }
+}
+function activeOtherCheckboxes(checkedCheckbox) {
+    let checkboxes = document.getElementsByClassName('checkbox');
+    for (let i = 0; i < checkboxes.length; i++) {
+        let checkbox = checkboxes[i];
+        if (checkbox !== checkedCheckbox) {
+            checkbox.disabled = false;
+        }
     }
 }
 
@@ -100,86 +116,115 @@ function gotoForm(id) {
     form.scrollIntoView({ behavior: "smooth" });
 }
 
-document.getElementById("ID").addEventListener("input", function (event) {
-    let ID = this.value;
-    let parts = ID.split("_");
-    if (parts.length !== 0) {
-        let beforeUnderscore = parts[0];
-        let afterUnderscore = parts[1];
-        if (beforeUnderscore === idToSearch) {
-            let item = globalData.itemsList[afterUnderscore]
-            if (item.state==="damaged") {
-                document.getElementById("Use").disabled = true
-                document.getElementById("Broken").disabled = true
+function indexOfItem(id) {
+    for (let i = 0; i<globalData.itemsList.length; i++) {
+        if (globalData.itemsList[i].id === id) {return i}
+    }
+    return -1
+}
+
+function checkIdInput(ID) {
+    if (ID === "") {
+        alert("Chưa nhập ID")
+        return false
+    } else {
+        let useCheckbox = document.getElementById("Use")
+        let brokenCheckbox = document.getElementById("Broken")
+        let deleteCheckbox = document.getElementById("DeleteItem")
+        let index = indexOfItem(ID)
+        if (index === -1) {
+            alert("Chỉ nhập ID trong danh sách bên trên")
+            return false
+        } else {
+            let item = globalData.itemsList[index]
+            if (item.state === "damaged") {
+                if (useCheckbox.checked || brokenCheckbox.checked) {
+                    alert("Thiết bị đã hỏng, không thể sử dụng hoặc tiếp tục báo lỗi")
+                    return false
+                } else if (deleteCheckbox.checked) {
+                    return true
+                } else {
+                    alert("Chưa chọn loại yêu cầu")
+                    return false
+                }
             } else {
-                document.getElementById("Use").disabled = false
-                document.getElementById("Broken").disabled = false
+                if (deleteCheckbox.checked) {
+                    alert("Không thể xóa thiết bị chưa hỏng")
+                    return false
+                }
             }
         }
     }
-});
+    return true
+}
 
-document.getElementById("updateItem").addEventListener("submit", function (event){
-    event.preventDefault()
-    var ID = document.getElementById("ID")
-    var Use = document.getElementById("Use")
-    var location = document.getElementById("location")
-    var Broken = document.getElementById("Broken")
-    let postData
-    if (ID.value==="") {
-        alert("Chưa nhập ID")
-    } else {
-        if (Use.checked) {
-            if (location.value==="") {
-                alert("Chưa nhập vị trí")
-            } else {
+document.getElementById("submitForm").addEventListener("click", function (event) {
+        event.preventDefault()
+        let ID = document.getElementById("ID")
+        let Use = document.getElementById("Use")
+        let location = document.getElementById("location")
+        let Broken = document.getElementById("Broken")
+        let DeleteItem = document.getElementById("DeleteItem")
+        let postData
+        if (checkIdInput(ID.value)) {
+            if (Use.checked) {
+                if (location.value === "") {
+                    alert("Chưa nhập vị trí")
+                } else {
+                    postData = {
+                        ID: ID.value,
+                        Act: "Use",
+                        Location: location.value
+                    }
+                }
+            } else if (Broken.checked) {
                 postData = {
                     ID: ID.value,
-                    Act: "Use",
-                    Location: location.value
+                    Act: "Broken",
+                    Location: ""
+                }
+            } else if (DeleteItem.checked) {
+                postData = {
+                    ID: ID.value,
+                    Act: "DeleteItem",
+                    Location: ""
                 }
             }
-        } else if (Broken.checked) {
-            postData = {
-                ID: ID.value,
-                Act: "Broken",
-                Location: ""
-            }
-        } else {
-            alert("Chưa chọn loại yêu cầu")
         }
-    }
-    if (postData !== undefined) {
-        console.log(postData)
-        fetch('/api/devices/updateItem', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postData)
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
-                }
-            })
-            .then(data => {
-                console.log(data)
-                if (data===true) {
-                    alert("Cập nhật thành công")
-                    window.location.reload()
-                } else {
-                    alert("Sai ID hoặc lỗi trong lúc gửi dữ liệu")
-                }
-            })
-            .catch(error => {
-                console.error('Đã xảy ra lỗi:', error);
-                alert("Đã xảy ra lỗi khi gửi dữ liệu.");
-            });
-    }
-});
+        if (postData !== undefined) {
+            console.log(postData)
+            let confirmation = confirm("Xác nhận thực hiện hành động này?");
+            if (confirmation === true) {
+                fetch('/api/devices/updateItem', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json()
+                        } else {
+                            alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                        }
+                    })
+                    .then(data => {
+                        console.log(data)
+                        if (data === true) {
+                            alert("Cập nhật thành công")
+                            window.location.reload()
+                        } else {
+                            alert("Sai ID hoặc lỗi trong lúc gửi dữ liệu")
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Đã xảy ra lỗi:', error);
+                        alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                    });
+            }
+        }
+    });
 
 document.getElementById("save").addEventListener("click", function (event) {
     let confirmation = confirm("Xác nhận lưu trạng thái hiện tại?");
@@ -216,7 +261,7 @@ document.getElementById("save").addEventListener("click", function (event) {
 document.getElementById("delete").addEventListener("click", function (event) {
     console.log(globalData)
     if (globalData.damagedAmount !== globalData.totalAmount) {
-        alert("Chỉ có thể xóa nhóm thiết bị khi tất cả thiết bị đều hỏng")
+        alert("Chỉ có thể xóa nhóm thiết bị khi tất cả thiết bị đều hỏng hoặc tổng số lượng = 0")
     } else {
         let confirmation = confirm("Xác nhận xóa nhóm thiết bị này?");
         if (confirmation === true) {

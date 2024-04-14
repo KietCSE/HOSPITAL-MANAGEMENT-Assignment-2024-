@@ -130,7 +130,7 @@ body {
   margin-top: 3rem;
   background-color: var(--box-hover);
   padding: 2rem 3%;
-  position: absolute;
+  /*position: absolute;*/
   bottom: 0;
   width: 100%;
 }
@@ -350,4 +350,73 @@ tbody .delete:hover {
 
 .search button:hover {
   background-color: var(--gray);
+}
+
+.open {
+  display: flex !important;
+}
+
+.addDoctor {
+  position: fixed;
+  background-color: rgba(229, 229, 229, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+
+.addDoctor__form {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  min-height: 40%;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  z-index: 100;
+}
+
+.addDoctor__form > form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  min-height: 50%;
+}
+
+.addDoctor__form .closeBtn {
+  align-self: flex-end;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  padding: 4px;
+}
+
+.addDoctor__form .closeBtn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.addDoctor__form input {
+  margin-top: 10px;
+  padding: 16px 8px;
+  background-color: #fff;
+  flex: 1;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+}
+
+.addDoctor__submitBtn {
+  padding: 8px;
+  margin-top: 16px;
+  background-color: var(--box-hover);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.addDoctor__submitBtn:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
