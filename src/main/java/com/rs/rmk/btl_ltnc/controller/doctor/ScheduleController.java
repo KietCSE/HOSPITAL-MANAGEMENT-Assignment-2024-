@@ -1,5 +1,6 @@
 package com.rs.rmk.btl_ltnc.controller.doctor;
 
+import com.rs.rmk.btl_ltnc.model.doctorInfo.doctorInfoModel;
 import com.rs.rmk.btl_ltnc.model.task.taskModel;
 import com.rs.rmk.btl_ltnc.service.scheduleService.scheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +16,22 @@ public class ScheduleController {
     private scheduleService scheduleService;
 
     @GetMapping("/schedule/list")
-    public List<List<taskModel>> getSchedule(@RequestParam String doctorName) throws ExecutionException, InterruptedException {
-        return scheduleService.getSchedule(doctorName);
+    public List<List<taskModel>> getSchedule(@RequestParam String doctorID) throws ExecutionException, InterruptedException {
+        return scheduleService.getSchedule(doctorID);
     }
 
-    @PostMapping("schedule/add")
-    public taskModel addTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
-        return scheduleService.addTask(doctorName, task);
+    @PostMapping("/schedule/admin/add")
+    public taskModel addTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.addTask(doctorID, task);
     }
 
-    @DeleteMapping("schedule/delete")
-    public boolean deleteTask(@RequestParam String doctorName, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
-        return scheduleService.deleteTask(doctorName, task);
+    @DeleteMapping("/schedule/admin/delete")
+    public boolean deleteTask(@RequestParam String doctorID, @RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.deleteTask(doctorID, task);
+    }
+
+    @PostMapping("/schedule/change")
+    public List<doctorInfoModel> getListDoctorCanExchange(@RequestBody taskModel task) throws ExecutionException, InterruptedException, ParseException {
+        return scheduleService.getListDoctorCanExchange(task);
     }
 }

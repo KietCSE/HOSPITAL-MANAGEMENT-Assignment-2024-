@@ -132,3 +132,7 @@ document.querySelector(".evaluate").addEventListener("click", () => {
     window.location.href = "/evaluate";
 })
 
+document.querySelector('.create-schedule').addEventListener('click', () =>{
+    window.location.href = '/schedule/doctor/list';
+})
+
