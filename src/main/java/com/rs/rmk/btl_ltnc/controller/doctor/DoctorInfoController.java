@@ -19,8 +19,8 @@ public class DoctorInfoController {
     }
 
     @GetMapping("/api/doctor/info")
-    public doctorInfoModel getDoctorInfo(@RequestParam String doctorName) throws ExecutionException, InterruptedException {
-        return service.getDoctorInfo(doctorName);
+    public doctorInfoModel getDoctorInfo(@RequestParam String doctorID) throws ExecutionException, InterruptedException {
+        return service.getDoctorInfo(doctorID);
     }
 
     @PostMapping("/api/doctor/add")
@@ -34,7 +34,7 @@ public class DoctorInfoController {
     }
 
     @DeleteMapping("api/doctor/delete")
-    public boolean deleteDoctorInfo(@RequestParam String doctorName) throws ExecutionException, InterruptedException {
-        return service.deleteDoctorInfo(doctorName);
+    public boolean deleteDoctorInfo(@RequestParam String doctorID) throws ExecutionException, InterruptedException {
+        return service.deleteDoctorInfo(doctorID);
     }
 }
