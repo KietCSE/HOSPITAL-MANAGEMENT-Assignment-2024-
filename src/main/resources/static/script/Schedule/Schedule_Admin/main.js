@@ -2,7 +2,7 @@ let doctorID = sessionStorage.getItem('doctorID');
 loadSchedule();
 
 // Thêm task
-function addTask(taskObj, date, patient) {
+function addTask(taskObj, date) {
     const week = document.querySelector('.week');
 
     const weekDay = week.children[date - 1];
@@ -318,13 +318,13 @@ function loadSchedule() {
                     return result;
                 });
                 for (let task of data[index]) {
+                    let date = index + 1;
                     let today = new Date();
                     let taskDay = new Date(reverse(task.day));
-                    date = index + 1;
                     if (taskDay < today) {
                         continue;
                     }
-                    addTask(task, date, "");
+                    addTask(task, date);
                 }
             }
         })
