@@ -19,11 +19,9 @@ var swiper = new Swiper(".doctor-slider", {
     },
   });
 
-document.querySelector('.header .login-btn a').innerText = "Tài khoản";
-
+// document.querySelector('.header .login-btn a').innerText = "Tài khoản";
 username = sessionStorage.getItem('Username');
-console.log(username)
-if (username !== "") {
+if (username !== "" && username != null) {
     document.querySelector('.header .login-btn a').innerText = username;
 }
 else {
