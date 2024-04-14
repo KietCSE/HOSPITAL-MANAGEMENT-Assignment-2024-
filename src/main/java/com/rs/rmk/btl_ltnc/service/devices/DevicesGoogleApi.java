@@ -29,27 +29,6 @@ public class DevicesGoogleApi {
         return writeResult != null;
     }
 
-    public static ArrayList<Map<String, ?>> searchDevices(String searchContent) throws ExecutionException, InterruptedException {
-        Firestore firestore = FirestoreClient.getFirestore();
-        CollectionReference devicesRef = firestore.collection("Devices");
-
-        // Tạo truy vấn (query) để tìm các tài liệu trong đó trường "name" chứa searchContent
-        Query query = devicesRef.whereEqualTo("name", searchContent);
-
-        // Thực hiện truy vấn
-        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        QuerySnapshot queryResult = querySnapshot.get();
-
-        // List để lưu trữ kết quả
-        ArrayList<Map<String, ?>> searchResults = new ArrayList<Map<String, ?>>();
-
-        // Lặp qua kết quả truy vấn và chuyển đổi chúng thành đối tượng Devices
-        for (QueryDocumentSnapshot document : queryResult) {
-            searchResults.add(document.getData());
-        }
-        return searchResults;
-    }
-
     public static ArrayList<Map<String, String>> getFullDevices() throws ExecutionException, InterruptedException {
         ArrayList<Map<String, String>> resultList = new ArrayList<>();
         try {

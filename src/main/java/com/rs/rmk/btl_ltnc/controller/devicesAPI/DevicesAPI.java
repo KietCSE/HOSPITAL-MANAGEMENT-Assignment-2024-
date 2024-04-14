@@ -30,12 +30,6 @@ public class DevicesAPI {
         return DevicesGoogleApi.getFullDevices();
     }
 
-    @PostMapping("/searchDevices")
-    public ArrayList<Map<String, ?>> searchDevices (@RequestBody String searchContent) throws ExecutionException, InterruptedException {
-
-        return DevicesGoogleApi.searchDevices(searchContent);
-    }
-
     @PostMapping("/getInfoByID")
     public ArrayList<Map<String, ?>> getInfoByID (@RequestBody String idToSearch) throws ExecutionException, InterruptedException {
 
