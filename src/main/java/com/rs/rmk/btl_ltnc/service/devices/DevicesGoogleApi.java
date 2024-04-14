@@ -10,6 +10,8 @@ import com.rs.rmk.btl_ltnc.repository.devices.Prepare;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -72,7 +74,6 @@ public class DevicesGoogleApi {
 
         int indexOfUnderscore = itemID.indexOf('_'); // Tìm vị trí của ký tự '_'
         String ID = itemID.substring(0, indexOfUnderscore);
-        int indexOfItem = Integer.parseInt(itemID.substring(indexOfUnderscore + 1 ));
 
         Firestore firestore = FirestoreClient.getFirestore();
         CollectionReference devicesRef = firestore.collection("Devices");
@@ -84,8 +85,10 @@ public class DevicesGoogleApi {
         } else {
             QueryDocumentSnapshot document = queryResult.getDocuments().get(0);
             DevicesApiResponse devices = document.toObject(DevicesApiResponse.class);
+            int indexOfItem = devices.indexOfItem(itemID);
+            if (indexOfItem == -1) {return false;}
             DevicesApiResponse.Item item = devices.getItemsList().get(indexOfItem);
-            System.out.println(item);
+
             String lastState = item.getState();
             if (Act.equalsIgnoreCase("Use")) {
                 item.setState("in use");
@@ -94,7 +97,7 @@ public class DevicesGoogleApi {
                     devices.setInUseAmount(devices.getInUseAmount() + 1);
                     devices.setStoredAmount(devices.getStoredAmount() - 1);
                 }
-            } else {
+            } else if (Act.equalsIgnoreCase("Broken")){
                 item.setState("damaged");
                 item.setLocated("kho-hỏng");
                 if (lastState.equals("in use")) {
@@ -104,7 +107,11 @@ public class DevicesGoogleApi {
                     devices.setStoredAmount(devices.getStoredAmount() - 1);
                     devices.setDamagedAmount(devices.getDamagedAmount() + 1);
                 }
-            }
+            } else if (Act.equalsIgnoreCase("DeleteItem")) {
+                devices.getItemsList().remove(indexOfItem);
+                devices.setTotalAmount(devices.getTotalAmount() - 1);
+                devices.setDamagedAmount(devices.getDamagedAmount() - 1);
+            } else {return false;}
             //Đưa devices đã được thay đổi lên lại firestore
             DocumentReference docRef = firestore.collection("Devices")
                     .document(devices.getId());
@@ -151,5 +158,42 @@ public class DevicesGoogleApi {
         ApiFuture<WriteResult> result = docRef.delete(); // Thực hiện xóa document
         // Chờ đợi kết quả của việc xóa document
         return result.get() != null;
+    }
+
+    public static Map<String, Map<String, Integer>> fullDevicesInRooms() throws ExecutionException, InterruptedException {
+        Map<String, Map<String, Integer>> devicesInRooms = new HashMap<String, Map<String, Integer>>();
+
+        try {
+            Firestore firestore = FirestoreClient.getFirestore();
+            CollectionReference devicesRef = firestore.collection("Devices");
+            ApiFuture<QuerySnapshot> query = devicesRef.get();
+            QuerySnapshot querySnapshot = query.get();
+            for (QueryDocumentSnapshot document : querySnapshot.getDocuments()) {
+                DevicesApiResponse device = document.toObject(DevicesApiResponse.class);
+                List<DevicesApiResponse.Item> itemsList = device.getItemsList();
+
+                for (DevicesApiResponse.Item item : itemsList) {
+                    if (item.getState().equals("in use")) {
+
+                        Map<String, Integer> room;
+                        if (devicesInRooms.containsKey(item.getLocated())) {
+                            room = devicesInRooms.get(item.getLocated());
+                            if (room.containsKey(device.getName())) {
+                                room.put(device.getName(), room.get(device.getName()) + 1);
+                            } else {
+                                room.put(device.getName(), 1);
+                            }
+                        } else {
+                            room = new HashMap<String, Integer>();
+                            room.put(device.getName(), 1);
+                        }
+                        devicesInRooms.put(item.getLocated(), room);
+                    }
+                }
+            }
+            return devicesInRooms;
+        } catch (FirestoreException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

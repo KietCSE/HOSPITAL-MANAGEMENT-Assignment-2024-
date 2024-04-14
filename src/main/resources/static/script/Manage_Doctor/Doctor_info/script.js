@@ -18,7 +18,7 @@ fetch("http://localhost:8080/api/doctor/info?doctorID=" + sessionStorage.getItem
         addInfo(data);
         addInfoUpdate(data);
     })
-    .catch(err => console.log(err));
+    .catch(err => alert(err));
 
 function addInfo(doctor) {
     document.querySelector('.name').innerText = doctor.fullName;
@@ -66,5 +66,5 @@ updateBtn.addEventListener('click', () => {
             document.querySelector('#major').innerText = doctorUpdate.major;
             alert("Cập nhật thành công :)")
         })
-        .catch(err => console.log(err));
+        .catch(err => alert(err));
 })

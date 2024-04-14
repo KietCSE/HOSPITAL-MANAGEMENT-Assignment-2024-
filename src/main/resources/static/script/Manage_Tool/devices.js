@@ -1,7 +1,6 @@
 document.getElementById("submit").addEventListener("click",
     function (event) {
-        event.preventDefault(); // Ngăn chặn việc gửi yêu cầu mặc định của form
-
+        event.preventDefault(); // Ngăn chặn việc gử
         // Lấy thông tin từ các trường input trong form
         let name = document.getElementById("Name").value
         let type = document.getElementById("Type").value
@@ -9,6 +8,16 @@ document.getElementById("submit").addEventListener("click",
         let totalAmount = document.getElementById("TotalAmount").value
         let date = document.getElementById("Date").value
 
+        if (name === '' || type === '' || supplier === '' ||
+            totalAmount === '' || date === '') {
+            alert("Chưa điền đủ thông tin");
+            return;
+        }
+
+        if (isNaN(parseInt(totalAmount)) || parseInt(totalAmount) < 0) {
+            alert("Số lượng không hợp lệ")
+            return;
+        }
 
         let formData = {
             Name: name,
@@ -21,12 +30,6 @@ document.getElementById("submit").addEventListener("click",
             Date: date,
             Img_url: null
         };
-
-        if (name === '' || type === '' || supplier === '' ||
-            totalAmount === '' || date === '') {
-            alert("Vui lòng điền đầy đủ thông tin");
-            return;
-        }
 
         // Xử lý hình ảnh ///////////////////////////////////////
         let File = document.getElementById("Image");
@@ -53,7 +56,7 @@ document.getElementById("submit").addEventListener("click",
                 return response.text();
             }
             else {
-                throw new Error("Không thể up ảnh");
+                alert("Không thể upload hình ảnh");
             }
         }).then(url => {
             formData.Img_url = url;

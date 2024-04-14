@@ -30,15 +30,20 @@ public class roomAPI {
         return new ApiResponse<>(SUCCESS, "OK", result, true);
     }
 
-    // Phương thức này để gởi thông tin các phòng bệnh về hệ thống
-    @PostMapping("/send/info/rooms")
-    public ApiResponse<?> post_Room_List_Info(@RequestParam List<Room> roomList)
-            throws FirestoreException {
-        roomService.post_Info(roomList);
+    @GetMapping("/get/All/list/room")
+    public ApiResponse<?> get_All_Room() throws FirestoreException {
+        List<Room> roomList = roomService.get_All_Room();
         if (roomList.isEmpty())
-            return new ApiResponse<>(ERROR, "Danh sách phòng trống", null, false);
-        return new ApiResponse<>(SUCCESS, "OK", null, true);
+            return new ApiResponse<>(ERROR, "DS Rỗng", null, false);
+        return new ApiResponse<>(SUCCESS, "OK", roomList, true);
     }
+
+    @PutMapping("/room/update")
+    public ApiResponse<?> update(@RequestParam Room room) throws FirestoreException{
+        roomService.post_Info_2(room);
+        return new ApiResponse<>(SUCCESS,"MSG", room, true);
+    }
+
 
     // Phuong thuc nay de tao 1 luong phong truoc
     @PostMapping("/create")
@@ -49,7 +54,6 @@ public class roomAPI {
             room_T.setRId("H1" + "-" + "10" + (i + 1));
             room_T.setList_Devices(new ArrayList<>());
             room_T.setNumber_Patient(0);
-            room_T.setList_Patients(new ArrayList<>());
             RT.add(room_T);
         }
         for (int i = 0; i < 5; i++) {
@@ -57,7 +61,6 @@ public class roomAPI {
             room_T.setRId("H2" + "-" + "20" + (i + 1));
             room_T.setList_Devices(new ArrayList<>());
             room_T.setNumber_Patient(0);
-            room_T.setList_Patients(new ArrayList<>());
             RT.add(room_T);
         }
         roomService.post_Info(RT);

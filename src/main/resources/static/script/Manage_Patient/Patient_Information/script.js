@@ -1,47 +1,57 @@
 // document.addEventListener("DOMContentLoaded", function () {
-  var tabLinks = document.querySelectorAll(".list-group-item");
+var tabLinks = document.querySelectorAll(".list-group-item");
 
-  tabLinks.forEach(function (tabLink) {
+tabLinks.forEach(function (tabLink) {
     tabLink.addEventListener("click", function (event) {
-      event.preventDefault();
+        event.preventDefault();
 
-      tabLinks.forEach(function (link) {
-        link.classList.remove("active");
-      });
+        tabLinks.forEach(function (link) {
+            link.classList.remove("active");
+        });
 
-      tabLink.classList.add("active");
+        tabLink.classList.add("active");
 
-      var targetPaneId = tabLink.getAttribute("href");
+        var targetPaneId = tabLink.getAttribute("href");
 
-      var tabPanes = document.querySelectorAll(".tab-pane");
-      tabPanes.forEach(function (pane) {
-        pane.classList.remove("active", "show");
-      });
+        var tabPanes = document.querySelectorAll(".tab-pane");
+        tabPanes.forEach(function (pane) {
+            pane.classList.remove("active", "show");
+        });
 
-      var targetPane = document.querySelector(targetPaneId);
-      targetPane.classList.add("active", "show");
+        var targetPane = document.querySelector(targetPaneId);
+        targetPane.classList.add("active", "show");
     });
-  });
+});
 // });
 
 // TAO MOT BENH NHAN MOI
 document.querySelector(".text-right .btn-primary").addEventListener("click",() =>{
-let Infomation;
+    let Infomation;
 
-  Infomation = {
-      name: document.querySelector('.form-group input[name="name"]').value,
-      phone_number: document.querySelector('.form-group input[name="phone"]').value,
-      address: document.querySelector('.form-group input[name="address"]').value,
-      b_day: document.querySelector('.form-group input[name="b_day"]').value,
-      status: document.querySelector('.form-group textarea[name="status"]').value,
-      treatment_schedule: document.querySelector('.form-group textarea[name="treatment_schedule"]').value,
-      medical_history: document.querySelector('.form-group textarea[name="medical_history"]').value,
-      dr: document.querySelector('.form-group select[name="dr"]').value,
-      room: document.querySelector('.form-group input[name="room"]').value,
-  }
+    Infomation = {
+        name: document.querySelector('.form-group input[name="name"]').value,
+        phone_number: document.querySelector('.form-group input[name="phone"]').value,
+        address: document.querySelector('.form-group input[name="address"]').value,
+        b_day: document.querySelector('.form-group input[name="b_day"]').value,
+        status: document.querySelector('.form-group textarea[name="status"]').value,
+        treatment_schedule: document.querySelector('.form-group textarea[name="treatment_schedule"]').value,
+        medical_history: document.querySelector('.form-group textarea[name="medical_history"]').value,
+        dr: document.querySelector('.form-group select[name="dr"]').value,
+        room: document.querySelector('.form-group input[name="room"]').value,
 
-  console.log(Infomation)
+        comment_customer_care: document.querySelector('.form-group input[name="comment_customer_care"]').value,
+        comment_service: document.querySelector('.form-group input[name="comment_service"]').value,
+        comment_attitude: document.querySelector('.form-group input[name="comment_attitude"]').value,
+        comment_healthcare: document.querySelector('.form-group input[name="comment_healthcare"]').value,
 
+        morning: document.querySelector('.form-group textarea[name="morning"]').value,
+        afternoon: document.querySelector('.form-group textarea[name="afternoon"]').value,
+        evening: document.querySelector('.form-group textarea[name="evening"]').value,
+        note: document.querySelector('.form-group textarea[name="Note"]').value,
+    }
+
+    console.log(Infomation)
+    // post data benh nhan
     fetch("/postdatainfo", {
         method: 'POST',
         headers: {
@@ -55,8 +65,16 @@ let Infomation;
                 document.querySelector('.ID-patient').innerText = data.data
                 document.querySelector('.notification').style.visibility = 'visible'
             }
+            // loi nhap du lieu
+            else {
+                alert(data.message)
+            }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+        })
+
+
 })
 
 
@@ -113,6 +131,23 @@ function LoadDataPatient(data) {
                           style="font-size: medium;"
                   >Chi tiết</a
                   >
+                  
+                  <a
+                  class="list-group-item list-group-item-action"
+                  data-toggle="list"
+                  href="#account-comment"
+                  style="font-size: medium;"
+                  >Đánh giá</a
+                  >
+                  
+                  <a
+                  class="list-group-item list-group-item-action"
+                  data-toggle="list"
+                  href="#account-medical"
+                  style="font-size: medium;"
+                  >Đơn thuốc</a
+                  >
+                  
                 </div>
               </div>
               <div class="col-md-9">
@@ -211,10 +246,97 @@ function LoadDataPatient(data) {
                       </div>
                     </div>
                   </div>
-                </div>
+
+              
+              <div class="tab-pane fade" id="account-comment">
+        <div class="card-body pb-2">
+          <div class="form-group">
+            <label class="form-label" style="font-size:small;">Dịch vụ hỗ trợ và chăm sóc khách hàng</label>
+            <input
+                    name ="comment_customer_care"
+                    type="number"
+                    class="form-control mb-1"
+                    style="font-size:small;"
+                    placeholder="0-100"
+                    value="${data.comment_customer_care}"
+            />
+            <div class="form-group">
+              <label class="form-label" style="font-size:small;">Cơ sở vật chất và trang thiết bị</label>
+              <input
+                      name ="comment_service"
+                      type="number"
+                      class="form-control mb-1"
+                      style="font-size:small;"
+                      placeholder="0-100"
+                      value="${data.comment_service}"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size:small;">Thái độ nhân viên</label>
+              <input
+                      name ="comment_attitude"
+                      type="number"
+                      class="form-control mb-1"
+                      style="font-size:small;"
+                      placeholder="0-100"
+                      value="${data.comment_attitude}"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size:small;">Chất lượng dịch vụ khám chữa bệnh</label>
+              <input
+                      name = "comment_healthcare"
+                      type="number"
+                      class="form-control mb-1"
+                      style="font-size:small;"
+                      placeholder="0-100"
+                      value="${data.comment_healthcare}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-pane fade" id="account-medical">
+            <div class="card-body pb-2">
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;">Buổi sáng</label>
+                <textarea class="form-control" rows="2" style="font-size:small;" name="morning"
+                >${data.morning}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;" >Buổi chiều</label>
+                <textarea class="form-control" rows="2" style="font-size:small;" name="afternoon"
+                
+                >${data.afternoon}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;" >Buổi tối</label>
+                <textarea
+                        class="form-control"
+                        row ="2"
+                        style="font-size:small;"
+                        name="evening"
+                        
+                >${data.evening}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:small;" >Chú ý</label>
+                <textarea
+                        class="form-control"
+                        row ="2"
+                        style="font-size:small;"
+                        name="Note"
+                        
+                >${data.note}</textarea>
               </div>
             </div>
           </div>
+      
+      </div>
+     </div>     
+    </div>
+   </div>
         
         
           <div class="text-right mt-3">
@@ -223,6 +345,7 @@ function LoadDataPatient(data) {
         `
     document.querySelector(".container").innerHTML = template;
 
+    // hien thi select doctor khi xem thong tin
     var selectdr = document.getElementById('select-dr');
     console.log(selectdr)
     for (var i = 0; i < selectdr.options.length; i++) {
@@ -235,29 +358,29 @@ function LoadDataPatient(data) {
     }
 
     // document.addEventListener("DOMContentLoaded", function () {
-        var tabLinks = document.querySelectorAll(".list-group-item");
+    var tabLinks = document.querySelectorAll(".list-group-item");
 
-        tabLinks.forEach(function (tabLink) {
-            tabLink.addEventListener("click", function (event) {
-                event.preventDefault();
+    tabLinks.forEach(function (tabLink) {
+        tabLink.addEventListener("click", function (event) {
+            event.preventDefault();
 
-                tabLinks.forEach(function (link) {
-                    link.classList.remove("active");
-                });
-
-                tabLink.classList.add("active");
-
-                var targetPaneId = tabLink.getAttribute("href");
-
-                var tabPanes = document.querySelectorAll(".tab-pane");
-                tabPanes.forEach(function (pane) {
-                    pane.classList.remove("active", "show");
-                });
-
-                var targetPane = document.querySelector(targetPaneId);
-                targetPane.classList.add("active", "show");
+            tabLinks.forEach(function (link) {
+                link.classList.remove("active");
             });
+
+            tabLink.classList.add("active");
+
+            var targetPaneId = tabLink.getAttribute("href");
+
+            var tabPanes = document.querySelectorAll(".tab-pane");
+            tabPanes.forEach(function (pane) {
+                pane.classList.remove("active", "show");
+            });
+
+            var targetPane = document.querySelector(targetPaneId);
+            targetPane.classList.add("active", "show");
         });
+    });
 
 
     document.querySelector(".text-right .btn-primary").addEventListener("click",() =>{
@@ -273,6 +396,16 @@ function LoadDataPatient(data) {
             medical_history: document.querySelector('.form-group textarea[name="medical_history"]').value,
             dr: document.querySelector('.form-group select[name="dr"]').value,
             room: document.querySelector('.form-group input[name="room"]').value,
+
+            comment_customer_care: document.querySelector('.form-group input[name="comment_customer_care"]').value,
+            comment_service: document.querySelector('.form-group input[name="comment_service"]').value,
+            comment_attitude: document.querySelector('.form-group input[name="comment_attitude"]').value,
+            comment_healthcare: document.querySelector('.form-group input[name="comment_healthcare"]').value,
+
+            morning: document.querySelector('.form-group textarea[name="morning"]').value,
+            afternoon: document.querySelector('.form-group textarea[name="afternoon"]').value,
+            evening: document.querySelector('.form-group textarea[name="evening"]').value,
+            note: document.querySelector('.form-group textarea[name="Note"]').value,
         }
 
         console.log(Infomation)
@@ -286,12 +419,16 @@ function LoadDataPatient(data) {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.status === true)
-                alert("Đã lưu thành công")
+                if (data.status === true) {
+                    document.querySelector('.ID-patient').innerText = data.message
+                    document.querySelector('.notification').style.visibility = 'visible'
+                }
             })
             .catch(err => console.log(err))
     })
-    }
+
+
+}
 
 document.getElementById("cancle-notify").addEventListener("click", ()=>{
     document.querySelector('.notification').style.visibility = 'hidden'

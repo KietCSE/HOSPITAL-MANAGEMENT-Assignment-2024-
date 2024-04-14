@@ -22,6 +22,12 @@ public class DevicesApiResponse {
     private String date;
     private List<Item> itemsList;
     private List<Update> updateLog;
+    public int indexOfItem(String itemId) {
+        for (int i = 0; i < itemsList.size(); i++) {
+            if (itemsList.get(i).getId().equals(itemId)) {return i;}
+        }
+        return -1;
+    }
 
     @Setter
     @Getter

@@ -54,6 +54,14 @@ public class WebsiteController {
         return "/Schedule/index";
     }
 
+    @GetMapping("/schedule/admin")
+    public String ScheduleAdmin(HttpServletRequest request) {
+        return "/Schedule/Schedule_Admin/index";
+    }
+
+    @GetMapping("/schedule/doctor/list")
+    public String ScheduleDoctorList(HttpServletRequest request) { return "/Schedule/Doctor_list/doctor"; }
+
     @GetMapping("/doctor/list")
     public String DoctorList(HttpServletRequest request) {
         return "/Manage_Doctor/Doctor_list/doctor";
@@ -66,4 +74,9 @@ public class WebsiteController {
 
     @GetMapping("/room")
     public String Room(HttpServletRequest request) {return "/Patient_Room/Room";}
+
+    @GetMapping("/evaluate")
+    public String evaluate(HttpServletRequest request) {
+        return "/Evaluate/evaluate";
+    }
 }

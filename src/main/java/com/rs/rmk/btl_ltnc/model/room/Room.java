@@ -19,7 +19,6 @@ public class Room {
     private int max_Size = 5;
 
     private List<Devices> list_Devices;
-    private List<info> list_Patients;
 
     public boolean Is_Full() {
         return (number_Patient >= 5);

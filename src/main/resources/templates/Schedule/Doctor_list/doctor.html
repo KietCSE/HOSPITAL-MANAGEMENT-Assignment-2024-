@@ -78,7 +78,6 @@
                       <th>Tên</th>
                       <th>Năm sinh</th>
                       <th>Chuyên ngành</th>
-                      <th>Xóa</th>
                   </tr>
               </thead>
 
@@ -90,31 +89,6 @@
       </section>
   </div>
   <!-- </div> -->
-
-    <div class="button">
-        <div style="cursor: pointer;" class="btn addBtn">
-            <button>Thêm mới</button>
-        </div>
-    </div>
-
-    <div class="addDoctor">
-        <div class="addDoctor__form">
-            <form action="#">
-                <div class="closeBtn">
-                    <i class="fa-solid fa-x"></i>
-                </div>
-                <input required class="name" type="text" placeholder="Họ và Tên">
-                <input required class="yearOfBirth" type="text" placeholder="Năm sinh">
-                <input required class="phoneNumber" type="text" placeholder="SĐT">
-                <input required class="address" type="text" placeholder="Địa chỉ">
-                <input class="university" type="text" placeholder="Học vấn">
-                <input class="departmentName" type="text" placeholder="Khoa">
-                <input class="major" type="text" placeholder="Chuyên ngành">
-                <button type="submit" class="addDoctor__submitBtn">Thêm</button>
-            </form>
-        </div>
-    </div>
-
 
     <!-- start footer  -->
     <section class="footer">
@@ -167,6 +141,6 @@
 
     <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
     <!-- custom file js -->
-    <script th:src="@{/script/Manage_Doctor/Doctor_list/script.js}"></script>
+    <script th:src="@{/script/Schedule/Doctor_list/script.js}"></script>
   </body>
 </html>

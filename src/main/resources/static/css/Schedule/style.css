@@ -67,8 +67,8 @@ body {
     cursor: pointer !important;
 }
 
-.form.open {
-    display: flex;
+.open {
+    display: flex !important;
 }
 
 .form {
@@ -107,7 +107,8 @@ body {
     display: flex;
 }
 
-.form form input {
+.form form input,
+.form form select{
     min-height: 30px;
     margin: 8px;
     flex-grow: 1;
@@ -128,7 +129,7 @@ body {
 
 .form form .submit {
     height: 30px;
-    align-items: right;
+    /*align-items: right;*/
     display: inline-block;
     margin: 8px;
     padding: 8px;
@@ -169,7 +170,7 @@ body {
     text-align: center;
     margin: 8px 0;
     font-size: 2rem;
-    position: absotute;
+    /*position: absotute;*/
     top: 5px;
 }
 
@@ -252,7 +253,7 @@ body {
     padding: 16px;
     position: absolute;
     box-shadow: var(--box-shadow);
-    top: 0%;
+    top: 0;
     display: none;
     z-index: 1;
 }
@@ -317,6 +318,69 @@ body {
 .task__detail .detail .detail__icon {
     display: inline-block;
     flex-shrink: 0;
+}
+
+/* Change Schedule */
+.changeSchedule {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(229, 229, 229, 0.7);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.changeSchedule .close .cancel {
+    width: 100%;
+    background-color: var(--box-hover);
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    padding: 4px 8px;
+    margin: 16px 8px;
+    cursor: pointer;
+}
+
+.changeSchedule .close .cancel:hover {
+    opacity: 0.7;
+}
+
+.changeSchedule .table-content {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 60vh;
+    padding: 8px;
+}
+.changeSchedule .table-content caption {
+    color: #000;
+    font-weight: 600;
+    font-size: 2rem;
+    padding-bottom: 8px;
+}
+
+.changeSchedule .doctorLists {
+    background-color: #fff;
+    text-align: center;
+    min-width: 40vw;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.changeSchedule .doctorLists tr {
+    box-shadow: var(--box-shadow);
+    margin: 8px;
+    font-size: 1.5rem;
+    padding: 16px;
+}
+
+.changeSchedule .doctorLists tr:hover {
+    opacity: 0.7;
 }
 
 /* HEADER  */
@@ -393,7 +457,7 @@ body {
     border-radius: 0.5rem;
     font-size: 1.5rem;
     color: var(--black);
-    background-color: none;
+    /*background-color: none;*/
 }
 
 .header .login-btn .user:hover {
