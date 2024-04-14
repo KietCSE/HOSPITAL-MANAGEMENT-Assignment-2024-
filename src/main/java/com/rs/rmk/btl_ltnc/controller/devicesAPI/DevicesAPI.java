@@ -25,6 +25,11 @@ public class DevicesAPI {
         return DevicesGoogleApi.addDevices(devices);
     }
 
+    @GetMapping("/getFullDevices")
+    public ArrayList<Map<String, String>> getFulldevices () throws ExecutionException, InterruptedException {
+        return DevicesGoogleApi.getFullDevices();
+    }
+
     @PostMapping("/searchDevices")
     public ArrayList<Map<String, ?>> searchDevices (@RequestBody String searchContent) throws ExecutionException, InterruptedException {
 
@@ -57,7 +62,6 @@ public class DevicesAPI {
 
         return DevicesGoogleApi.deleteDevice(id);
     }
-
 
     //________________________________________________________________________________________________________
     @GetMapping("/get/listDevice/{rID}")
