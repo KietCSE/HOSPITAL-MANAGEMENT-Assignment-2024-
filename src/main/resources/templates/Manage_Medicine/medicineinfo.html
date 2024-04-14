@@ -150,14 +150,13 @@
 
             <div class="footer-box">
                 <h3>Truy cập</h3>
-                <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-                <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
-                <a href="#info" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
-                <a href="#achieve" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
-                <a href="#contact" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+                <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+                <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+                <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+                <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+                <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
             </div>
         </div>
-
     </section>
     <script th:src="@{https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js}"></script>
     <script th:src="@{/script/Manage_Medicine/medicine_info.js}"></script>

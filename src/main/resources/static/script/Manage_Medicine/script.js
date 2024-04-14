@@ -170,7 +170,7 @@ document.querySelector(".form .search button").addEventListener("click", functio
             let cols = rows[i].querySelectorAll("td");
             let found = false;
             for (let j = 0; j < cols.length; j++) {
-                if (cols[j].textContent === input) {
+                if (cols[j].textContent.includes(input)) {
                     found = true;
                     break;
                 }
