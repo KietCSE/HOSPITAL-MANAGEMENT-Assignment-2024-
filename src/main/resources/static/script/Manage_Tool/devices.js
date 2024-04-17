@@ -1,3 +1,77 @@
+fetch('/api/devices/getFullDevices', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'text/plan'
+    },
+    body: null
+})
+    .then(response => {
+        if (!response.ok) {
+            alert("Đã xảy ra lỗi khi lấy dữ liệu.");
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data)
+        if (data.length !== 0) {
+            let table = document.querySelector(".table tbody");
+            let rows = table.querySelectorAll("tr");
+            for (let i = 0; i < rows.length; i++) {
+                table.removeChild(rows[i])
+            }
+            for (let i = 0; i < data.length; i++) {
+                let devices = data[i]
+                let newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                                <td>${i + 1}</td>
+                                <td>${devices.id}</td>
+                                <td>${devices.name}</td>
+                                <td>${devices.date}</td>
+                                <td>${devices.totalAmount}</td>
+                                <td>${devices.inUseAmount}</td>
+                                <td>${devices.damagedAmount}</td>
+                                <td>${devices.storedAmount}</td>
+                                <td><a href="/tool/info?id=${devices.id}">Chi tiết</a></td>`;
+                document.querySelector(".table tbody").appendChild(newRow);
+            }
+        } else {
+            alert("Danh sách thiết bị trống")
+        }
+    })
+    .catch(error => {
+        alert("Đã xảy ra lỗi khi lấy dữ liệu.");
+    });
+
+document.querySelector(".form .search button").addEventListener("click", function () {
+    let input = document.querySelector(".form .search input").value;
+    if (input !== "") {
+        let table = document.querySelector(".table tbody");
+        let rows = table.querySelectorAll("tr");
+        for (let i = 0; i < rows.length; i++) {
+            let cols = rows[i].querySelectorAll("td");
+            let found = false;
+            for (let j = 0; j < cols.length; j++) {
+                if (cols[j].textContent === input) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+    else {
+        let table = document.querySelector(".table tbody");
+        let rows = table.querySelectorAll("tr");
+        for (let i = 0; i < rows.length; i++) {
+            rows[i].style.display = "";
+        }
+    }
+});
+
 document.getElementById("submit").addEventListener("click",
     function (event) {
         event.preventDefault(); // Ngăn chặn việc gử
@@ -78,59 +152,4 @@ document.getElementById("submit").addEventListener("click",
         }).catch(error => {
             alert(error);
         });
-    });
-
-document.getElementById("search-submit").addEventListener("click",
-    function (event) {
-        event.preventDefault();
-        var searchContent = document.getElementById("search-input").value;
-        if (searchContent === "") {
-            return
-        } else {
-            fetch('/api/devices/searchDevices', {
-                method: 'POST', // Phương thức là POST
-                headers: {
-                    'Content-Type': 'text/plain' // Đặt kiểu nội dung là text/plain
-                },
-                body: searchContent // Nội dung của yêu cầu là nội dung text đã được xác định ở trên
-            })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json()
-                        // Thực hiện các hành động khác sau khi gửi thành công
-                    } else {
-                        alert("Đã xảy ra lỗi khi gửi dữ liệu.");
-                    }
-                })
-                .then(data => {
-                    console.log(data)
-                    if (data.length !== 0) {
-                        let table = document.querySelector(".table tbody");
-                        let rows = table.querySelectorAll("tr");
-                        for (let i = 0; i < rows.length; i++) {
-                            table.removeChild(rows[i])
-                        }
-                        for (let i = 0; i < data.length; i++) {
-                            let devices = data[i]
-                            let newRow = document.createElement('tr');
-                            newRow.innerHTML = `
-                                <td>${i + 1}</td>
-                                <td>${devices.id}</td>
-                                <td>${devices.name}</td>
-                                <td>${devices.totalAmount}</td>
-                                <td>${devices.inUseAmount}</td>
-                                <td>${devices.damagedAmount}</td>
-                                <td>${devices.storedAmount}</td>
-                                <td><a href="/tool/info?id=${devices.id}">Chi tiết</a></td>`;
-                            document.querySelector(".table tbody").appendChild(newRow);
-                        }
-                    } else {
-                        alert("Không tìm thấy")
-                    }
-                })
-                .catch(error => {
-                    console.error('Đã xảy ra lỗi:', error);
-                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
-                });
-        }
     });

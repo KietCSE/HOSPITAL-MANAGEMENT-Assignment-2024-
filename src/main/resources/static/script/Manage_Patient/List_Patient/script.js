@@ -1,4 +1,10 @@
-
+username = sessionStorage.getItem('Username');
+if (username !== "" && username != null) {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
 // Lặp qua từng phần tử <tr> và thêm sự kiện click
 document.querySelector(".button .btn button").addEventListener("click", () => {
     sessionStorage.setItem("newPatient", true)
