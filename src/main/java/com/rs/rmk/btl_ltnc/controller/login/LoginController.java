@@ -26,7 +26,7 @@ public class LoginController {
     @PostMapping("/checkaccount")
     public ResponseEntity<JWTresponse> getAccountPassword(@RequestBody @Valid Datalogin data) throws FirestoreException {
         FirestoreLogin firestore = new FirestoreLogin();
-        ApiResponse<String> apiResponse =firestore.CheckData(data, "User");
+        ApiResponse<String> apiResponse = firestore.CheckData(data, "User");
 
         // neu co ton tai trong database
         if (apiResponse.getStatus()) {
@@ -35,6 +35,7 @@ public class LoginController {
             jwTresponse.setStatus(true);
             // sinh ra token voi role tuong ung
             jwTresponse.setCode(jwTtoken.generateToken(data.getAccount(), apiResponse.getData()));
+            jwTresponse.setId(apiResponse.getMessage());
             return ResponseEntity.status(HttpStatus.OK).body(jwTresponse);
         }
         // neu khong ton tai

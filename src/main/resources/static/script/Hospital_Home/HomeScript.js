@@ -99,18 +99,15 @@ document.querySelector(".patient_info").addEventListener("click", () => {
     //     });
 })
 //
-document.querySelector(".schedule_admin").addEventListener("click", () => {
-   window.location.href= "/schedule";
-});
 
 document.querySelector(".schedule_info").addEventListener("click", () => {
-    window.location.href = "/schedule";
+    // window.location.href = "/schedule";
+    Fetch("/navigateDoctorSchedule", "/schedule")
 });
 
 document.querySelector(".doctor_info").addEventListener("click", () => {
     // window.location.href = "/doctor/list";
     Fetch("/navigateDoctor", "/doctor/list")
-
 })
 
 document.querySelector(".tool_info").addEventListener("click", () => {
@@ -126,7 +123,7 @@ document.querySelector(".medicine_info").addEventListener("click", () => {
 })
 
 document.querySelector(".room").addEventListener("click", () => {
-    Fetch("/navigateMedicine", "/room")
+    Fetch("/navigateRoom", "/room")
 })
 
 document.querySelector(".evaluate").addEventListener("click", () => {
@@ -134,6 +131,7 @@ document.querySelector(".evaluate").addEventListener("click", () => {
 })
 
 document.querySelector('.create-schedule').addEventListener('click', () =>{
-    window.location.href = '/schedule/doctor/list';
+    // window.location.href = '/schedule/doctor/list';
+    Fetch("/navigateSchedule", "/schedule/doctor/list")
 })
 
