@@ -98,7 +98,10 @@ document.querySelector(".patient_info").addEventListener("click", () => {
     //         alert('Failed to fetch data. Please try again later.');
     //     });
 })
-
+//
+document.querySelector(".schedule_admin").addEventListener("click", () => {
+   window.location.href= "/schedule/admin";
+});
 
 document.querySelector(".schedule_info").addEventListener("click", () => {
     window.location.href = "/schedule";
