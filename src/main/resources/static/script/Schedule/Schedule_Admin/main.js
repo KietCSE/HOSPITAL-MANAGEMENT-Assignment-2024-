@@ -2,7 +2,7 @@ let doctorID = sessionStorage.getItem('doctorID');
 loadSchedule();
 
 // Thêm task
-function addTask(taskObj, date, patient) {
+function addTask(taskObj, date) {
     const week = document.querySelector('.week');
 
     const weekDay = week.children[date - 1];
@@ -58,14 +58,18 @@ function addTask(taskObj, date, patient) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        for (let index = 0; index < data.length; index++) {
+                        let length = data.length;
+                        if (length === 0) return false;
+                        for (let index = 0; index < length; index++) {
                             let tr = document.createElement('tr');
                             tr.innerHTML = addDoctor(index + 1, data[index]);
                             tbody.appendChild(tr);
                         }
+                        return true;
                     })
-                    .then(() => {
-                        document.querySelector('body').appendChild(changeSchedule);
+                    .then((haveDoctor) => {
+                        if(haveDoctor) document.querySelector('body').appendChild(changeSchedule);
+                        else alert("Không có bác sĩ thay thế :(");
                     })
                     .catch(err => {
                         console.log(err);
@@ -159,9 +163,7 @@ openForm.addEventListener('click', function() {
             .then(response => response.json())
             .then(data => {
                 alert("Thêm thành công :)");
-                if (date >= new Date) {
-                    addTask(data, dateNum, data.patientID);
-                }
+                loadSchedule();
             })
             .catch(function(err) {
                 console.log(err);
@@ -318,13 +320,13 @@ function loadSchedule() {
                     return result;
                 });
                 for (let task of data[index]) {
+                    let date = index + 1;
                     let today = new Date();
                     let taskDay = new Date(reverse(task.day));
-                    date = index + 1;
                     if (taskDay < today) {
                         continue;
                     }
-                    addTask(task, date, "");
+                    addTask(task, date);
                 }
             }
         })
