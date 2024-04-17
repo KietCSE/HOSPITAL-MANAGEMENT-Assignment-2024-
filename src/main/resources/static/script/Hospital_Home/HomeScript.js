@@ -100,7 +100,7 @@ document.querySelector(".patient_info").addEventListener("click", () => {
 })
 //
 document.querySelector(".schedule_admin").addEventListener("click", () => {
-   window.location.href= "/schedule/admin";
+   window.location.href= "/schedule";
 });
 
 document.querySelector(".schedule_info").addEventListener("click", () => {
