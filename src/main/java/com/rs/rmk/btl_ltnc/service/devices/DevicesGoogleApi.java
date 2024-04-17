@@ -3,6 +3,7 @@ package com.rs.rmk.btl_ltnc.service.devices;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import com.rs.rmk.btl_ltnc.exception.FirestoreException;
 import com.rs.rmk.btl_ltnc.model.devices.Devices;
 import com.rs.rmk.btl_ltnc.model.devices.DevicesApiResponse;
 import com.rs.rmk.btl_ltnc.repository.devices.Prepare;
@@ -28,25 +29,29 @@ public class DevicesGoogleApi {
         return writeResult != null;
     }
 
-    public static ArrayList<Map<String, ?>> searchDevices(String searchContent) throws ExecutionException, InterruptedException {
-        Firestore firestore = FirestoreClient.getFirestore();
-        CollectionReference devicesRef = firestore.collection("Devices");
-
-        // Tạo truy vấn (query) để tìm các tài liệu trong đó trường "name" chứa searchContent
-        Query query = devicesRef.whereEqualTo("name", searchContent);
-
-        // Thực hiện truy vấn
-        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        QuerySnapshot queryResult = querySnapshot.get();
-
-        // List để lưu trữ kết quả
-        ArrayList<Map<String, ?>> searchResults = new ArrayList<Map<String, ?>>();
-
-        // Lặp qua kết quả truy vấn và chuyển đổi chúng thành đối tượng Devices
-        for (QueryDocumentSnapshot document : queryResult) {
-            searchResults.add(document.getData());
+    public static ArrayList<Map<String, String>> getFullDevices() throws ExecutionException, InterruptedException {
+        ArrayList<Map<String, String>> resultList = new ArrayList<>();
+        try {
+            Firestore firestore = FirestoreClient.getFirestore();
+            CollectionReference devicesRef = firestore.collection("Devices");
+            ApiFuture<QuerySnapshot> querySnapshot = devicesRef.get();
+            QuerySnapshot queryResult = querySnapshot.get();
+            for (QueryDocumentSnapshot document : queryResult) {
+                DevicesApiResponse device = document.toObject(DevicesApiResponse.class);
+                Map<String, String> deviceMap = new HashMap<>();
+                deviceMap.put("id", device.getId());
+                deviceMap.put("name", device.getName());
+                deviceMap.put("date", device.getDate());
+                deviceMap.put("totalAmount", Integer.toString(device.getTotalAmount()));
+                deviceMap.put("inUseAmount", Integer.toString(device.getInUseAmount()));
+                deviceMap.put("damagedAmount", Integer.toString(device.getDamagedAmount()));
+                deviceMap.put("storedAmount", Integer.toString(device.getStoredAmount()));
+                resultList.add(deviceMap);
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
         }
-        return searchResults;
+        return resultList;
     }
 
     public static ArrayList<Map<String, ?>> getInfoByID(String idToSearch) throws ExecutionException, InterruptedException {
@@ -192,7 +197,7 @@ public class DevicesGoogleApi {
                 }
             }
             return devicesInRooms;
-        } catch (FirestoreException e) {
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
     }
