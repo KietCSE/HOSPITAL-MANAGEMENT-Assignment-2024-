@@ -41,6 +41,7 @@ public class FirestoreLogin {
 
                 apiResponse.setData(documentSnapshot.getString("role"));
                 apiResponse.setStatus(hasAccount);
+                apiResponse.setMessage(documentSnapshot.getString("id"));
             }
             else apiResponse.setStatus(false);
 

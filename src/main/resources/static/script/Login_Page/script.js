@@ -48,6 +48,7 @@ document.getElementById("login-btn").addEventListener("click", ()=>{
         .then(data => {
 
             if (data.status === true) {
+                sessionStorage.setItem('doctorID', data.id)
                 sessionStorage.setItem('jwt', data.code)
                 window.location.href = "http://localhost:8080"
             }
