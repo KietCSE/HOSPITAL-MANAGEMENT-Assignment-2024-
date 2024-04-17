@@ -33,4 +33,26 @@ public class SecurityGate {
         apiResponse.setStatus(true);
         return apiResponse;
     }
+
+    @PostMapping("/navigateSchedule")
+    public ApiResponse<?> NavigateSchedule() {
+        ApiResponse<?> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(true);
+        return apiResponse;
+    }
+
+    @PostMapping("/navigateDoctorSchedule")
+    public ApiResponse<?> NavigateDoctorSchedule() {
+        ApiResponse<?> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(true);
+        return apiResponse;
+    }
+
+    @PostMapping("/navigateRoom")
+    public ApiResponse<?> NavigateRoom() {
+        ApiResponse<?> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(true);
+        return apiResponse;
+    }
 }
+
