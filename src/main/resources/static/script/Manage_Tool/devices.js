@@ -145,6 +145,7 @@ document.getElementById("submit").addEventListener("click",
                 .then(response => {
                     if (response.ok) {
                         alert("Dữ liệu đã được gửi thành công!");
+                        window.location.reload();
                     } else {
                         alert("Đã xảy ra lỗi khi gửi dữ liệu.");
                     }

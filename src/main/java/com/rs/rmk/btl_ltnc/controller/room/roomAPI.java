@@ -22,7 +22,7 @@ public class roomAPI {
     @GetMapping("/get/list/room")
     public ApiResponse<?> get_Available_Room() throws FirestoreException {
         List<Room> roomList = roomService.get_All_Room();
-        List<Room> result = repository.get_All_Avalable_Room(roomList);
+        List<Room> result = repository.get_All_Available_Room(roomList);
         // Ko có phòng trống
         if (result.isEmpty())
             return new ApiResponse<>(ERROR, "Không có phòng trống", null, false);
