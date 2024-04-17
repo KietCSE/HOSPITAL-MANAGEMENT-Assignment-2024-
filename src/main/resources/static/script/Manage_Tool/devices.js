@@ -1,3 +1,10 @@
+username = sessionStorage.getItem('Username');
+if (username !== "" && username != null) {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
 document.getElementById("submit").addEventListener("click",
     function (event) {
         event.preventDefault(); // Ngăn chặn việc gử

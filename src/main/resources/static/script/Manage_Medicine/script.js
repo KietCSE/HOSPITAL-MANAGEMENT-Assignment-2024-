@@ -191,6 +191,13 @@ document.querySelector(".form .search button").addEventListener("click", functio
     }
 });
 
+username = sessionStorage.getItem('Username');
+if (username !== "" && username != null) {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
 document.querySelector(".export form .submit").addEventListener("click", function () {
     try {
         let Name_Input = document.querySelector(".export form input[name='Name_Export']").value;

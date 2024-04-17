@@ -11,6 +11,14 @@
 // });
 
 // ---------------------------------------------------------------------------------------------------
+username = sessionStorage.getItem('Username');
+if (username !== "" && username != null) {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
+
 const error =  document.getElementById("error");
 
 document.getElementById("account").addEventListener("click", ()=>{
