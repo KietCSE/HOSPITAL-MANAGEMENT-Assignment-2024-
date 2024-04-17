@@ -1,3 +1,10 @@
+username = sessionStorage.getItem('Username');
+if (username !== "" && username != null) {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
 document.querySelectorAll(".wrapper .container .card").forEach((card) => {
     card.addEventListener("click", () => {
         let info = card.querySelector(".infor");

@@ -1,3 +1,11 @@
+username = sessionStorage.getItem('Username');
+if (username !== "" && username != null) {
+    document.querySelector('.header .login-btn a').innerText = username;
+}
+else {
+    document.querySelector('.header .login-btn a').innerText = "Tài khoản";
+}
+
 let doctorID = '';
 if (sessionStorage.getItem('userID') != null) {
     doctorID = sessionStorage.getItem('userID');
