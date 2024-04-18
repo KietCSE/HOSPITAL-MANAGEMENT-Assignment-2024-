@@ -12,4 +12,5 @@ import lombok.Setter;
 public class JWTresponse {
     private String code;
     boolean status;
+    private String id;
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class roomRepo {
-    public List<Room> get_All_Avalable_Room(List<Room> rooms) {
+    public List<Room> get_All_Available_Room(List<Room> rooms) {
         // CHeck if room is available
         List<Room> result_List = new ArrayList<>();
         for (Room room : rooms) {

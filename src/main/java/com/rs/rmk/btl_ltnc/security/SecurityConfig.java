@@ -19,12 +19,14 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecurityConfig {
     protected static final String key = "xRGK4LsZiU5ldkp/cyUqXPOLHElMXfGyu3B0RiK3L194R6kCPTopWhrORzoZNVSs";
 
-    private final String[] ADMIN_ENDPOINT = {"/navigateDoctor", "/navigatePatient", "/navigateTool", "/navigateMedicine",};
+    private final String[] ADMIN_ENDPOINT = {"/navigateDoctor", "/navigatePatient", "/navigateTool", "/navigateMedicine", "/navigateRoom", "/navigateSchedule"};
+    private final String[] USER_ENDPOINT = {"/navigateDoctorSchedule"};
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request -> request
                         .requestMatchers(ADMIN_ENDPOINT).hasAuthority("SCOPE_ADMIN")
+                        .requestMatchers(USER_ENDPOINT).hasAuthority("SCOPE_USER")
                         .anyRequest().permitAll())
                         .exceptionHandling(exceptionHandling ->
                                 exceptionHandling
