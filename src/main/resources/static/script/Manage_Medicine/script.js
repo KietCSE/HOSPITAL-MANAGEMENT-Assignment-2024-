@@ -97,10 +97,15 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         if (isNaN(Date.parse(Medicine_Obj.Validated))) {
             throw "Ngày hết hạn không hợp lệ";
         }
-        if (Date.parse(Medicine_Obj.History.Day_Input) < Date.now()) {
+
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        if (new Date(Medicine_Obj.History.Day_Input) < currentDate) {
             throw "Ngày nhập không thể nhỏ hơn ngày hiện tại";
         }
-        if (Date.parse(Medicine_Obj.Validated) < Date.parse(Medicine_Obj.History.Day_Input)) {
+
+        if (new Date(Medicine_Obj.Validated) < new Date(Medicine_Obj.History.Day_Input)) {
             throw "Ngày hết hạn không thể nhỏ hơn ngày nhập";
         }
         const postResponse = await fetch("/api/medicine/add", {
@@ -221,6 +226,10 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                 if (Date.parse(Date_Export) < Date.parse(cols[4].textContent)) {
                     throw ("Ngày xuất không thể nhỏ hơn ngày nhập");
                 }
+                if (Date.parse(Date_Export) > Date.parse(cols[6].textContent)) {
+                    throw ("Không thể lấy thuốc quá hạn sử dụng");
+                }
+
                 found = true;
                 if (parseInt(cols[3].textContent) >= parseInt(Export_Amount)) {
                     NewAmount = cols[3].textContent = parseInt(cols[3].textContent)
@@ -251,7 +260,7 @@ document.querySelector(".export form .submit").addEventListener("click", functio
             }).then(data => {
                 console.log(data.data);
 
-                if(data.status === false) throw new Error(data.message);
+                if (data.status === false) throw new Error(data.message);
 
                 let Medicine_Obj = data.data;
                 Medicine_Obj.amount = NewAmount;
@@ -270,7 +279,7 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                         throw ("Failed");
                     }
                 }).then(data => {
-                    if(!data.status) throw new Error(data.message);
+                    if (!data.status) throw new Error(data.message);
                     console.log(data.message);
                 });
             })
@@ -290,7 +299,7 @@ fetch("/api/medicine/getAllMedicine")
             throw new Error("Không thể lấy dữ liệu từ server");
         }
     }).then(data => {
-        console.log( (data.length === 0) ? "Không có dữ liệu" : "");
+        console.log((data.length === 0) ? "Không có dữ liệu" : "");
         for (let i = 0; i < data.length; i++) {
             let Medicine_Obj = data[i];
             let newRow = document.createElement('tr');
@@ -323,18 +332,18 @@ document.querySelector('.table tbody').addEventListener("click", async function 
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if(!response.ok) {
+            if (!response.ok) {
                 throw new Error("Không thể xóa thông tin");
             }
             return response.json();
-        }).then( data =>{
-            if(data.status === false) {
-              throw new Error(data.message);
+        }).then(data => {
+            if (data.status === false) {
+                throw new Error(data.message);
             }
             else {
                 console.log("Xóa thông tin thành công");
             }
-        }).catch(Error =>{
+        }).catch(Error => {
             alert(Error)
         });
         row.remove();
