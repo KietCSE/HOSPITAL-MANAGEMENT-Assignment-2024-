@@ -45,27 +45,6 @@ public class roomAPI {
     }
 
 
-    // Phuong thuc nay de tao 1 luong phong truoc
-    @PostMapping("/create")
-    private void Create() {
-        List<Room> RT = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Room room_T = new Room();
-            room_T.setRId("H1" + "-" + "10" + (i + 1));
-            room_T.setList_Devices(new ArrayList<>());
-            room_T.setNumber_Patient(0);
-            RT.add(room_T);
-        }
-        for (int i = 0; i < 5; i++) {
-            Room room_T = new Room();
-            room_T.setRId("H2" + "-" + "20" + (i + 1));
-            room_T.setList_Devices(new ArrayList<>());
-            room_T.setNumber_Patient(0);
-            RT.add(room_T);
-        }
-        roomService.post_Info(RT);
-    }
-
     // Kiem tra phong day
     @PostMapping("/checking/full/{rID}")
     public ApiResponse<?> Check_Full(@PathVariable String rID) throws FirestoreException {

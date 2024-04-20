@@ -51,6 +51,8 @@
 }
 
 .wrapper .container {
+    display: flex;
+    flex-direction: row;
     margin-top: 2%;
 
     border: var(--border);
@@ -74,8 +76,14 @@
     background-color: var(--background-color);
 }
 
+.wrapper .container .GROUND {
+    display: flex;
+    flex-direction: column;
+}
+
 .wrapper .container .card-group {
     display: flex;
+    flex-direction: row;
     max-width: 100%;
     max-height: 50%;
     margin-bottom: 2%;
@@ -195,7 +203,8 @@ table thead th {
     background-color: #0a55f8;
 }
 
-table thead th, tbody td {
+table thead th,
+tbody td {
     border: var(--border);
     box-shadow: var(--box-shadow);
 }
