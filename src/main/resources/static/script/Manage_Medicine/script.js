@@ -321,6 +321,7 @@ fetch("/api/medicine/getAllMedicine")
         console.error("Lỗi:", error);
     });
 
+
 document.querySelector('.table tbody').addEventListener("click", async function (event) {
     if (event.target.classList.contains("DELETE")) {
         let row = event.target.parentNode;
