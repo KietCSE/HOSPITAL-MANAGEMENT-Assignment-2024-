@@ -77,7 +77,7 @@ function addRow(stt, doctor) {
   row.innerHTML =
       `
       <td>${stt}</td>
-      <td>${doctor.fullName}</td>
+      <td class="name">${doctor.fullName}</td>
       <td>${doctor.yearOfBirth}</td>
       <td>${doctor.major}</td>
       <td class="delete">Xóa</td>
