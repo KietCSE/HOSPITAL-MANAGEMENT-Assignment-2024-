@@ -19,24 +19,33 @@ jobs:
       contents: read
       packages: write
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+#Build java jdk 21
+#Setup Gradle
+#Build with Gradle
+#Publish to GitHub Packages
+#The USERNAME and TOKEN need to correspond to the credentials environment variables used in the publishing section of your build.gradle
+#The GITHUB_TOKEN secret is provided by GitHub Actions and can be used to authenticate in order to publish the package
+#The USERNAME is the GitHub username of the actor that triggered the action
+#The TOKEN is the GitHub token of the actor that triggered the action
+#The USERNAME and TOKEN are passed as environment variables to the Gradle build
+#The USERNAME and TOKEN are used in the publishing section of the build.gradle file to authenticate with GitHub Packages
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '21'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
     - name: Build with Gradle
       run: ./gradlew build
 
-    # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-    # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
       run: ./gradlew publish
       env:
