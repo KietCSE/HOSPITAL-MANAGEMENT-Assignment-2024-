@@ -89,15 +89,17 @@ function addRow(stt, doctor) {
 
   row.querySelector('.delete').addEventListener('click', function(event) {
       event.stopPropagation();
-      fetch("http://localhost:8080/api/doctor/delete?doctorID=" + doctor.id, {
-          method: 'DELETE'
-      })
-          .then(response => response.json())
-          .then(data => {
-              alert("Xóa thành công :(");
-              window.location.href = "/doctor/list";
+      if (confirm("Bạn có chắc muốn xóa không?")) {
+          fetch("http://localhost:8080/api/doctor/delete?doctorID=" + doctor.id, {
+              method: 'DELETE'
           })
-          .catch(err => console.log(err));
+              .then(response => response.json())
+              .then(data => {
+                  alert("Xóa thành công :(");
+                  window.location.href = "/doctor/list";
+              })
+              .catch(err => console.log(err));
+      }
   });
 
   tbody.appendChild(row);
