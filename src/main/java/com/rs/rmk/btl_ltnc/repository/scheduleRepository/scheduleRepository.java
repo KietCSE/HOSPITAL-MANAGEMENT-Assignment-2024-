@@ -15,14 +15,6 @@ import java.util.concurrent.ExecutionException;
 
 @Repository
 public class scheduleRepository  {
-    /*
-     * Collection: Doctor -> get() <=> ApiFuture<QuerySnapshot> || QuerySnapshot.get() -> QueryDocumentSnapshot
-     * Document: tranlam -> DocumentReference -> get() <=> ApiFuture<DocumentSnapshot>
-     * Collection: schedule ->
-     * Document: Thu2 ->
-     * Collection: tasks ->
-     * Document: ~ task.
-     * */
     public List<taskModel> getTaskListAtDay(String doctorID, String day, String date) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = database.collection("Doctor").document(doctorID)
@@ -36,7 +28,7 @@ public class scheduleRepository  {
         return scheduleAtDay;
     }
     //Get shedule
-    private static List<taskModel> getScheduleAtDate(String doctorID, String date) throws ExecutionException, InterruptedException {
+    private List<taskModel> getScheduleAtDate(String doctorID, String date) throws ExecutionException, InterruptedException {
         Firestore database = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = database.collection("Doctor").document(doctorID)
                 .collection("schedule").document(date)
