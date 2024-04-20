@@ -6,13 +6,7 @@ else {
     document.querySelector('.header .login-btn a').innerText = "Tài khoản";
 }
 
-let doctorID = '';
-if (sessionStorage.getItem('userID') != null) {
-    doctorID = sessionStorage.getItem('userID');
-}
-else {
-    doctorID = '12:28:55.491058900';
-}
+let doctorID = sessionStorage.getItem('doctorID');
 // Thêm task
 function addTask(taskObj, date) {
     const week = document.querySelector('.week');

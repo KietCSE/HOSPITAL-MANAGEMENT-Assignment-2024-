@@ -1,4 +1,4 @@
-let doctorID = sessionStorage.getItem('doctorID');
+let doctorID = sessionStorage.getItem('adminDoctorID');
 loadSchedule();
 
 // Thêm task

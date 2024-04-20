@@ -102,3 +102,22 @@ function addRow(stt, doctor) {
 
   tbody.appendChild(row);
 }
+
+document.querySelector('.search-btn').addEventListener('click', (event) => {
+    event.preventDefault();
+    let doctors = document.querySelectorAll('tbody tr');
+    let searchValue = document.querySelector('.search input').value.toLowerCase();
+    if (searchValue) {
+        for (let doctor of doctors) {
+            let doctorName = doctor.querySelector('.name').innerText.toLowerCase();
+            console.log(doctorName, searchValue);
+            if (doctorName.search(searchValue) >= 0) doctor.style.display = 'table-row';
+            else doctor.style.display = 'none';
+        }
+    }
+    else {
+        for (let doctor of doctors) {
+            doctor.style.display = 'table-row'
+        }
+    }
+})
