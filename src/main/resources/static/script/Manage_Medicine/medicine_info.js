@@ -20,6 +20,7 @@ try {
             return response.json();
         })
         .then(DT => {
+
             let data = DT.data;
             let Info = document.querySelector('.layout-2')
             Info.querySelector('.Name').innerHTML = data.name;
@@ -31,7 +32,6 @@ try {
             Info.querySelector('#number').innerHTML = parseInt(data.amount);
             Info.querySelector('.Description').innerHTML = data.description;
             document.querySelector('.image').src = data.img_Url;
-
 
             let SPAN = document.getElementById('Is_aval');
 
@@ -67,10 +67,16 @@ try {
             `;
                 document.querySelector('table tbody').appendChild(newRow);
             }
+            if(data.amount <= 0) {
+                alert("Đã hết thuốc. Vui lòng nhập thêm thuốc.")
+            }
         })
 } catch (error) {
-    console.log(error);
+    alert(error);
 }
+
+
+
 
 document.querySelector('.Click').addEventListener("click", () => {
     window.location.href = '/medicine/form';
