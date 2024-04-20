@@ -44,9 +44,11 @@ jobs:
         run: ./gradlew setHomepagePath -PhomepagePath=src/main/resources/templates/Hospital_Home/Home.html build
       - name: Copy build artifacts
         run: cp -r build/* $GITHUB_WORKSPACE
-    
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          path: src/main/resources/templates/Hospital_Home/Home.html
 
       
