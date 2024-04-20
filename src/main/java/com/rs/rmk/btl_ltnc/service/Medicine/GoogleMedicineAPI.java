@@ -5,8 +5,8 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.rs.rmk.btl_ltnc.exception.ErrorFirestore;
 import com.rs.rmk.btl_ltnc.exception.FirestoreException;
-import com.rs.rmk.btl_ltnc.model.Item.Medicine;
-import com.rs.rmk.btl_ltnc.model.Item.MedicineAPIRespone;
+import com.rs.rmk.btl_ltnc.model.mediciness.Medicine;
+import com.rs.rmk.btl_ltnc.model.mediciness.MedicineAPIRespone;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;

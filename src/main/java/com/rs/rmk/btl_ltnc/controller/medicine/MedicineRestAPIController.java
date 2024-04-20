@@ -2,8 +2,8 @@ package com.rs.rmk.btl_ltnc.controller.medicine;
 
 import com.rs.rmk.btl_ltnc.exception.FirestoreException;
 import com.rs.rmk.btl_ltnc.model.ApiResponse;
-import com.rs.rmk.btl_ltnc.model.Item.Medicine;
-import com.rs.rmk.btl_ltnc.model.Item.MedicineAPIRespone;
+import com.rs.rmk.btl_ltnc.model.mediciness.Medicine;
+import com.rs.rmk.btl_ltnc.model.mediciness.MedicineAPIRespone;
 import com.rs.rmk.btl_ltnc.service.Medicine.GoogleMedicineAPI;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

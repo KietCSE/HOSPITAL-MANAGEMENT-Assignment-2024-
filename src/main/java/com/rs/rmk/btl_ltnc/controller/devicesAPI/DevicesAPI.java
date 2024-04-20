@@ -61,7 +61,7 @@ public class DevicesAPI {
     @GetMapping("/get/listDevice/{rID}")
     public ApiResponse<?> GetList(@PathVariable String rID) throws FirestoreException {
 
-        List<DevicesApiResponse> result = GetDevice.getMedicine(rID);
+        List<DevicesApiResponse> result = GetDevice.getDevice(rID);
         return (result != null) ? new ApiResponse<>(StatusCode.SUCCESS, "Get Data thanh cong", result, true)
                 : new ApiResponse<>(StatusCode.ERROR, "Fail", null, false);
     }

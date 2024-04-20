@@ -1,4 +1,4 @@
-package com.rs.rmk.btl_ltnc.model.Item;
+package com.rs.rmk.btl_ltnc.model.mediciness;
 
 import lombok.Data;
 import lombok.Getter;

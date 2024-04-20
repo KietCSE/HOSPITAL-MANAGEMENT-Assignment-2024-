@@ -35,7 +35,7 @@ public class GetDevice {
     }
 
     // Get from GG Firebase
-    public static List<DevicesApiResponse> getMedicine(String rID) throws FirestoreException {
+    public static List<DevicesApiResponse> getDevice(String rID) throws FirestoreException {
         List<DevicesApiResponse> list = getAllDevice();
         if(list == null) throw new FirestoreException(ErrorFirestore.NOT_GET_DOCUMENT);
         return GetListByID.getList(rID, list);
