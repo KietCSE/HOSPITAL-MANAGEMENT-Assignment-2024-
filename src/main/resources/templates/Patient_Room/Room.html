@@ -12,490 +12,409 @@
     <link rel="stylesheet" th:href="@{/css/Room/Room.css}">
 
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <header class="header">
-        <a href="#" class="logo">
-            <div class="BKUlogo">
-                <img th:src="@{/img/Logo/logo.png}" alt="">
-            </div>
-            HCMUT
-        </a>
-
-        <nav class="navbar">
-            <a th:href="@{/#home}">Trang chủ</a>
-            <a th:href="@{/#features}">Chức năng</a>
-            <a th:href="@{/#info}">Thông tin</a>
-            <a th:href="@{/#achieve}">Thành tựu</a>
-            <a th:href="@{/#contact}">Liên hệ</a>
-        </nav>
-
-        <div class="login-btn">
-            <button class="user btn">
-                <i class="fa-solid fa-user"></i>
-                <a href="#">Tài khoản</a>
-            </button>
+<header class="header">
+    <a href="#" class="logo">
+        <div class="BKUlogo">
+            <img th:src="@{/img/Logo/logo.png}" alt="">
         </div>
+        HCMUT
+    </a>
 
-        <script>
-            document.querySelector(".login-btn").addEventListener("click", () => {
-                window.location.href = "/login";
-            });
-        </script>
-    </header>
+    <nav class="navbar">
+        <a th:href="@{/#home}">Trang chủ</a>
+        <a th:href="@{/#features}">Chức năng</a>
+        <a th:href="@{/#info}">Thông tin</a>
+        <a th:href="@{/#achieve}">Thành tựu</a>
+        <a th:href="@{/#contact}">Liên hệ</a>
+    </nav>
+
+    <div class="login-btn">
+        <button class="user btn">
+            <i class="fa-solid fa-user"></i>
+            <a href="#">Tài khoản</a>
+        </button>
+    </div>
+
+    <script>
+        document.querySelector(".login-btn").addEventListener("click", () => {
+            window.location.href = "/login";
+        });
+    </script>
+</header>
 
 
-    <section class="wrapper">
-        <div class="title-header">
-            <h1>Quản lý phòng bệnh</h1>
+<section class="wrapper">
+    <div class="title-header">
+        <h1>Quản lý phòng bệnh</h1>
+    </div>
+    <div class="title-header">
+        <h2>Sơ đồ phòng</h2>
+    </div>
+
+    <div class="Selector">
+        <span>Loại phòng</span>
+        <select name="room" id="room">
+            <option value="all">Tất cả</option>
+            <option value="A">Có bệnh nhân</option>
+            <option value="B">Phòng trống</option>
+        </select>
+    </div>
+
+    <div class="container">
+
+        <div class="banner">
+            <span>Tầng 1</span>
         </div>
-        <div class="title-header">
-            <h2>Sơ đồ phòng</h2>
-        </div>
-
-        <!--        <div class="Selector">-->
-        <!--            <span>Loại phòng</span>-->
-        <!--            <select name="room" id="room">-->
-        <!--                <option value="all">Tất cả</option>-->
-        <!--                <option value="A">Có bệnh nhân</option>-->
-        <!--                <option value="B">Phòng trống</option>-->
-        <!--            </select>-->
-        <!--        </div>-->
-
-        <div class="container">
-            <div class="GROUND">
-                <div class="banner">
-                    <span>Tầng 1</span>
-                </div>
-                <div class="card-group" id="t1">
-                    <div class="col-1">
-                        <div class="card" id="H1-101">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H1-101</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Khám tổng quát</span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="card-group" id="t1">
+            <div class="col-1">
+                <div class="card" id="H1-101">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H1-101</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Khám tổng quát</span>
                         </div>
                     </div>
-                    <div class="col-2">
-                        <div class="card" id="H1-102">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H1-102</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Khám bệnh</span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card" id="H1-103">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H1-103</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Khám bệnh </span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card" id="H1-104">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H1-104</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Chức năng </span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="card" id="H1-105">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H1-105</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Chức năng </span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tên thiết bị: </th>
+                                                        <th>ID thiết bị: </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr></tr>
+                                                </tbody>
+                                            </table>
+                                        </span>
+                                    </span> <br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="GROUND">
-                <div class="banner">
-                    <span>Tầng 2</span>
+            <div class="col-2">
+                <div class="card" id="H1-102">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H1-102</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Khám bệnh</span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-group" id="t2">
-                    <div class="col-1">
-                        <div class="card" id="H2-201">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H2-201</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Khám tổng quát</span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="col-2">
-                        <div class="card" id="H2-202">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H2-202</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Khám bệnh</span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
+            <div class="col-3">
+                <div class="card" id="H1-103">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H1-103</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Khám bệnh </span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="col-3">
-                        <div class="card" id="H2-203">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H2-203</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Khám bệnh </span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
+            <div class="col-4">
+                <div class="card" id="H1-104">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H1-104</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Chức năng </span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-4">
-                        <div class="card" id="H2-204">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H2-204</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Chức năng </span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="card" id="H1-105">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H1-105</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Chức năng </span>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div class="card" id="H2-205">
-                            <div class="card-room">
-                                <div class="card-header">
-                                    <span>H2-205</span>
-                                </div>
-                                <div class="card-function">
-                                    <span>Chức năng </span>
-                                </div>
-                            </div>
-                            <div class="infor">
-                                <div class="info-Surround">
-                                    <h3>Thông tin phòng bệnh</h3>
-                                    <div class="infor-content">
-                                        <span id="status">Trạng thái:</span> <br>
-                                        <span>Số giường: 5</span> <br>
-                                        <span>Danh sách thiết bị:
-                                            <span id="devices">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tên thiết bị: </th>
-                                                            <th>ID thiết bị: </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr></tr>
-                                                    </tbody>
-                                                </table>
-                                            </span>
-                                        </span> <br>
-                                    </div>
-                                </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-
-
-    <section class="footer">
-        <div class="footer-container">
-
-            <div class="footer-box">
-
-                <div class="footer-BKUlogo">
-                    <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
-                    <div class="footer-logo-content">
-                        <span>HOSPITAL HCMUT UNIVERSITY</span>
-                        <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+        <div class="banner">
+            <span>Tầng 2</span>
+        </div>
+        <div class="card-group" id="t2">
+            <div class="col-1">
+                <div class="card" id="H2-201">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H2-201</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Khám tổng quát</span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="share">
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
+            <div class="col-2">
+                <div class="card" id="H2-202">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H2-202</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Khám bệnh</span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <span>LƯỢT TRUY CẬP: 99,999,999</span>
             </div>
 
-            <div class="footer-box">
-                <h3>Thông tin liên hệ hỗ trợ</h3>
-                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
-                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
-                    14, Quận 10, TP. HCM (Bản đồ) </a>
-                <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
-                    Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
-
+            <div class="col-3">
+                <div class="card" id="H2-203">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H2-203</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Khám bệnh </span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="footer-box">
-                <h3>Truy cập</h3>
-                <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-                <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
-                <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
-                <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
-                <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+            <div class="col-4">
+                <div class="card" id="H2-204">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H2-204</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Chức năng </span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices">
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="card" id="H2-205">
+                    <div class="card-room">
+                        <div class="card-header">
+                            <span>H2-205</span>
+                        </div>
+                        <div class="card-function">
+                            <span>Chức năng </span>
+                        </div>
+                    </div>
+                    <div class="infor">
+                        <div class="info-Surround">
+                            <h3>Thông tin phòng bệnh</h3>
+                            <div class="infor-content">
+                                <span id="status">Trạng thái:</span> <br>
+                                <span>Số giường: 5</span> <br>
+                                <span>Danh sách thiết bị:
+                                        <span id="devices"> Hello
+                                            <ul>
+                                            </ul>
+                                        </span>
+                                    </span> <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script th:src="@{/script/Room/Room.js}"></script>
+
+
+<section class="footer">
+    <div class="footer-container">
+
+        <div class="footer-box">
+
+            <div class="footer-BKUlogo">
+                <img th:src="@{/img/Logo/logo-footer.jpg}" alt="">
+                <div class="footer-logo-content">
+                    <span>HOSPITAL HCMUT UNIVERSITY</span>
+                    <p>Bệnh viện chuyên chăm sóc, hồi sức cho sinh viên BKU :< </p>
+                </div>
+            </div>
+
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+
+            <span>LƯỢT TRUY CẬP: 99,999,999</span>
+        </div>
+
+        <div class="footer-box">
+            <h3>Thông tin liên hệ hỗ trợ</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> kiet.phantuan17@hcmut.edu.vn </a>
+            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 1: 268 Lý Thường Kiệt, Phường
+                14, Quận 10, TP. HCM (Bản đồ) </a>
+            <a href="#" class="links"> <i class="fa-solid fa-location-dot"></i> Cơ sở 2: Khu phố Tân Lập, Phường
+                Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương (Bản đồ)</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Truy cập</h3>
+            <a th:href="@{/#home}" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+            <a th:href="@{/#features}" class="links"> <i class="fas fa-arrow-right"></i> Chức năng </a>
+            <a th:href="@{/#info}" class="links"> <i class="fas fa-arrow-right"></i> Thông tin </a>
+            <a th:href="@{/#achieve}" class="links"> <i class="fas fa-arrow-right"></i> Thành tựu </a>
+            <a th:href="@{/#contact}" class="links"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+        </div>
+    </div>
+</section>
+
+<script th:src="@{/script/Room/Room.js}"></script>
 </body>
 
 </html>
