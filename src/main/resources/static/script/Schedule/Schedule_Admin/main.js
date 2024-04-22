@@ -163,7 +163,7 @@ openForm.addEventListener('click', function() {
             .then(response => response.json())
             .then(data => {
                 alert("Thêm thành công :)");
-                loadSchedule();
+                window.location.reload();
             })
             .catch(function(err) {
                 console.log(err);
@@ -323,7 +323,10 @@ function loadSchedule() {
                     let date = index + 1;
                     let today = new Date();
                     let taskDay = new Date(reverse(task.day));
-                    if (taskDay < today) {
+                    if (taskDay < today &&
+                                !(today.getDate() === taskDay.getDate() &&
+                                    today.getMonth() === taskDay.getMonth() &&
+                                    today.getFullYear() === taskDay.getFullYear())) {
                         continue;
                     }
                     addTask(task, date);

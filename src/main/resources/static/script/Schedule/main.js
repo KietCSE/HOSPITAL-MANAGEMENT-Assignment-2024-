@@ -230,7 +230,10 @@ function loadSchedule() {
                     let date = index + 1;
                     let today = new Date();
                     let taskDay = new Date(reverse(task.day));
-                    if (taskDay < today) {
+                    if (taskDay < today &&
+                        !(today.getDate() === taskDay.getDate() &&
+                            today.getMonth() === taskDay.getMonth() &&
+                            today.getFullYear() === taskDay.getFullYear())) {
                         continue;
                     }
                     addTask(task, date);
