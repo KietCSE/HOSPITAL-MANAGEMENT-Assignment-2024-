@@ -136,6 +136,7 @@ document.querySelector(".import form .submit").addEventListener("click", async f
         <td class="LINK"><a href="/medicine/info/${Medicine_Obj.ID}">TT Sản phẩm</a></td>
         <td class="DELETE">Xóa</td>`;
         document.querySelector("table tbody").appendChild(newRow);
+        alert("Thêm thuốc thành công")
     } catch (error) {
         console.error("Error:", error);
         alert(error);
@@ -255,7 +256,7 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                     return response.json();
                 } else {
                     console.log("Failed");
-                    throw ("Failed");
+                    throw ("Lấy thông tin không thành công");
                 }
             }).then(data => {
                 console.log(data.data);
@@ -274,9 +275,10 @@ document.querySelector(".export form .submit").addEventListener("click", functio
                     body: JSON.stringify(Medicine_Obj)
                 }).then(response => {
                     if (response.ok) {
+                        alert("Cập nhật thông tin thành công");
                         return response.json();
                     } else {
-                        throw ("Failed");
+                        throw ("Cập nhật thông tin không thành công");
                     }
                 }).then(data => {
                     if (!data.status) throw new Error(data.message);
@@ -327,6 +329,8 @@ document.querySelector('.table tbody').addEventListener("click", async function 
         let row = event.target.parentNode;
         let MID = row.querySelector(".MID").textContent;
 
+        let confirmation = confirm("Xác nhận thực hiện hành động này?");
+        if(confirmation === false) return;
         fetch(`/api/medicine/delete/${MID}`, {
             method: "DELETE",
             headers: {
@@ -342,7 +346,7 @@ document.querySelector('.table tbody').addEventListener("click", async function 
                 throw new Error(data.message);
             }
             else {
-                console.log("Xóa thông tin thành công");
+                alert("Xóa thuốc thành công");
             }
         }).catch(Error => {
             alert(Error)
