@@ -7,6 +7,7 @@ else {
 }
 
 let doctorID = sessionStorage.getItem('doctorID');
+let listTask;
 // Thêm task
 function addTask(taskObj, date) {
     const week = document.querySelector('.week');
@@ -240,6 +241,9 @@ function loadSchedule() {
                 }
             }
         })
+        .then(() => {
+            listTask = document.querySelectorAll('.task');
+        })
         .catch(err => {
             alert(err);
             console.log(err);
@@ -247,3 +251,19 @@ function loadSchedule() {
 }
 
 loadSchedule();
+
+//Search
+let searchBtn = document.querySelector('.search-btn');
+searchBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    let day = document.querySelector('.search input').value;
+    listTask.forEach((task) => {
+        let taskDay = task.querySelector('.task__day').innerText;
+        if (day && taskDay !== day) {
+            task.style.display = 'none';
+        }
+        else {
+            task.style.display = 'block';
+        }
+    })
+})
