@@ -33,6 +33,8 @@ public class doctorInfoService {
 
     private Map<String, Object> convertToMap(doctorInfoModel doctorInfoModel) {
         Map<String, Object> map = new HashMap<>();
+        map.put("phoneNumber", doctorInfoModel.getPhoneNumber());
+        map.put("address", doctorInfoModel.getAddress());
         map.put("university", doctorInfoModel.getUniversity());
         map.put("departmentName", doctorInfoModel.getDepartmentName());
         map.put("major", doctorInfoModel.getMajor());

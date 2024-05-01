@@ -29,14 +29,13 @@ fetch("http://localhost:8080/api/doctor/info?doctorID=" + sessionStorage.getItem
     .catch(err => alert(err));
 
 function addInfo(doctor) {
-    document.querySelector('.name').innerText = doctor.fullName;
-    document.querySelector('.yearOfBirth').innerText = doctor.yearOfBirth;
-    document.querySelector('.phoneNumber').innerText = doctor.phoneNumber;
-    document.querySelector('.address').innerText = doctor.address;
+    document.querySelector('#name').innerText = doctor.fullName;
+    document.querySelector('#yearOfBirth').innerText = doctor.yearOfBirth;
+    document.querySelector('#phoneNumber').innerText = doctor.phoneNumber;
+    document.querySelector('#address').innerText = doctor.address;
     document.querySelector('#university').innerText = doctor.university;
     document.querySelector('#departmentName').innerText = doctor.departmentName;
     document.querySelector('#major').innerText = doctor.major;
-    console.log(doctor);
 }
 function addInfoUpdate(doctor) {
     document.querySelector('#name-in-update').value = doctor.fullName;
@@ -67,8 +66,8 @@ updateBtn.addEventListener('click', () => {
     })
         .then(response => response.json())
         .then(data => {
-            document.querySelector('#phoneNumber-in-update').innerText = doctorUpdate.phoneNumber;
-            document.querySelector('#address-in-update').innerText = doctorUpdate.address;
+            document.querySelector('#phoneNumber').innerText = doctorUpdate.phoneNumber;
+            document.querySelector('#address').innerText = doctorUpdate.address;
             document.querySelector('#university').innerText = doctorUpdate.university;
             document.querySelector('#departmentName').innerText = doctorUpdate.departmentName;
             document.querySelector('#major').innerText = doctorUpdate.major;
