@@ -267,3 +267,11 @@ searchBtn.addEventListener('click', (event) => {
         }
     })
 })
+let searchInput = document.querySelector('.search input');
+searchInput.addEventListener('input', () => {
+    if (searchInput.value === '') {
+        listTask.forEach((task) => {
+            task.style.display = 'block';
+        })
+    }
+})
