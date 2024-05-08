@@ -27,11 +27,16 @@
         B6: Mở đường dẫn: <a link ="http://localhost:8080/">http://localhost:8080/</a> Để chạy dự án.
     </li>
     </ul>
-    <h1>
-        Hướng dẫn chạy dự án từ dự án đóng gói. 
-    </h1>
-    <ul>
-    <li>
+
+[//]: # (    <h1>)
+
+[//]: # (        Hướng dẫn chạy dự án từ dự án đóng gói. )
+
+[//]: # (    </h1>)
+
+[//]: # (    <ul>)
+
+[//]: # (    <li>)
 
 [//]: # (        B1: Truy cập đường dẫn: <a link= "https://drive.google.com/file/d/1O93AxMDRX8lD_MrXBwxHZ-x7ezzfRtAV/view?usp=sharing">https://drive.google.com/file/d/1O93AxMDRX8lD_MrXBwxHZ-x7ezzfRtAV/view?usp=sharing</a>)
 
