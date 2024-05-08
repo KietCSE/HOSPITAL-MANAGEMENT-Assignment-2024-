@@ -32,19 +32,33 @@
     </h1>
     <ul>
     <li>
-        B1: Truy cập đường dẫn: <a link= "https://drive.google.com/file/d/1O93AxMDRX8lD_MrXBwxHZ-x7ezzfRtAV/view?usp=sharing">https://drive.google.com/file/d/1O93AxMDRX8lD_MrXBwxHZ-x7ezzfRtAV/view?usp=sharing</a>
-    </li>
-    <li>
-        B2: Tải file RAR xuống.
-    <li>
-        B3: Mở terminal và di chuyển tới thư mục chứa dự án.
-    </li>
-    <li>
-        B4: Gõ lệnh java -jar BTL_LTNC.jar
-    </li>
-    <li>
-        B5: Mở đường dẫn: <a link ="http://localhost:8080/">http://localhost:8080/</a> Để chạy dự án.
-    </li>
-    </ul>
+
+[//]: # (        B1: Truy cập đường dẫn: <a link= "https://drive.google.com/file/d/1O93AxMDRX8lD_MrXBwxHZ-x7ezzfRtAV/view?usp=sharing">https://drive.google.com/file/d/1O93AxMDRX8lD_MrXBwxHZ-x7ezzfRtAV/view?usp=sharing</a>)
+
+[//]: # (    </li>)
+
+[//]: # (    <li>)
+
+[//]: # (        B2: Tải file RAR xuống.)
+
+[//]: # (    <li>)
+
+[//]: # (        B3: Mở terminal và di chuyển tới thư mục chứa dự án.)
+
+[//]: # (    </li>)
+
+[//]: # (    <li>)
+
+[//]: # (        B4: Gõ lệnh java -jar BTL_LTNC.jar)
+
+[//]: # (    </li>)
+
+[//]: # (    <li>)
+
+[//]: # (        B5: Mở đường dẫn: <a link ="http://localhost:8080/">http://localhost:8080/</a> Để chạy dự án.)
+
+[//]: # (    </li>)
+
+[//]: # (    </ul>)
 </body>
 </html>
